@@ -1,6 +1,6 @@
-export default function Footer() {
+export function Footer() {
   return (
-    <footer className="border-t border-[#1e2230] bg-[#0f1117]">
+    <footer className="border-t border-[#1e2330] bg-[#0a0d13]">
       <div className="mx-auto max-w-5xl px-6 h-14 flex items-center justify-between">
         <p className="text-xs text-[#6b7280]">
           &copy; {new Date().getFullYear()} Javier Mayorga
