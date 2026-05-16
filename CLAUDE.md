@@ -75,3 +75,5 @@ content/
 - When building a new page, always check existing components first
 - When adding content, always use the MDX frontmatter conventions above
 - Never add unnecessary dependencies
+- Never ask for information that is already defined in this document.
+  Read CLAUDE.md fully before asking any clarifying question.
