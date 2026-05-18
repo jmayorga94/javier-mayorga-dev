@@ -1,59 +1,37 @@
 # Skill: build a UI component
 
-## When to use this skill
-When asked to create any reusable UI element — a card, button, tag, badge,
-stat block, section header, avatar, or any visual piece that will be used
-in more than one place.
-
----
-
 ## Before you start
-
-1. Check `src/components/ui/` — the component may already exist
-2. Check `src/components/sections/` — if it's a full homepage section
-3. Read `CLAUDE.md` design system section before writing any styles
-4. Determine: is this a server component or does it need interactivity?
-   - Default to server component (no `"use client"`)
-   - Add `"use client"` only if it uses useState, useEffect, or browser events
+1. Open `reference/mockup.html` — find the component visually first
+2. Open `.claude/skills/design-system.md` — get exact token values
+3. Check `src/components/` — does it already exist?
+4. Decide: server component or client? Default is server.
+   Add `"use client"` only for useState, useEffect, or browser events.
 
 ---
 
-## File location rules
+## File locations
 
 | Type | Location |
 |---|---|
-| Primitive (Button, Tag, Card wrapper) | `src/components/ui/ComponentName.tsx` |
-| Layout piece (Navbar, Footer) | `src/components/layout/ComponentName.tsx` |
-| Homepage section (Hero, Showcase) | `src/components/sections/ComponentName.tsx` |
-| MDX-specific (DiagramBlock, Callout) | `src/components/mdx/ComponentName.tsx` |
+| Primitive (Button, Tag, Divider) | `src/components/ui/ComponentName.tsx` |
+| Layout (Navbar, Footer) | `src/components/layout/ComponentName.tsx` |
+| Homepage section | `src/components/sections/ComponentName.tsx` |
+| MDX components | `src/components/mdx/ComponentName.tsx` |
 
 ---
 
 ## Component structure
 
-Every component follows this pattern:
-
 ```tsx
-// 1. Imports
-import { ReactNode } from "react"
-
-// 2. TypeScript interface — always explicit, never `any`
+// Named export always — never default export for components
 interface ComponentNameProps {
-  title: string
-  description?: string
-  children?: ReactNode
-  className?: string   // always accept className for composability
+  // explicit types — never `any`
+  className?: string  // always include for composability
 }
 
-// 3. Named export — never default export for UI components
-export function ComponentName({
-  title,
-  description,
-  children,
-  className = "",
-}: ComponentNameProps) {
+export function ComponentName({ className = "" }: ComponentNameProps) {
   return (
-    <div className={`... your tailwind classes ... ${className}`}>
+    <div className={`[mockup-matched classes] ${className}`}>
       {/* content */}
     </div>
   )
@@ -62,54 +40,101 @@ export function ComponentName({
 
 ---
 
-## Tailwind conventions
+## Key components and their exact classes
 
-Use the design system tokens from CLAUDE.md. Quick reference:
-
+### SectionDivider
+```tsx
+export function SectionDivider() {
+  return <div className="h-[2px] bg-[#1D9E75]" />
+}
+// Use between every major section — never skip this
 ```
-Card shell:        bg-[#141821] border border-[#1e2330] rounded-xl p-5
-Section eyebrow:   text-xs text-[#5DCAA5] uppercase tracking-widest mb-2
-Section heading:   text-2xl font-medium text-[#f9fafb] mb-6
-Body text:         text-[#9ca3af] text-sm leading-relaxed
-Muted text:        text-[#6b7280] text-xs
-Accent tag:        bg-[#0a1f18] border border-[#0F6E56] text-[#5DCAA5] text-xs rounded px-2 py-0.5
-Primary button:    bg-[#1D9E75] text-[#04342C] font-medium rounded-md px-6 py-2.5
-Ghost button:      border border-[#2a3040] text-[#9ca3af] rounded-md px-6 py-2.5
+
+### SectionHeader
+```tsx
+export function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
+  return (
+    <div className="mb-16">
+      <p className="text-[11px] uppercase tracking-[0.1em] text-[#1D9E75] mb-4">
+        {eyebrow}
+      </p>
+      <h2 className="text-[36px] font-medium text-[#0f1117] leading-[1.2]">
+        {title}
+      </h2>
+    </div>
+  )
+}
+```
+
+### ArchCard
+```tsx
+export function ArchCard({ title, desc, diagram }: ArchCardProps) {
+  return (
+    <div className="bg-white border border-[#f3f4f6] rounded-lg p-8">
+      <h3 className="text-[16px] font-medium text-[#0f1117] mb-2">{title}</h3>
+      <p className="text-[14px] text-[#6b7280] mb-6">{desc}</p>
+      {diagram}
+    </div>
+  )
+}
+```
+
+### CaseCard
+```tsx
+export function CaseCard({ metric, title, client, desc }: CaseCardProps) {
+  return (
+    <div className="bg-white border border-[#f3f4f6] rounded-lg p-8 flex gap-6 items-start">
+      <span className="text-[48px] font-medium text-[#1D9E75] leading-none min-w-[100px]">
+        {metric}
+      </span>
+      <div>
+        <h3 className="text-[16px] font-medium text-[#0f1117] mb-2">{title}</h3>
+        <p className="text-[14px] text-[#6b7280] mb-2">{client}</p>
+        <p className="text-[14px] text-[#6b7280]">{desc}</p>
+      </div>
+    </div>
+  )
+}
+```
+
+### BlogCard
+```tsx
+export function BlogCard({ lang, title, slug }: BlogCardProps) {
+  return (
+    <Link href={`/blog/${slug}`}>
+      <article className="bg-white border border-[#f3f4f6] border-l-[3px]
+                          border-l-[#1D9E75] rounded-lg p-6 pl-7
+                          hover:border-l-[#178f68] transition-colors">
+        <span className="text-[11px] uppercase tracking-[0.1em] text-[#1D9E75] block mb-3">
+          {lang}
+        </span>
+        <h3 className="text-[16px] font-medium text-[#0f1117] leading-[1.4]">
+          {title}
+        </h3>
+      </article>
+    </Link>
+  )
+}
+```
+
+### ServiceCard
+```tsx
+export function ServiceCard({ title, desc }: ServiceCardProps) {
+  return (
+    <div className="bg-white border border-[#d1fae5] rounded-lg p-8">
+      <h3 className="text-[18px] font-medium text-[#0f1117] mb-3">{title}</h3>
+      <p className="text-[14px] text-[#6b7280] leading-[1.6]">{desc}</p>
+    </div>
+  )
+}
 ```
 
 ---
 
 ## What good output looks like
-
-- TypeScript interface is complete — no missing props, no `any`
-- Component is self-contained — no logic that belongs in a page
-- Tailwind only — no inline `style={{}}` unless absolutely unavoidable
-- Accepts `className` prop for external overrides
-- If interactive: `"use client"` is at the top, above imports
-- Exported as named export, not default
-- File is under ~80 lines — if longer, consider splitting
-
----
-
-## Example: stat card component
-
-```tsx
-interface StatCardProps {
-  value: string
-  suffix?: string
-  label: string
-  className?: string
-}
-
-export function StatCard({ value, suffix, label, className = "" }: StatCardProps) {
-  return (
-    <div className={`flex flex-col gap-1 ${className}`}>
-      <div className="text-2xl font-medium text-[#f9fafb]">
-        {value}
-        {suffix && <span className="text-[#5DCAA5]">{suffix}</span>}
-      </div>
-      <div className="text-xs text-[#6b7280]">{label}</div>
-    </div>
-  )
-}
-```
+- Classes match design-system.md exactly — no approximations
+- Props interface is complete with no `any`
+- Component is under ~80 lines — split if longer
+- Accepts `className` for external overrides
+- Uses `next/link` for all internal links
+- Uses `next/image` for all images
