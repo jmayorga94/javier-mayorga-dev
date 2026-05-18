@@ -77,3 +77,49 @@ content/
 - Never add unnecessary dependencies
 - Never ask for information that is already defined in this document.
   Read CLAUDE.md fully before asking any clarifying question.
+- Always update tasks.md after completing any task.
+
+  ## Git Workflow
+
+### Branch naming
+- Features: `feature/<task>-<brief-description>`
+- Bug fixes: `fix/<task>-<brief-description>`
+- Chores: `chore/<brief-description>`
+
+All branches cut from `main`. Never commit directly to `main`.
+
+### Conventional commits
+Format: `<type>(<scope>): <imperative summary>`
+
+| Type | When to use |
+|------|-------------|
+| `feat` | New feature or UI component |
+| `fix` | Bug fix |
+| `chore` | Deps, config, tooling — no production code |
+| `refactor` | Code restructure without behavior change |
+| `test` | Add/update tests |
+| `docs` | Documentation only |
+| `style` | Formatting, whitespace |
+| `ci` | CI/CD pipeline changes |
+
+Scopes: `auth` | `wizard` | `booking` | `dashboard` | `db` | `i18n` | `design-system` | `messaging`
+
+Examples:
+```
+feat(wizard): add step 1 business info form
+fix(auth): redirect to correct locale after OAuth callback
+chore(deps): bump supabase-js to 2.45
+test(wizard): add unit tests for step validation
+```
+
+### Atomic commits
+One logical change per commit — if reverting it leaves the app in a coherent state, it's atomic. Stage specific files; never `git add .` blindly. Migrations go in their own commit, separate from dependent UI code.
+
+### Pull requests
+After completing a task:
+1. Push branch: `git push -u origin <branch>`
+2. Open PR: `gh pr create` (the repo template auto-populates the body)
+3. Reviewers are auto-assigned via CODEOWNERS (`@jmayorga94`)
+4. Merge only after approval — prefer squash-merge to keep `main` history clean
+
+---
