@@ -1,0 +1,54 @@
+---
+title: "CI/CD pipeline re-engineering"
+client: "Inter-American Development Bank (IDB)"
+year: 2023
+outcome: "30%"
+tags: ["azure-devops", "ci-cd", "devops", "terraform", "gitops"]
+lang: en
+---
+
+## The problem
+
+Following the infrastructure migration, IDB's development workflows remained a bottleneck. Deployments took 4-6 hours, required manual sign-offs at five checkpoints, and had a 20% failure rate due to environment configuration drift between staging and production.
+
+The development team was spending more time on deployment coordination than on building features.
+
+## What I was asked to solve
+
+Redesign the CI/CD pipeline to:
+
+- Reduce deployment cycle time from 4-6 hours to under 3 hours
+- Eliminate environment configuration drift
+- Automate the manual sign-off checkpoints where approval was mechanical, not judgmental
+- Maintain the audit trail requirements for regulated deployments
+
+## The architecture
+
+**Pipeline infrastructure:** Azure DevOps with environment-specific deployment gates. YAML pipelines defined in version control, with pipeline templates shared across services.
+
+**Infrastructure as code:** Terraform with Azure backend state storage. All infrastructure changes go through the same pipeline as application code — reviewed, tested, and audited.
+
+**Quality gates:**
+- Unit tests with coverage threshold enforcement
+- Static analysis via SonarQube integration
+- Container image vulnerability scanning with Azure Defender for Containers
+- Automated smoke tests on deployment to staging
+
+**GitOps for Kubernetes:** ArgoCD monitoring the Kubernetes manifests repository. Infrastructure state is always reconciled to what's in git — no manual kubectl.
+
+<Callout type="tip">
+  The three manual sign-offs that required human approval (security review, compliance check,
+  production authorization) were kept. The two that were mechanical checks ("did the tests pass?",
+  "is the image scanned?") were automated. This distinction matters for regulated environments.
+</Callout>
+
+## The configuration drift fix
+
+The core drift problem: staging used manually-configured environment variables, production used a different set managed by a different team. Terraform modules with environment-specific variable files solved this — the same module runs in staging and production, the only difference is the variable values.
+
+## Outcome
+
+- **30% faster deployment cycle** — from 4-6 hours to under 3 hours average
+- **Zero configuration drift incidents** in the 12 months post-implementation
+- **Pipeline failure rate dropped from 20% to under 4%**
+- **Full deployment audit trail** maintained for regulatory compliance

@@ -1,0 +1,55 @@
+---
+title: "When to migrate to Azure — and when not to"
+date: "2024-01-15"
+lang: en
+tags: ["azure", "cloud-migration", "architecture"]
+summary: "A framework for deciding when Azure migration creates real value versus when it adds complexity without payoff."
+published: true
+---
+
+Cloud migration is sold as a universal upgrade. It rarely is. After leading three enterprise migrations — two that delivered clear ROI and one that should have been postponed — I've developed a framework for making this decision honestly.
+
+## The question nobody asks
+
+Most migration conversations start with "how do we migrate?" The right first question is "should we migrate, and if so, what specifically?"
+
+Azure is genuinely the right answer when:
+
+- Your workloads have variable demand patterns that map well to elastic compute
+- You need managed compliance tooling for regulated data (HIPAA, PCI, SOX)
+- Your team's operational overhead on on-premises infrastructure is measurable and high
+- You have active Microsoft enterprise agreements that make Azure cost-competitive
+
+<Callout type="tip">
+  The honest version: if you can't describe a specific operational problem that Azure solves, you're
+  solving for technology selection, not business outcomes.
+</Callout>
+
+## When not to migrate
+
+I've seen organizations migrate workloads that were stable, performant, and well-understood — only to spend eighteen months in hyperscaler support queues and FinOps meetings.
+
+Avoid migration when:
+
+- **The workload is static.** A reporting database that runs scheduled jobs doesn't benefit from autoscaling.
+- **The team skill gap is large.** Cloud architecture requires different expertise than on-premises. Migrating without training is transferring risk, not reducing it.
+- **The "old system" works.** Legacy doesn't mean broken. If a system is meeting SLAs and the team understands it, that's a business asset.
+
+## The framework I actually use
+
+Before recommending migration to a client, I walk through four questions:
+
+1. **What is the specific pain point?** Can we measure it today?
+2. **Is Azure the minimal viable fix?** Could a smaller change solve it?
+3. **What does the 3-year TCO look like?** Cloud is not always cheaper.
+4. **What does a rollback look like?** If the answer is "impossible," that's a risk to price in.
+
+<Callout type="info">
+  For IDB's legacy system migration, the pain point was clear: 40% monthly downtime on a
+  mission-critical financial platform. Azure was the right call. The migration delivered 95%
+  downtime reduction in under 12 months.
+</Callout>
+
+## The framing that changes the conversation
+
+"Cloud migration" frames the destination as the goal. I reframe it as "operational improvement with Azure as a possible path." That framing forces specificity — and specificity is what protects organizations from expensive migrations that don't move the needle.

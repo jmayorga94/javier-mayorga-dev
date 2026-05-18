@@ -1,0 +1,57 @@
+---
+title: "Legacy system → high-availability cloud"
+client: "Inter-American Development Bank (IDB)"
+year: 2022
+outcome: "95%"
+tags: ["azure", "high-availability", "migration", "financial-systems"]
+lang: en
+---
+
+## The problem
+
+IDB's mission-critical financial reporting platform was running on aging on-premises infrastructure with a 40% monthly downtime rate. The system processed regulated financial data for development projects across Latin America and the Caribbean. Every hour of downtime had direct operational impact on project managers and financial analysts across 26 member countries.
+
+The platform had accumulated 15 years of technical debt: a monolithic application deployed to bare-metal servers, no automated failover, and manual deployment processes that required four-hour maintenance windows.
+
+## What I was asked to solve
+
+Design and deliver a migration from the on-premises monolith to Azure cloud infrastructure that would:
+
+- Eliminate unplanned downtime
+- Remove the four-hour maintenance window requirement
+- Maintain full regulatory compliance throughout the migration
+- Complete without disrupting live operations
+
+## The architecture
+
+The solution used Azure's managed services to replace every single point of failure in the original system:
+
+**Compute layer:** The application was containerized and deployed to Azure Kubernetes Service with multi-zone node pools. A horizontal pod autoscaler handles demand spikes automatically.
+
+**Data layer:** Azure SQL Database Hyperscale with active geo-replication across two Azure regions. Automatic failover group configured with a two-minute recovery time objective.
+
+**Traffic layer:** Azure Application Gateway with Web Application Firewall in front of an Azure Front Door profile for global load balancing and health-based routing.
+
+**Observability:** Azure Monitor with custom dashboards for financial transaction volume, error rates, and replication lag.
+
+<Callout type="info">
+  The expand/contract pattern was used for all four schema migrations required during the
+  migration. No migration required a maintenance window.
+</Callout>
+
+## The migration approach
+
+The migration ran in phases over five months:
+
+1. **Infrastructure setup** — new Azure environment built and validated in parallel
+2. **Application containerization** — monolith wrapped in Docker, dependencies audited
+3. **Data synchronization** — Azure Database Migration Service used to establish live replication
+4. **Traffic split** — gradual 5% → 25% → 50% → 100% shift over three weeks
+5. **Old infrastructure decommission** — after 30-day stability window
+
+## Outcome
+
+- **95% reduction in unplanned downtime** — from 40% monthly to under 2% in the six months post-migration
+- **Zero maintenance windows** — deployments now happen via rolling updates with no service interruption
+- **Recovery time objective: 2 minutes** — down from "manual escalation required"
+- **Full regulatory compliance maintained** throughout migration and post-migration

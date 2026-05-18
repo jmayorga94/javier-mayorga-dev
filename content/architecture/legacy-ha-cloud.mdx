@@ -1,0 +1,44 @@
+---
+title: "Legacy system → high-availability cloud"
+diagramType: "ha"
+summary: "Distributed Azure architecture replacing a single-region on-premises deployment with multi-zone HA, automated failover, and zero-downtime migration."
+tags: ["azure", "kubernetes", "sql-hyperscale", "high-availability"]
+---
+
+## Architecture overview
+
+This architecture replaces a monolithic on-premises application with a distributed Azure deployment designed for 99.9% availability across multiple failure domains.
+
+## Key components
+
+**Azure Kubernetes Service (AKS)** — Application tier deployed across multiple availability zones. Horizontal pod autoscaling handles demand spikes. Rolling updates enable zero-downtime deployments.
+
+**Azure SQL Database Hyperscale** — Database tier with active geo-replication. Automatic failover group with 2-minute RTO. Read replicas offload reporting workloads from the primary.
+
+**Azure Application Gateway** — Layer 7 load balancer with WAF policy. Health probes route traffic away from unhealthy pods automatically.
+
+**Azure Front Door** — Global traffic distribution and DDoS protection at the edge. Enables regional failover if an availability zone becomes unavailable.
+
+## Availability design
+
+The system is designed to survive:
+
+- Single pod failure → AKS restarts pod, health probe routes traffic to healthy pods
+- Node failure → AKS reschedules pods to other nodes in the zone
+- Zone failure → AKS node pools span multiple zones; SQL geo-replication handles data
+- Region degradation → Front Door routes traffic to secondary region
+
+## Migration approach
+
+<Callout type="info">
+  This system was migrated live using a parallel-run pattern. The new Azure environment ran
+  in shadow mode for three weeks before receiving production traffic.
+</Callout>
+
+The migration used five phases:
+
+1. Infrastructure provisioning and validation
+2. Application containerization
+3. Data replication via Azure Database Migration Service
+4. Gradual traffic shift (5% → 25% → 50% → 100%)
+5. Old infrastructure decommission after 30-day stability window

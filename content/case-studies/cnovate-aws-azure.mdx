@@ -1,0 +1,57 @@
+---
+title: "AWS → Azure multi-cloud transformation"
+client: "Cnovate"
+year: 2023
+outcome: "2×"
+tags: ["azure", "aws", "multi-cloud", "cost-optimization", "governance"]
+lang: en
+---
+
+## The problem
+
+Cnovate had grown into a multi-cloud footprint organically — AWS for early workloads, Azure for Microsoft-aligned enterprise clients, on-premises for legacy systems. The result was three separate billing relationships, no unified cost visibility, duplicated tooling, and infrastructure that different teams managed with different practices.
+
+The specific pressure: enterprise clients were asking for unified compliance reporting that the fragmented infrastructure couldn't provide.
+
+## What I was asked to solve
+
+Design and execute a strategy to:
+
+- Consolidate cloud spend under a unified governance model
+- Migrate AWS workloads to Azure where cost and operational case justified it
+- Deliver unified compliance and cost visibility across environments
+- Not disrupt active client workloads during the transition
+
+## The approach
+
+Not every AWS workload moved to Azure. The first step was a workload classification:
+
+- **Migrate:** Workloads with no AWS-specific dependencies, active maintenance, and client relationships tied to Azure-native capabilities
+- **Retain:** Workloads using AWS services with no Azure equivalent, or with migration costs exceeding 2-year savings
+- **Decommission:** Duplicate environments and unused resources identified during the audit
+
+The 80% that migrated moved to Azure using Azure Migrate for assessment, Azure Site Recovery for VM replication, and Azure Database Migration Service for data.
+
+<Callout type="info">
+  Unified governance was implemented with Azure Policy applied at the management group level,
+  Azure Cost Management for cross-subscription visibility, and Microsoft Defender for Cloud
+  for security posture — covering both Azure-native and AWS-connected workloads via Defender
+  for Cloud's multicloud connector.
+</Callout>
+
+## Governance model
+
+Azure Landing Zone architecture with three management groups:
+
+- **Platform:** Connectivity, identity, and management subscriptions
+- **Production:** Workload subscriptions with policy-enforced tagging and cost allocation
+- **Sandbox:** Non-production environments with spending limits
+
+All policy-as-code managed in a governance repository reviewed by the architecture team.
+
+## Outcome
+
+- **2× cost efficiency** — unified contract, eliminated duplicate tooling, right-sized workloads during migration
+- **Unified compliance reporting** — single Azure Policy dashboard across all production workloads
+- **Zero client-facing downtime** during any migration phase
+- **Reduced cloud management overhead** — one toolchain, one billing relationship, one governance model
