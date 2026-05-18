@@ -13,7 +13,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader",
   description:
-    "10 years building mission-critical financial systems in regulated environments. IDB · Cnovate · Sapiens.",
+    "Cloud Architect and Enterprise Solutions Leader specializing in mission-critical financial systems, cloud migrations, and scalable Azure architecture.",
 };
 
 export default function RootLayout({

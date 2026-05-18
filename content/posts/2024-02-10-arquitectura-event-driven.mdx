@@ -7,7 +7,7 @@ summary: "Cómo diseñar arquitecturas basadas en eventos que cumplan requisitos
 published: true
 ---
 
-Los sistemas financieros regulados imponen restricciones que las arquitecturas event-driven comúnmente ignoran: auditoría completa, idempotencia garantizada y trazabilidad en tiempo real. Después de diseñar e implementar estas arquitecturas para IDB y Sapiens, tengo una perspectiva clara sobre cuándo funcionan y cuándo se convierten en deuda técnica.
+Los sistemas financieros regulados imponen restricciones que las arquitecturas event-driven comúnmente ignoran: auditoría completa, idempotencia garantizada y trazabilidad en tiempo real. Después de diseñar e implementar estas arquitecturas para una institución financiera internacional y una empresa de software financiero, tengo una perspectiva clara sobre cuándo funcionan y cuándo se convierten en deuda técnica.
 
 ## El problema de fondo
 
@@ -41,9 +41,9 @@ El problema clásico: guardas en base de datos y publicas en el bus. Si el siste
   trigger que procesa el outbox cada pocos segundos.
 </Callout>
 
-## Lo que aprendí en IDB
+## Lo que aprendí en una institución financiera internacional
 
-En el proyecto de modernización de IDB, el sistema procesaba transacciones financieras reguladas bajo supervisión del BID. Los requisitos de auditoría exigían trazabilidad completa de cualquier transacción en los últimos 10 años.
+En el proyecto de modernización de una institución financiera internacional, el sistema procesaba transacciones financieras reguladas bajo estrictos requisitos de cumplimiento normativo. Los requisitos de auditoría exigían trazabilidad completa de cualquier transacción en los últimos 10 años.
 
 La decisión de usar event sourcing no fue una preferencia arquitectural — fue la única forma de cumplir los requisitos regulatorios sin construir un sistema de auditoría paralelo que habría costado el doble de mantener.
 

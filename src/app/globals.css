@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.eyebrow-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  margin-left: 0.25rem;
+  color: #1D9E75;
+}

@@ -68,9 +68,9 @@ This means:
 
 This isn't optional. I've seen migrations fail regulatory review not because the technical approach was wrong, but because the audit trail was incomplete.
 
-## The IDB case
+## A real case: international financial institution
 
-The IDB legacy-to-HA migration involved a financial system processing regulated transactions with a four-hour daily maintenance window as the only allowed downtime. The requirement was to eliminate that window entirely.
+This legacy-to-HA migration at a large international financial institution involved a financial system processing regulated transactions with a four-hour daily maintenance window as the only allowed downtime. The requirement was to eliminate that window entirely.
 
 The solution used traffic split at the application layer (Azure Application Gateway) and expand/contract for four schema changes that had accumulated over two years. The migration ran over six weeks in production, with zero service interruptions.
 
