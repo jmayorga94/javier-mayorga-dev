@@ -1,0 +1,60 @@
+---
+title: "How I use LLMs to accelerate architecture design"
+date: "2024-03-05"
+lang: en
+tags: ["llm", "ai", "architecture", "workflow"]
+summary: "Concrete workflows for using large language models to speed up architecture documentation, RFC drafting, and technical decision-making — without introducing new risk."
+published: true
+---
+
+I've been incorporating LLMs into architecture work for over a year. Not as a replacement for thinking, but as a tool that removes friction from the parts of the job that are time-intensive but not technically hard: documentation, scenario analysis, RFC structure, and option enumeration.
+
+Here's what actually works.
+
+## What I use them for
+
+### RFC drafting
+
+The most consistent time save. Writing a good RFC requires:
+
+- Problem statement
+- Constraints and non-goals
+- 2-3 options with trade-offs
+- Recommendation with rationale
+- Open questions
+
+I write the first section myself — the problem statement requires architectural clarity that I can't delegate. Then I prompt with specific context and ask for option enumeration. The LLM generates a reasonable structure that I edit heavily, but I'm editing, not writing from scratch.
+
+<Callout type="tip">
+  The prompt that works: "I'm designing X for a system with constraints A, B, C. I need to
+  evaluate three approaches: [approach 1], [approach 2], [approach 3]. For each, outline the
+  trade-offs for a regulated financial environment where audit trail and latency are the
+  primary concerns."
+</Callout>
+
+### Scenario analysis
+
+When evaluating architecture decisions, I use LLMs to pressure-test assumptions. I describe the architecture and ask it to identify failure modes I haven't considered. It's not always right — but the questions it raises are often worth working through.
+
+### Documentation structure
+
+Technical documentation is a tax on engineering time. I describe what a component does and ask for a documentation structure, then fill it in. This works better than staring at a blank page.
+
+## What I don't use them for
+
+- **Security review.** LLMs have no context about your specific threat model, regulatory environment, or existing controls.
+- **Performance estimation.** They're confidently wrong about latency and throughput numbers without actual measurement data.
+- **Novel architecture decisions.** When the decision genuinely matters and is genuinely novel, I want my own reasoning, reviewed by humans.
+
+## The workflow that avoids hallucination risk
+
+LLMs produce plausible-sounding wrong answers. The workflow that minimizes this risk:
+
+1. Always provide the specific constraints — never ask generic questions
+2. Treat the output as a first draft, not a recommendation
+3. Validate every concrete claim (library versions, service limits, pricing) against official documentation
+4. Never paste LLM output directly into a customer-facing document
+
+## The honest assessment
+
+LLMs save me roughly 4-6 hours per week on documentation and RFC work. They haven't changed how I make architecture decisions — that still requires deep thinking about the specific system, team, and constraints. What they've changed is how quickly I can get from "decision made" to "decision documented."

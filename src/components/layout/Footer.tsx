@@ -1,56 +1,47 @@
 export function Footer() {
   return (
-    <footer className="border-t border-[#1e2330] bg-[#0a0d13]">
-      <div className="mx-auto max-w-5xl px-6 h-14 flex items-center justify-between">
-        <p className="text-xs text-[#6b7280]">
-          &copy; {new Date().getFullYear()} Javier Mayorga
-        </p>
+    <footer className="bg-[#0f1117] py-16 px-6" id="contact">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-8">
+          <div>
+            <span className="text-[18px] font-medium text-[#f9fafb] block mb-2">
+              Javier Mayorga
+            </span>
+            <p className="text-[14px] text-[#9ca3af] leading-[1.6] max-w-[280px]">
+              Building systems that last. Writing about what I learn.
+            </p>
+          </div>
 
-        <div className="flex items-center gap-4">
-          <a
-            href="mailto:javier.mayorga@cnovate.io"
-            aria-label="Email"
-            className="text-[#6b7280] hover:text-[#5DCAA5] transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.75"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          <div className="flex gap-8">
+            <a
+              href="https://www.linkedin.com/in/javier-mayorga"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[14px] text-[#9ca3af] hover:text-[#f9fafb] transition-colors"
             >
-              <rect width="20" height="16" x="2" y="4" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
-          </a>
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/jmayorga94"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[14px] text-[#9ca3af] hover:text-[#f9fafb] transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="mailto:javier.mayorga@cnovate.io"
+              className="text-[14px] text-[#9ca3af] hover:text-[#f9fafb] transition-colors"
+            >
+              Email
+            </a>
+          </div>
+        </div>
 
-          <a
-            href="https://www.linkedin.com/in/javier-mayorga"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="text-[#6b7280] hover:text-[#5DCAA5] transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.75"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-              <rect width="4" height="12" x="2" y="9" />
-              <circle cx="4" cy="4" r="2" />
-            </svg>
-          </a>
+        <div className="border-t border-[#1e2330] pt-6">
+          <span className="text-[14px] text-[#6b7280]">
+            © 2026 Javier Mayorga. All rights reserved.
+          </span>
         </div>
       </div>
     </footer>

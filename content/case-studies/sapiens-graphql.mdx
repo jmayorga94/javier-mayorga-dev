@@ -1,0 +1,57 @@
+---
+title: "Oracle ESB → GraphQL API modernization"
+client: "Sapiens"
+year: 2022
+outcome: "RT"
+tags: ["graphql", "api", "modernization", "oracle", "financial-systems"]
+lang: en
+---
+
+## The problem
+
+Sapiens's financial data platform was built around Oracle Service Bus — a heavyweight ESB that had served well for years but had become a bottleneck. Consumer applications needed real-time financial data; the ESB delivered batch-style request/response with significant latency. Adding new data consumers required weeks of ESB configuration work and testing.
+
+The platform served 12 downstream applications with different data requirements, many of which were over-fetching data because the ESB couldn't provide field-level granularity.
+
+## What I was asked to solve
+
+Replace the Oracle ESB integration layer with a modern API layer that would:
+
+- Provide real-time financial data access
+- Allow consumers to request exactly the fields they need
+- Support the 12 existing consumers without requiring simultaneous migration
+- Maintain the financial data integrity and audit requirements of the original system
+
+## The architecture
+
+**GraphQL API layer:** A GraphQL server (Apollo Server) deployed to Azure App Service, sitting between downstream consumers and the underlying data sources. The schema is designed around business entities (Account, Transaction, Position, Portfolio) rather than database tables.
+
+**Data sources:** The GraphQL resolvers connect to:
+- Azure SQL Database (migrated from Oracle DB during the project)
+- Azure Service Bus for real-time event streams
+- Redis Cache for computed aggregations with sub-second TTL
+
+**Subscriptions for real-time:** GraphQL subscriptions over WebSocket for consumers that need push updates. Financial position data is streamed via Service Bus and broadcast to subscribers through the GraphQL subscription layer.
+
+<Callout type="info">
+  The ESB was not shut down immediately. During an 8-month parallel operation period, both
+  the ESB and the GraphQL API served production traffic. Consumers migrated on their own
+  schedule. The ESB was decommissioned only after the last consumer confirmed migration.
+</Callout>
+
+## The migration pattern
+
+Strangler fig pattern for ESB replacement:
+
+1. GraphQL API deployed alongside ESB (not replacing it)
+2. New consumers built against GraphQL only
+3. Existing consumers migrated service-by-service, with dual-write validation
+4. ESB decommissioned after full migration confirmed
+
+## Outcome
+
+- **Real-time data access** — financial positions available in under 200ms, down from 3-5 second ESB response times
+- **12 consumers migrated** with zero data integrity incidents
+- **Over-fetching eliminated** — consumers requesting only required fields, reducing data transfer by 60%
+- **New consumer onboarding** reduced from weeks to days
+- **ESB licensing and operational costs** eliminated

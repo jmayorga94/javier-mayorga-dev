@@ -1,0 +1,44 @@
+---
+title: "Multi-cloud transformation"
+diagramType: "migration"
+summary: "AWS to Azure consolidation with Azure Landing Zone governance, unified cost management, and Microsoft Defender for Cloud multicloud coverage."
+tags: ["azure", "aws", "multi-cloud", "landing-zone", "governance"]
+---
+
+## Architecture overview
+
+A structured consolidation of fragmented AWS and Azure workloads into a unified Azure Landing Zone, with Microsoft Defender for Cloud extended to cover remaining AWS workloads.
+
+## Landing zone structure
+
+**Management groups** define the governance hierarchy:
+
+- Platform group — connectivity, identity, and management subscriptions
+- Production group — workload subscriptions with enforced tagging and cost allocation policies
+- Sandbox group — non-production environments with spending limits
+
+**Azure Policy** applied at management group level ensures all resources comply with organizational standards: naming conventions, required tags, allowed regions, and security baseline.
+
+## Migration decision framework
+
+Not every AWS workload migrated. Classification:
+
+- **Migrate to Azure** — no AWS-specific dependencies, active workloads, clients aligned with Azure
+- **Retain on AWS** — AWS-native services without Azure equivalents, or migration cost exceeds 2-year savings
+- **Decommission** — duplicate environments and unused resources
+
+80% of workloads migrated. The remaining 20% are managed via Defender for Cloud's multicloud connector.
+
+## Unified governance
+
+<Callout type="info">
+  Azure Cost Management with the AWS billing connector provides a single cost dashboard
+  across both clouds. Cost allocation tags enforce consistent categorization regardless
+  of which cloud the workload runs on.
+</Callout>
+
+Azure Defender for Cloud with multicloud connector:
+
+- Security posture score across Azure and AWS resources
+- Unified compliance dashboard for ISO 27001, SOC 2
+- Security recommendations normalized across both environments

@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  title: "Javier Mayorga — Cloud Architect",
+  title: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader",
   description:
-    "Cloud Architect and Enterprise Solutions Leader with 10 years of experience building mission-critical financial systems in regulated environments.",
+    "10 years building mission-critical financial systems in regulated environments. IDB · Cnovate · Sapiens.",
 };
 
 export default function RootLayout({
@@ -26,11 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-screen flex flex-col bg-[#0f1117] text-[#f1f5f9]">
+    <html lang="en" className={`${inter.variable} h-full`}>
+      <body
+        className="min-h-screen flex flex-col bg-[#fdfcfb] text-[#374151] font-[family-name:var(--font-inter)] antialiased"
+        style={{ fontFamily: "var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif" }}
+      >
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
