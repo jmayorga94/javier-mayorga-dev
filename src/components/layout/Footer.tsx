@@ -14,7 +14,7 @@ export function Footer() {
 
           <div className="flex gap-8">
             <a
-              href="https://www.linkedin.com/in/javier-mayorga"
+              href="https://www.linkedin.com/in/j-mayorga/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[14px] text-[#9ca3af] hover:text-[#f9fafb] transition-colors"

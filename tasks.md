@@ -124,6 +124,8 @@
 - [x] FIX 3 — Architecture section: new heading, focus line, card hover translateY + border-top teal, taller diagram area, "View case →" on hover
 - [x] FIX 4 — Case studies: metric labels (less downtime / faster delivery / cost efficiency / real-time data), section subheading
 - [x] FIX 5 — Hero grid background: CSS linear-gradient pattern, opacity 0.3, absolute position
+- [x] FIX (FIXES.MD) — Fix LinkedIn URL to https://www.linkedin.com/in/j-mayorga/
+- [x] FIX (FIXES.MD) — Remove background section numbers (01, 02, 03) from SectionHeader
 
 ---
 
