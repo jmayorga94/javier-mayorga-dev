@@ -117,6 +117,14 @@
 - [x] Add explicit `bg-[#fdfcfb]` to `ArchShowcase` and `CaseStudiesSection` sections
 - [x] Navbar logo: split "javier mayor" (dark #0f1117) + "ga" (teal #1D9E75), all lowercase
 
+## Polish pass (FIXES.MD)
+
+- [x] FIX 1 — Remove all company name references (IDB, Cnovate, Sapiens) from src, content, and blog posts
+- [x] FIX 2 — Elevate visual aesthetics: hero 64px headline, teal "trust" accent, eyebrow blink cursor, stats 40px with separators and teal labels, section background numbers
+- [x] FIX 3 — Architecture section: new heading, focus line, card hover translateY + border-top teal, taller diagram area, "View case →" on hover
+- [x] FIX 4 — Case studies: metric labels (less downtime / faster delivery / cost efficiency / real-time data), section subheading
+- [x] FIX 5 — Hero grid background: CSS linear-gradient pattern, opacity 0.3, absolute position
+
 ---
 
 ## Phase 9 — Deploy

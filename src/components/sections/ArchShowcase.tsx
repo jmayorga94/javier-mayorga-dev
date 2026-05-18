@@ -36,7 +36,10 @@ export function ArchShowcase() {
   return (
     <section id="architecture" className="py-24 px-6 bg-[#fdfcfb]">
       <div className="max-w-[1200px] mx-auto">
-        <SectionHeader eyebrow="Architecture" title="Systems I've designed" />
+        <SectionHeader eyebrow="Architecture" title="Architecture that performs under pressure" sectionNumber="01" />
+        <p className="text-[16px] text-[#6b7280] max-w-[560px] mb-12 -mt-8">
+          From legacy modernization to cloud-native transformation — every system designed for resilience, scalability, and business continuity.
+        </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {items.map((item) => (
             <ArchCard key={item.slug} {...item} />

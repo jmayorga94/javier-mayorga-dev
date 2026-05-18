@@ -28,7 +28,7 @@ export function InsightsSection() {
   return (
     <section id="insights" className="py-24 px-6">
       <div className="max-w-[1200px] mx-auto">
-        <SectionHeader eyebrow="Technical Insights" title="How I think about systems" />
+        <SectionHeader eyebrow="Technical Insights" title="How I think about systems" sectionNumber="03" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {posts.map((p) => (
             <BlogCard key={p.slug} {...p} />

@@ -20,7 +20,7 @@ export function ServicesSection() {
   return (
     <section id="services" className="bg-[#f0fdf9] py-24 px-6">
       <div className="max-w-[1200px] mx-auto">
-        <SectionHeader eyebrow="Services" title="How I can help your team" />
+        <SectionHeader eyebrow="Services" title="How I can help your team" sectionNumber="04" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((s) => (
             <ServiceCard key={s.title} {...s} />
