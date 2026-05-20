@@ -71,7 +71,7 @@ export function HeroSection() {
           ].map((cert) => (
             <span
               key={cert}
-              className="text-[11px] text-[#6b7280] border border-[#1e2330] px-3 py-1 rounded-full"
+              className="text-[11px] text-[#1D9E75] border border-[#1D9E75]/40 bg-[#1D9E75]/10 px-3 py-1 rounded-full"
             >
               {cert}
             </span>
