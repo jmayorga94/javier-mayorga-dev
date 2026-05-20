@@ -26,17 +26,25 @@ export function HeroSection() {
         </p>
 
         {/* Subline */}
-        <p className="text-[18px] text-[#9ca3af] leading-[1.6] max-w-[560px] mb-16">
+        <p className="text-[18px] text-[#9ca3af] leading-[1.6] max-w-[560px] mb-8">
           10 years designing cloud architecture for regulated financial
           institutions and enterprise organizations across Latin America
           and beyond.
         </p>
 
+        {/* CTA */}
+        <a
+          href="#architecture"
+          className="inline-block bg-[#1D9E75] text-white text-[14px] font-medium px-6 py-3 rounded-md hover:bg-[#178f68] transition-colors mb-16 sm:w-auto w-full text-center"
+        >
+          Explore my work ↓
+        </a>
+
         {/* Stats */}
         <div className="flex flex-col sm:flex-row">
           {[
             { topLabel: "YEARS", value: "10+", label: "years · Enterprise systems" },
-            { topLabel: "REDUCTION", value: "95%", label: "Downtime reduction · HA migration" },
+            { topLabel: "REDUCTION", value: "95%", label: "Downtime reduction at IDB" },
             { topLabel: "CERTIFICATIONS", value: "5×", label: "Azure certifications" },
           ].map(({ topLabel, value, label }, i) => (
             <div
