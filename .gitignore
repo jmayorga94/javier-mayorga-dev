@@ -1,5 +1,7 @@
 node_modules
 .next/
+.env.local
+.env*.local
 .vscode/
 .claude/settings.local.json
 .claude/worktrees/
