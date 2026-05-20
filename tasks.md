@@ -148,64 +148,63 @@
 > Complete tasks in priority order. Each task = one atomic commit.
 
 ### REQ-01 · Hero CTA Button
-- [ ] Add "Explore my work ↓" button in `HeroSection.tsx` below the subline, above stats
-- [ ] Style: `bg-[#1D9E75] text-white px-6 py-3 rounded-[6px] text-[14px] font-medium hover:bg-[#178f68]`
-- [ ] Wire smooth-scroll to `#architecture` via `href="#architecture"`
-- [ ] Mobile: `w-full` button width
+- [x] Add "Explore my work ↓" button in `HeroSection.tsx` below the subline, above stats
+- [x] Style: `bg-[#1D9E75] text-white px-6 py-3 rounded-[6px] text-[14px] font-medium hover:bg-[#178f68]`
+- [x] Wire smooth-scroll to `#architecture` via `href="#architecture"`
+- [x] Mobile: `w-full` button width
 
 ### REQ-02 · Contact Section
-- [ ] Create `src/components/sections/ContactSection.tsx` — dark `bg-[#0f1117]`, `id="contact"`
-- [ ] Content: headline, 1-line availability note, email CTA button, LinkedIn text link
-- [ ] Add `<ContactSection />` + `<SectionDivider />` in `src/app/page.tsx` before `<Footer />`
-- [ ] Verify navbar "Get in touch" (`href="#contact"`) scrolls correctly
+- [x] Create `src/components/sections/ContactSection.tsx` — dark `bg-[#0f1117]`, `id="contact"`
+- [x] Content: headline, 1-line availability note, email CTA button, LinkedIn text link
+- [x] Add `<ContactSection />` + `<SectionDivider />` in `src/app/page.tsx` before `<Footer />`
+- [x] Verify navbar "Get in touch" (`href="#contact"`) scrolls correctly
 
 ### REQ-03 · Blog Card Enrichment
-- [ ] Update `BlogCard.tsx` to render `summary` prop below title (14px muted)
-- [ ] Update `BlogCard.tsx` to render formatted `date` prop below summary (12px, lighter)
-- [ ] Update `InsightsSection.tsx` to pass `summary` and `date` to each `BlogCard`
-- [ ] Update `src/app/blog/page.tsx` blog index to pass same fields
+- [x] Update `BlogCard.tsx` to render `summary` prop below title (14px muted)
+- [x] Update `BlogCard.tsx` to render formatted `date` prop below summary (12px, lighter)
+- [x] Update `InsightsSection.tsx` to pass `summary` and `date` to each `BlogCard`
+- [x] Update `src/app/blog/page.tsx` blog index to pass same fields
 
 ### REQ-04 · Service Card Icons
-- [ ] Add `icon` prop (inline SVG ReactNode) to `ServiceCard.tsx`
-- [ ] Create three 32×32 inline SVG icons: cloud-nodes, cloud-migration-arrows, org-chart
-- [ ] Update `ServicesSection.tsx` to pass the correct icon to each `ServiceCard`
-- [ ] Add `group-hover` icon stroke-color transition
+- [x] Add `icon` prop (inline SVG ReactNode) to `ServiceCard.tsx`
+- [x] Create three 32×32 inline SVG icons: cloud-nodes, cloud-migration-arrows, org-chart
+- [x] Update `ServicesSection.tsx` to pass the correct icon to each `ServiceCard`
+- [x] Add `group-hover` icon stroke-color transition
 
 ### REQ-05 · Navbar Scroll Shadow
-- [ ] Convert `Navbar.tsx` to `"use client"` (already may be — verify)
-- [ ] Add `useEffect` + `scroll` listener that toggles a `scrolled` boolean above 10px
-- [ ] Apply `shadow-[0_1px_12px_rgba(0,0,0,0.08)]` class when `scrolled === true`
-- [ ] Transition: `transition-shadow duration-200`
+- [x] Convert `Navbar.tsx` to `"use client"` (already may be — verify)
+- [x] Add `useEffect` + `scroll` listener that toggles a `scrolled` boolean above 10px
+- [x] Apply `shadow-[0_1px_12px_rgba(0,0,0,0.08)]` class when `scrolled === true`
+- [x] Transition: `transition-shadow duration-200`
 
 ### REQ-06 · Scroll-Reveal Animations
-- [ ] Create `src/hooks/useScrollReveal.ts` — IntersectionObserver hook returning a ref + `isVisible` bool
-- [ ] Create `src/components/ui/RevealWrapper.tsx` — wraps children with fade-up-on-enter CSS
-- [ ] Apply `RevealWrapper` to each card grid inside: `ArchShowcase`, `CaseStudiesSection`, `InsightsSection`, `ServicesSection`
-- [ ] Stagger cards: each card gets `style={{ transitionDelay: \`${index * 75}ms\` }}`
-- [ ] Add `@media (prefers-reduced-motion: reduce)` override that skips transitions
+- [x] Create `src/hooks/useScrollReveal.ts` — IntersectionObserver hook returning a ref + `isVisible` bool
+- [x] Create `src/components/ui/RevealWrapper.tsx` — wraps children with fade-up-on-enter CSS
+- [x] Apply `RevealWrapper` to each card grid inside: `ArchShowcase`, `CaseStudiesSection`, `InsightsSection`, `ServicesSection`
+- [x] Stagger cards: each card gets `style={{ transitionDelay: \`${index * 75}ms\` }}`
 
 ### REQ-07 · Footer Social Icons
-- [ ] Add inline SVG LinkedIn, GitHub, and envelope icons (16×16) to `Footer.tsx`
-- [ ] Place icon left of each text label inside the link element
-- [ ] Hover: `group-hover:text-white` on both icon and label together
+- [x] Add inline SVG LinkedIn, GitHub, and envelope icons (16×16) to `Footer.tsx`
+- [x] Place icon left of each text label inside the link element
+- [x] Hover: `group-hover:text-white` on both icon and label together
 
 ### REQ-08 · Architecture Diagram Upgrade
-- [ ] Upgrade `HaDiagram.tsx` — add node labels ("Azure DB", "Primary", "Azure LB"), arrow labels ("replicates", "routes")
-- [ ] Upgrade `CicdDiagram.tsx` — label steps ("Azure Repos", "Azure Pipelines", "Quality Gate", "Azure App Service"), add arrow labels
-- [ ] Upgrade `MigrationDiagram.tsx` — label nodes ("AWS VPC", "Azure API Mgmt", "Azure vNet"), add arrow labels
-- [ ] Upgrade `ApiDiagram.tsx` — label nodes ("Oracle ESB", "GraphQL API", "Financial Clients"), add arrow labels
-- [ ] Expand viewBox to `0 0 320 120` if needed for legibility
-- [ ] Keep color tokens unchanged (legacy gray / new teal)
+- [x] Upgrade `HaDiagram.tsx` — add node labels ("Azure DB", "Primary", "Azure LB"), arrow labels ("replicates", "routes")
+- [x] Upgrade `CicdDiagram.tsx` — label steps ("Azure Repos", "Azure Pipelines", "Quality Gate", "Azure App Service"), add arrow labels
+- [x] Upgrade `MigrationDiagram.tsx` — label nodes ("AWS VPC", "Azure API Mgmt", "Azure vNet"), add arrow labels
+- [x] Upgrade `ApiDiagram.tsx` — label nodes ("Oracle ESB", "GraphQL API", "Financial Clients"), add arrow labels
+- [x] Expand viewBox to `0 0 320 120` if needed for legibility
+- [x] Keep color tokens unchanged (legacy gray / new teal)
 
 ### REQ-09 · Active Nav Highlighting
-- [ ] Convert (or confirm) `Navbar.tsx` is `"use client"`
-- [ ] Add `useEffect` + `IntersectionObserver` watching `#architecture`, `#work`, `#insights`, `#services`
-- [ ] Track `activeSection` state; apply `text-[#0f1117] font-medium` to matching nav link
-- [ ] Default/inactive: `text-[#6b7280]`
-- [ ] Use `rootMargin: "-30% 0px -60% 0px"` to trigger when section is in upper viewport
+- [x] Convert (or confirm) `Navbar.tsx` is `"use client"`
+- [x] Add `useEffect` + `IntersectionObserver` watching `#architecture`, `#work`, `#insights`, `#services`
+- [x] Track `activeSection` state; apply `text-[#0f1117] font-medium` to matching nav link
+- [x] Default/inactive: `text-[#6b7280]`
+- [x] Use `rootMargin: "-20% 0px -70% 0px"` to trigger when section is in upper viewport
 
 ### REQ-10 · Hero Stats Label Correction
-- [ ] In `HeroSection.tsx` update stat labels to match spec exactly:
+- [x] In `HeroSection.tsx` update stat labels to match spec exactly:
   - `"years · Enterprise systems"`
   - `"Downtime reduction at IDB"`
   - `"Azure certifications"`
