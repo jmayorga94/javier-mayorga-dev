@@ -10,10 +10,32 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://javiermayorga.tech";
+const description =
+  "Cloud Architect and Enterprise Solutions Leader specializing in mission-critical financial systems, cloud migrations, and scalable Azure architecture.";
+
 export const metadata: Metadata = {
   title: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader",
-  description:
-    "Cloud Architect and Enterprise Solutions Leader specializing in mission-critical financial systems, cloud migrations, and scalable Azure architecture.",
+  description,
+  icons: {
+    icon: "/favicon-64.png",
+    shortcut: "/favicon-64.png",
+    apple: "/logo.png",
+  },
+  openGraph: {
+    title: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader",
+    description,
+    url: siteUrl,
+    siteName: "Javier Mayorga",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader",
+    description,
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
