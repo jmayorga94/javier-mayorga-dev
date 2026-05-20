@@ -3,6 +3,7 @@ import { ArchShowcase } from "@/components/sections/ArchShowcase";
 import { CaseStudiesSection } from "@/components/sections/CaseStudiesSection";
 import { InsightsSection } from "@/components/sections/InsightsSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 
 export default function Home() {
@@ -17,6 +18,8 @@ export default function Home() {
       <InsightsSection />
       <SectionDivider />
       <ServicesSection />
+      <SectionDivider />
+      <ContactSection />
     </>
   );
 }
