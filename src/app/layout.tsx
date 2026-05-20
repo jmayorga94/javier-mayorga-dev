@@ -27,14 +27,14 @@ export const metadata: Metadata = {
     description,
     url: siteUrl,
     siteName: "Javier Mayorga",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader" }],
+    images: [{ url: `${siteUrl}/og.png`, width: 1200, height: 630, alt: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader",
     description,
-    images: ["/og.png"],
+    images: [`${siteUrl}/og.png`],
   },
 };
 
