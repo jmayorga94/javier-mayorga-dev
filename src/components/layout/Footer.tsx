@@ -51,7 +51,7 @@ export function Footer() {
               GitHub
             </a>
             <a
-              href="mailto:javier.mayorga@cnovate.io"
+              href="mailto:javi.mayorga1994@outlook.com"
               className="flex items-center gap-2 text-[14px] text-[#9ca3af] hover:text-[#f9fafb] transition-colors"
             >
               <EmailIcon />

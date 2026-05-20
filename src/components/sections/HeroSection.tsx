@@ -44,7 +44,7 @@ export function HeroSection() {
         <div className="flex flex-col sm:flex-row">
           {[
             { topLabel: "YEARS", value: "10+", label: "years · Enterprise systems" },
-            { topLabel: "REDUCTION", value: "95%", label: "Downtime reduction at IDB" },
+            { topLabel: "REDUCTION", value: "95%", label: "Downtime reduction" },
             { topLabel: "CERTIFICATIONS", value: "5×", label: "Azure certifications" },
           ].map(({ topLabel, value, label }, i) => (
             <div
@@ -57,6 +57,24 @@ export function HeroSection() {
               </p>
               <p className="text-[14px] text-[#9ca3af]">{label}</p>
             </div>
+          ))}
+        </div>
+
+        {/* Certifications */}
+        <div className="mt-10 flex flex-wrap gap-2">
+          {[
+            "Azure Solutions Architect Expert",
+            "Azure DevOps Expert",
+            "Azure Administrator Associate",
+            "Azure Developer Associate",
+            "HashiCorp Terraform Associate",
+          ].map((cert) => (
+            <span
+              key={cert}
+              className="text-[11px] text-[#6b7280] border border-[#1e2330] px-3 py-1 rounded-full"
+            >
+              {cert}
+            </span>
           ))}
         </div>
       </div>

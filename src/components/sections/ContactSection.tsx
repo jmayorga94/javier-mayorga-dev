@@ -12,12 +12,21 @@ export function ContactSection() {
           Open to consulting engagements, architecture advisory, and technical
           leadership roles.
         </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
         <a
-          href="mailto:javier.mayorga@cnovate.io"
+          href="mailto:javi.mayorga1994@outlook.com"
           className="inline-block bg-[#1D9E75] text-white text-[14px] font-medium px-8 py-3 rounded-md hover:bg-[#178f68] transition-colors mb-4"
         >
           Send me a message
         </a>
+        <a
+          href="/cv.pdf"
+          download="Javier-Mayorga-CV.pdf"
+          className="inline-block border border-[#1e2330] text-[#9ca3af] text-[14px] font-medium px-8 py-3 rounded-md hover:border-[#1D9E75] hover:text-[#f9fafb] transition-colors"
+        >
+          Download CV
+        </a>
+        </div>
         <a
           href="https://www.linkedin.com/in/j-mayorga/"
           target="_blank"
