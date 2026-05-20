@@ -15,6 +15,7 @@ const description =
   "Cloud Architect and Enterprise Solutions Leader specializing in mission-critical financial systems, cloud migrations, and scalable Azure architecture.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader",
   description,
   icons: {
@@ -27,14 +28,12 @@ export const metadata: Metadata = {
     description,
     url: siteUrl,
     siteName: "Javier Mayorga",
-    images: [{ url: `${siteUrl}/og.png`, width: 1200, height: 630, alt: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Javier Mayorga — Cloud Architect & Enterprise Solutions Leader",
     description,
-    images: [`${siteUrl}/og.png`],
   },
 };
 
