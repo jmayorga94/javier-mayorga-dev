@@ -1,4 +1,5 @@
 import { CaseCard } from "@/components/ui/CaseCard";
+import { RevealWrapper } from "@/components/ui/RevealWrapper";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const caseStudies = [
@@ -41,8 +42,10 @@ export function CaseStudiesSection() {
           Four engagements. Four transformations. Real outcomes in regulated, high-stakes environments.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {caseStudies.map((c) => (
-            <CaseCard key={c.title} {...c} />
+          {caseStudies.map((c, i) => (
+            <RevealWrapper key={c.title} delay={i * 75}>
+              <CaseCard {...c} />
+            </RevealWrapper>
           ))}
         </div>
       </div>

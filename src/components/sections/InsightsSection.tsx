@@ -1,4 +1,5 @@
 import { BlogCard } from "@/components/ui/BlogCard";
+import { RevealWrapper } from "@/components/ui/RevealWrapper";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const posts = [
@@ -38,8 +39,10 @@ export function InsightsSection() {
       <div className="max-w-[1200px] mx-auto">
         <SectionHeader eyebrow="Technical Insights" title="How I think about systems" sectionNumber="03" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {posts.map((p) => (
-            <BlogCard key={p.slug} {...p} />
+          {posts.map((p, i) => (
+            <RevealWrapper key={p.slug} delay={i * 75}>
+              <BlogCard {...p} />
+            </RevealWrapper>
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { ArchCard } from "@/components/ui/ArchCard";
+import { RevealWrapper } from "@/components/ui/RevealWrapper";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { HaDiagram } from "@/components/ui/diagrams/HaDiagram";
 import { CicdDiagram } from "@/components/ui/diagrams/CicdDiagram";
@@ -41,8 +42,10 @@ export function ArchShowcase() {
           From legacy modernization to cloud-native transformation — every system designed for resilience, scalability, and business continuity.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {items.map((item) => (
-            <ArchCard key={item.slug} {...item} />
+          {items.map((item, i) => (
+            <RevealWrapper key={item.slug} delay={i * 75}>
+              <ArchCard {...item} />
+            </RevealWrapper>
           ))}
         </div>
       </div>
