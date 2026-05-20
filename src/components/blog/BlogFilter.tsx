@@ -33,7 +33,14 @@ export function BlogFilter({ posts }: { posts: PostMeta[] }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {filtered.map((p) => (
-          <BlogCard key={p.slug} slug={p.slug} title={p.title} lang={p.lang.toUpperCase()} />
+          <BlogCard
+              key={p.slug}
+              slug={p.slug}
+              title={p.title}
+              lang={p.lang.toUpperCase()}
+              summary={p.summary}
+              date={p.date}
+            />
         ))}
       </div>
 
