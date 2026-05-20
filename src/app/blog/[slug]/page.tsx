@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/mdx";
 import { getMDXComponents } from "@/components/mdx/mdx-components";
+import { ReactionBar } from "@/components/blog/ReactionBar";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -52,6 +53,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="prose-wrapper">
           <MDXRemote source={content} components={getMDXComponents()} />
         </div>
+        <ReactionBar slug={slug} />
       </div>
     </main>
   );

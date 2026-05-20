@@ -132,12 +132,12 @@
 ## Phase 9 — Deploy
 
 - [x] Verify `npm run build` passes with zero errors
-- [ ] Connect repo to Vercel project
-- [ ] Set `NEXT_PUBLIC_SITE_URL` env var in Vercel
-- [ ] Configure custom domain
-- [ ] Verify HTTPS + www redirect
-- [ ] Run Lighthouse audit (Performance ≥ 90, Accessibility ≥ 95)
-- [ ] Add `public/og.png` for social sharing
+- [x] Connect repo to Vercel project
+- [x] Set `NEXT_PUBLIC_SITE_URL` env var in Vercel
+- [x] Configure custom domain
+- [x] Verify HTTPS + www redirect
+- [x] Run Lighthouse audit (Performance ≥ 90, Accessibility ≥ 95)
+- [x] Add `public/og.png` for social sharing
 
 ---
 
@@ -208,3 +208,34 @@
   - `"years · Enterprise systems"`
   - `"Downtime reduction at IDB"`
   - `"Azure certifications"`
+
+---
+
+## Phase 11 — Blog Reactions (Supabase)
+
+> Branch: `feature/blog-reactions`
+> Storage: Supabase Postgres — `reaction_counts` table
+> No auth required. Rate limit: localStorage per browser (one reaction per type per post).
+
+### Database
+- [ ] Create `supabase/schema.sql` with `reaction_counts` table + `increment_reaction` RPC function
+- [ ] Run SQL in Supabase dashboard → SQL Editor
+
+### Config
+- [ ] Create `.env.local` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
+- [ ] Add `.env.local` to `.gitignore` (verify)
+- [ ] Install `@supabase/supabase-js`
+- [ ] Create `src/lib/supabase.ts` — server + browser client singletons
+
+### API
+- [ ] Create `src/app/api/reactions/[slug]/route.ts` — GET counts, POST increment (service role, edge runtime)
+
+### UI
+- [ ] Create `src/types/reactions.ts` — `ReactionType` union, `ReactionCounts` interface
+- [ ] Create `src/hooks/useReactions.ts` — fetch on mount, POST on click, optimistic update, localStorage dedup
+- [ ] Create `src/components/blog/ReactionBar.tsx` — 4 emoji buttons, counts, active state, design-system styling
+- [ ] Update `src/app/blog/[slug]/page.tsx` — add `<ReactionBar slug={slug} />` below prose
+
+### Verify
+- [ ] `npm run build` passes
+- [ ] `npm run lint` passes
