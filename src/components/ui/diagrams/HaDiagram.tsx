@@ -1,6 +1,6 @@
 export function HaDiagram() {
   return (
-    <svg viewBox="0 0 240 90" className="w-full" aria-hidden="true">
+    <svg viewBox="0 0 320 120" className="w-full" aria-hidden="true">
       <defs>
         <marker id="ha-arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
           <path d="M0,0 L6,3 L0,6 Z" fill="#1D9E75" />
@@ -8,28 +8,34 @@ export function HaDiagram() {
       </defs>
 
       {/* Legacy DB */}
-      <rect x="8" y="30" width="50" height="30" rx="4" fill="#f3f4f6" stroke="#d1d5db" strokeWidth="1" />
-      <text x="33" y="47" textAnchor="middle" fill="#6b7280" fontSize="9">Legacy DB</text>
+      <rect x="10" y="38" width="66" height="44" rx="4" fill="#f3f4f6" stroke="#d1d5db" strokeWidth="1" />
+      <text x="43" y="57" textAnchor="middle" fill="#374151" fontSize="9" fontWeight="600">SQL Server</text>
+      <text x="43" y="70" textAnchor="middle" fill="#9ca3af" fontSize="7">On-premise DB</text>
 
-      {/* Arrow from legacy → split */}
-      <line x1="58" y1="45" x2="88" y2="30" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
-      <line x1="58" y1="45" x2="88" y2="60" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
+      {/* Arrows legacy → split */}
+      <line x1="76" y1="60" x2="108" y2="42" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
+      <line x1="76" y1="60" x2="108" y2="78" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
+      <text x="90" y="52" textAnchor="middle" fill="#9ca3af" fontSize="7">replicates</text>
 
       {/* Primary */}
-      <rect x="90" y="15" width="50" height="25" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />
-      <text x="115" y="30" textAnchor="middle" fill="#6b7280" fontSize="9">Primary</text>
+      <rect x="110" y="20" width="72" height="40" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />
+      <text x="146" y="37" textAnchor="middle" fill="#374151" fontSize="9" fontWeight="600">Azure SQL</text>
+      <text x="146" y="50" textAnchor="middle" fill="#9ca3af" fontSize="7">Primary replica</text>
 
       {/* Replica */}
-      <rect x="90" y="50" width="50" height="25" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />
-      <text x="115" y="65" textAnchor="middle" fill="#6b7280" fontSize="9">Replica</text>
+      <rect x="110" y="60" width="72" height="40" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />
+      <text x="146" y="77" textAnchor="middle" fill="#374151" fontSize="9" fontWeight="600">Azure SQL</text>
+      <text x="146" y="90" textAnchor="middle" fill="#9ca3af" fontSize="7">Geo-replica</text>
 
-      {/* Arrow → LB */}
-      <line x1="140" y1="27" x2="182" y2="40" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
-      <line x1="140" y1="62" x2="182" y2="50" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
+      {/* Arrows → LB */}
+      <line x1="182" y1="40" x2="228" y2="55" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
+      <line x1="182" y1="80" x2="228" y2="65" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
+      <text x="208" y="52" textAnchor="middle" fill="#9ca3af" fontSize="7">routes</text>
 
-      {/* Load Balancer */}
-      <rect x="184" y="30" width="48" height="30" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />
-      <text x="208" y="47" textAnchor="middle" fill="#6b7280" fontSize="9">LB</text>
+      {/* Azure Load Balancer */}
+      <rect x="230" y="38" width="76" height="44" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />
+      <text x="268" y="57" textAnchor="middle" fill="#374151" fontSize="9" fontWeight="600">Azure LB</text>
+      <text x="268" y="70" textAnchor="middle" fill="#9ca3af" fontSize="7">Load balancer</text>
     </svg>
   );
 }
