@@ -15,49 +15,42 @@ export default function Image() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start',
           justifyContent: 'center',
-          padding: '80px',
+          padding: '96px',
           fontFamily: 'system-ui, -apple-system, sans-serif',
         }}
       >
-        <div
-          style={{
-            color: '#1D9E75',
-            fontSize: '72px',
-            fontWeight: 700,
-            letterSpacing: '-2px',
-            lineHeight: 1,
-            marginBottom: '16px',
-          }}
-        >
-          JM
-        </div>
-        <div
-          style={{
-            width: '48px',
-            height: '2px',
-            background: '#1D9E75',
-            marginBottom: '40px',
-          }}
-        />
+        {/* Name — the hero */}
         <div
           style={{
             color: '#f9fafb',
-            fontSize: '64px',
+            fontSize: '96px',
             fontWeight: 500,
-            lineHeight: 1.1,
-            marginBottom: '16px',
+            lineHeight: 1,
+            letterSpacing: '-2px',
           }}
         >
           Javier Mayorga
         </div>
+
+        {/* Teal divider line — site signature */}
         <div
           style={{
-            color: '#9ca3af',
+            width: '64px',
+            height: '2px',
+            background: '#1D9E75',
+            marginTop: '32px',
+            marginBottom: '32px',
+          }}
+        />
+
+        {/* Role */}
+        <div
+          style={{
+            color: '#1D9E75',
             fontSize: '28px',
             fontWeight: 400,
-            lineHeight: 1.4,
+            letterSpacing: '0.02em',
           }}
         >
           Cloud Architect &amp; Enterprise Solutions Leader
