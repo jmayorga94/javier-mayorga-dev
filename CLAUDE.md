@@ -425,7 +425,47 @@ vercel --prod     # Manual deploy
   Read CLAUDE.md fully before asking any clarifying question.
 - Always update tasks.md after completing any task.
 
-  ## Git Workflow
+  ## Feature Implementation Workflow
+
+Follow this process for every task in tasks.md, in order. One requirement = one branch = one commit.
+
+### Step-by-step
+
+1. **Branch** — cut from `main`:
+   ```bash
+   git checkout main && git pull && git checkout -b feature/<task-slug>
+   ```
+
+2. **Read first** — before writing a single line of code, read every file you'll touch. Never guess existing code.
+
+3. **Implement** — one logical change only. Do not mix unrelated fixes into the same branch.
+
+4. **Verify** — run both checks before committing:
+   ```bash
+   npm run build   # must pass with zero errors
+   npm run lint    # must pass clean
+   ```
+
+5. **Commit** — one atomic commit, conventional format:
+   ```bash
+   git commit -m "feat(design-system): add hero CTA button"
+   ```
+
+6. **Update tasks.md** — mark each completed sub-task `[x]` immediately after committing.
+
+7. **Next feature** — go back to step 1. Always branch from an up-to-date `main`.
+
+### Rules
+
+- Never mix two requirements in a single branch
+- Never commit if `npm run build` fails
+- Never skip lint
+- Never commit directly to `main`
+- tasks.md is updated in the same commit only if the tasks.md change is the only change; otherwise update it in a follow-up commit on `main` after merge
+
+---
+
+## Git Workflow
 
 ### Branch naming
 - Features: `feature/<task>-<brief-description>`

@@ -138,3 +138,74 @@
 - [ ] Verify HTTPS + www redirect
 - [ ] Run Lighthouse audit (Performance ≥ 90, Accessibility ≥ 95)
 - [ ] Add `public/og.png` for social sharing
+
+---
+
+## Phase 10 — UX & Design Polish (v2)
+
+> Requirements source: `requirements.md`
+> Branch pattern: `feature/10-<slug>`
+> Complete tasks in priority order. Each task = one atomic commit.
+
+### REQ-01 · Hero CTA Button
+- [ ] Add "Explore my work ↓" button in `HeroSection.tsx` below the subline, above stats
+- [ ] Style: `bg-[#1D9E75] text-white px-6 py-3 rounded-[6px] text-[14px] font-medium hover:bg-[#178f68]`
+- [ ] Wire smooth-scroll to `#architecture` via `href="#architecture"`
+- [ ] Mobile: `w-full` button width
+
+### REQ-02 · Contact Section
+- [ ] Create `src/components/sections/ContactSection.tsx` — dark `bg-[#0f1117]`, `id="contact"`
+- [ ] Content: headline, 1-line availability note, email CTA button, LinkedIn text link
+- [ ] Add `<ContactSection />` + `<SectionDivider />` in `src/app/page.tsx` before `<Footer />`
+- [ ] Verify navbar "Get in touch" (`href="#contact"`) scrolls correctly
+
+### REQ-03 · Blog Card Enrichment
+- [ ] Update `BlogCard.tsx` to render `summary` prop below title (14px muted)
+- [ ] Update `BlogCard.tsx` to render formatted `date` prop below summary (12px, lighter)
+- [ ] Update `InsightsSection.tsx` to pass `summary` and `date` to each `BlogCard`
+- [ ] Update `src/app/blog/page.tsx` blog index to pass same fields
+
+### REQ-04 · Service Card Icons
+- [ ] Add `icon` prop (inline SVG ReactNode) to `ServiceCard.tsx`
+- [ ] Create three 32×32 inline SVG icons: cloud-nodes, cloud-migration-arrows, org-chart
+- [ ] Update `ServicesSection.tsx` to pass the correct icon to each `ServiceCard`
+- [ ] Add `group-hover` icon stroke-color transition
+
+### REQ-05 · Navbar Scroll Shadow
+- [ ] Convert `Navbar.tsx` to `"use client"` (already may be — verify)
+- [ ] Add `useEffect` + `scroll` listener that toggles a `scrolled` boolean above 10px
+- [ ] Apply `shadow-[0_1px_12px_rgba(0,0,0,0.08)]` class when `scrolled === true`
+- [ ] Transition: `transition-shadow duration-200`
+
+### REQ-06 · Scroll-Reveal Animations
+- [ ] Create `src/hooks/useScrollReveal.ts` — IntersectionObserver hook returning a ref + `isVisible` bool
+- [ ] Create `src/components/ui/RevealWrapper.tsx` — wraps children with fade-up-on-enter CSS
+- [ ] Apply `RevealWrapper` to each card grid inside: `ArchShowcase`, `CaseStudiesSection`, `InsightsSection`, `ServicesSection`
+- [ ] Stagger cards: each card gets `style={{ transitionDelay: \`${index * 75}ms\` }}`
+- [ ] Add `@media (prefers-reduced-motion: reduce)` override that skips transitions
+
+### REQ-07 · Footer Social Icons
+- [ ] Add inline SVG LinkedIn, GitHub, and envelope icons (16×16) to `Footer.tsx`
+- [ ] Place icon left of each text label inside the link element
+- [ ] Hover: `group-hover:text-white` on both icon and label together
+
+### REQ-08 · Architecture Diagram Upgrade
+- [ ] Upgrade `HaDiagram.tsx` — add node labels ("Azure DB", "Primary", "Azure LB"), arrow labels ("replicates", "routes")
+- [ ] Upgrade `CicdDiagram.tsx` — label steps ("Azure Repos", "Azure Pipelines", "Quality Gate", "Azure App Service"), add arrow labels
+- [ ] Upgrade `MigrationDiagram.tsx` — label nodes ("AWS VPC", "Azure API Mgmt", "Azure vNet"), add arrow labels
+- [ ] Upgrade `ApiDiagram.tsx` — label nodes ("Oracle ESB", "GraphQL API", "Financial Clients"), add arrow labels
+- [ ] Expand viewBox to `0 0 320 120` if needed for legibility
+- [ ] Keep color tokens unchanged (legacy gray / new teal)
+
+### REQ-09 · Active Nav Highlighting
+- [ ] Convert (or confirm) `Navbar.tsx` is `"use client"`
+- [ ] Add `useEffect` + `IntersectionObserver` watching `#architecture`, `#work`, `#insights`, `#services`
+- [ ] Track `activeSection` state; apply `text-[#0f1117] font-medium` to matching nav link
+- [ ] Default/inactive: `text-[#6b7280]`
+- [ ] Use `rootMargin: "-30% 0px -60% 0px"` to trigger when section is in upper viewport
+
+### REQ-10 · Hero Stats Label Correction
+- [ ] In `HeroSection.tsx` update stat labels to match spec exactly:
+  - `"years · Enterprise systems"`
+  - `"Downtime reduction at IDB"`
+  - `"Azure certifications"`
