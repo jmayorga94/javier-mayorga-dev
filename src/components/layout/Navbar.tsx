@@ -50,7 +50,7 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[100] bg-white border-b border-[#f3f4f6] transition-shadow duration-200 ${
+      className={`lg:hidden fixed top-0 left-0 right-0 z-[100] bg-white border-b border-[#f3f4f6] transition-shadow duration-200 ${
         scrolled ? "shadow-[0_1px_12px_rgba(0,0,0,0.08)]" : ""
       }`}
     >

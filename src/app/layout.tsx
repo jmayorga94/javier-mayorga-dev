@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
+import { TopUtilityBar } from "@/components/layout/TopUtilityBar";
 import { Footer } from "@/components/layout/Footer";
 
 const inter = Inter({
@@ -55,6 +56,7 @@ export default function RootLayout({
         style={{ fontFamily: "var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif" }}
       >
         <Navbar />
+        <TopUtilityBar />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>
