@@ -1,0 +1,127 @@
+---
+title: "How to Ship with Claude Code: What Actually Works"
+date: "2025-05-20"
+lang: en
+tags: ["claude-code", "ai", "workflow", "developer-tools"]
+summary: "The exact system I used to build this site with Claude Code — CLAUDE.md, task tracking, skills workflow, and the practices that compound over time."
+published: true
+---
+
+I built this entire site — design system, architecture diagrams, case studies, MDX pipeline, Supabase reactions, OG image generation — using Claude Code. Not as an experiment. As my primary tool.
+
+After several weeks of real use, here's what actually works.
+
+---
+
+## The biggest mistake: treating it like a chat window
+
+Claude Code is not a smarter version of ChatGPT in a terminal. The moment you start treating it like a chat window — pasting code, asking questions, getting answers — you're leaving most of the value on the table.
+
+The real shift is realizing Claude Code is a **collaborator that lives in your repo**. It reads your files, understands your patterns, and builds up context over time. But only if you set it up to do that.
+
+That setup is the work. And it's worth doing before you write a single line of code.
+
+---
+
+## CLAUDE.md — the most important file in your repo
+
+`CLAUDE.md` is a context file that Claude Code reads at the start of every session. Think of it as the onboarding document you'd write for a new developer joining the project — except this one gets read every single time.
+
+What belongs in it:
+
+- **Who you are and what the project is** — not generic, specific. "Personal brand site for a cloud architect, targeting senior roles and consulting engagements."
+- **Tech stack decisions** — not just what, but why. "Next.js 15 App Router, not Pages Router. MDX with next-mdx-remote, not contentlayer."
+- **Design system** — exact values. Colors, spacing, typography scale. Copy-pasted from your design source, not paraphrased.
+- **Rules and constraints** — "never commit directly to main", "TypeScript always, no plain JS", "follow the mockup at reference/mockup.html"
+- **Component patterns** — the established patterns so Claude doesn't invent new ones
+
+The key insight: **specificity compounds**. Vague CLAUDE.md → Claude makes reasonable guesses → drift builds up. Specific CLAUDE.md → Claude follows your conventions from session one.
+
+I treat mine as a living document. When I establish a new pattern or make a decision I want to stick, I add it. When something changes, I update it. The file is version-controlled and reviewed like code.
+
+---
+
+## tasks.md — keeping Claude oriented across sessions
+
+Claude Code doesn't have memory between sessions. Every time you start a session, you're starting fresh. `tasks.md` solves this.
+
+My workflow:
+
+1. Before a session: review and update tasks.md with what's next
+2. At session start: reference it directly — "look at tasks.md, let's work on Phase 4"
+3. During the session: mark tasks as done as they complete
+4. After the session: update remaining tasks and add anything discovered
+
+The format I use is simple — phase headers, checkboxes, clear one-line descriptions. No project management overhead. The file is there to orient the agent, not to impress anyone.
+
+What this prevents: the trap of starting a new session, forgetting where you left off, asking Claude to "continue where we left off," and getting a confident but wrong answer because Claude doesn't actually know.
+
+---
+
+## The skills workflow: brainstorm → plan → build → verify
+
+Claude Code has a skills system. These are structured workflows that get invoked before doing work. The three I use every session:
+
+**`superpowers:brainstorming`** — before any feature work. This forces a design conversation before any code is written. I describe what I want to build, and the skill drives a structured exploration: clarifying questions, 2-3 approaches with trade-offs, design proposal, approval. The hard gate here is real — no code until design is approved.
+
+Why this matters: the biggest time sink in any project is building the wrong thing, or building the right thing in a way that requires rewrites. Five minutes of structured design saves hours.
+
+**`superpowers:writing-plans`** — once the design is approved. This produces a detailed, task-by-task implementation plan with exact file paths, complete code for each step, and commit checkpoints. The plan is saved to `docs/superpowers/plans/` and committed.
+
+**`superpowers:verification-before-completion`** — before claiming anything is done. This forces actual verification commands to run before a success claim. No "I believe this works" — show the passing output.
+
+The workflow feels like overhead until you skip it once and spend three hours debugging something the design step would have caught.
+
+---
+
+## Git workflow: treat every feature like it matters
+
+Even for a personal site, I use feature branches. The discipline pays off when you need to roll back or when the agent makes a decision you want to review.
+
+My pattern:
+- `main` is always deployable (Vercel auto-deploys on push to main)
+- All work happens on `feature/<short-description>`
+- Commits are small and describe intent, not just action — "feat: add comingSoon variant to BlogCard" not "update BlogCard"
+- PRs use `gh pr create` with a proper description — Claude Code writes these well
+
+This also gives Claude Code a better context model. When it can see a clean commit history, it understands what changed and why. A repo with one massive commit gives it nothing to work with.
+
+---
+
+## Parallel agents: AGENTS.md for independent work
+
+For tasks that are genuinely independent — building two components simultaneously, running analysis while writing code — `AGENTS.md` documents parallel agent conventions.
+
+The key rule: parallel agents work when tasks have **no shared state**. Building `BlogCard.tsx` and writing a new MDX article can happen in parallel. Refactoring a shared utility and building something that uses it cannot.
+
+When I have 3+ independent tasks, I use `superpowers:dispatching-parallel-agents`. Each agent gets its own context, works in isolation, and the results are merged. For a solo developer, this compresses multi-hour work into minutes.
+
+---
+
+## The tech stack
+
+Everything on this site was built with:
+
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Content | MDX with next-mdx-remote |
+| Database | Supabase (article reactions) |
+| Deployment | Vercel (auto-deploy from main) |
+| AI tooling | Claude Code CLI |
+
+---
+
+## What I'd do from day one
+
+If I were starting over:
+
+1. **Write CLAUDE.md before the first prompt.** Spend 30 minutes on it. It pays back immediately.
+2. **Set up tasks.md as your first file.** Structure your phases before building anything.
+3. **Never skip the brainstorming step.** Even for small things. Especially for small things — those are where assumptions sneak in.
+4. **Commit frequently, with clear messages.** Your future self and Claude will thank you.
+5. **Add to CLAUDE.md as you go.** Every decision that took more than 30 seconds to make belongs there.
+
+The pattern that surprised me most: the biggest productivity gains aren't from Claude writing faster code. They're from the structure the workflow imposes — the forced design step, the written plan, the small commits. Claude Code made me a more disciplined developer, not just a faster one.

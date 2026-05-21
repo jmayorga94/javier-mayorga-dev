@@ -27,9 +27,10 @@ export function HeroSection() {
 
         {/* Subline */}
         <p className="text-[18px] text-[#9ca3af] leading-[1.6] max-w-[560px] mb-8">
-          10 years designing cloud architecture for regulated financial
-          institutions and enterprise organizations across Latin America
-          and beyond.
+          10 years delivering mission-critical systems in regulated financial
+          environments. From the Inter-American Development Bank to enterprise
+          cloud transformations — I translate complexity into architecture
+          that performs.
         </p>
 
         {/* CTA */}

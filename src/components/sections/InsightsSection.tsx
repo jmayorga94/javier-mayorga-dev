@@ -4,32 +4,36 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const posts = [
   {
+    slug: "2025-05-20-claude-code-workflow",
+    title: "How to Ship with Claude Code: What Actually Works",
+    lang: "EN",
+    summary: "The exact system I used to build this site with Claude Code — CLAUDE.md, task tracking, skills workflow, and the practices that compound over time.",
+    date: "2025-05-20",
+    comingSoon: false,
+  },
+  {
     slug: "when-to-migrate-azure",
     title: "When to migrate to Azure — and when not to",
     lang: "EN",
     summary: "A decision framework for cloud migration: when moving to Azure accelerates the business and when it adds unnecessary complexity.",
-    date: "2024-01-15",
+    date: "",
+    comingSoon: true,
   },
   {
     slug: "arquitectura-event-driven",
     title: "Arquitectura event-driven en sistemas financieros regulados",
     lang: "ES",
     summary: "Cómo diseñar sistemas basados en eventos en entornos regulados sin sacrificar auditoría, trazabilidad ni compliance.",
-    date: "2024-02-10",
-  },
-  {
-    slug: "llms-architecture-design",
-    title: "How I use LLMs to accelerate architecture design",
-    lang: "EN",
-    summary: "Practical patterns for using large language models as a thinking partner in architecture reviews, trade-off analysis, and documentation.",
-    date: "2024-03-05",
+    date: "",
+    comingSoon: true,
   },
   {
     slug: "zero-downtime-migrations",
     title: "Zero-downtime migrations — what nobody tells you",
     lang: "EN",
-    summary: "The unglamorous truths about live migrations: cutover windows, rollback plans, and why 'zero downtime' is a spectrum, not a binary.",
-    date: "2024-04-20",
+    summary: "The unglamorous truths about live migrations: cutover windows, rollback plans, and why zero downtime is a spectrum, not a binary.",
+    date: "",
+    comingSoon: true,
   },
 ];
 
