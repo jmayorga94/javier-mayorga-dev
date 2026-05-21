@@ -33,7 +33,7 @@ export default async function BlogPostPage({ params }: Props) {
     <main className="pt-[120px] pb-24 px-6">
       <div className="max-w-[720px] mx-auto">
         <div className="mb-10">
-          <span className="text-[11px] uppercase tracking-[0.1em] text-[#1D9E75]">{meta.lang.toUpperCase()}</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#1D9E75]">{meta.lang.toUpperCase()}</span>
           <h1 className="text-[40px] font-medium text-[#0f1117] leading-[1.2] mt-3 mb-4">{meta.title}</h1>
           <div className="flex items-center gap-4 text-[13px] text-[#6b7280]">
             <span>{meta.date}</span>

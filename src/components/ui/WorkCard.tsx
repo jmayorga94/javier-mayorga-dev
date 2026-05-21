@@ -44,7 +44,7 @@ export function WorkCard({ diagram, metric, title, desc, outcome, className = ""
         {diagram}
 
         {metric && (
-          <span className="absolute top-3 right-3 text-[11px] font-medium text-[#1D9E75] bg-white/95 border border-[#1D9E75]/30 px-2 py-0.5 rounded-full shadow-[0_2px_8px_rgba(29,158,117,0.12)]">
+          <span className="absolute top-3 right-3 font-mono text-[10px] font-medium text-[#1D9E75] bg-white/95 border border-[#1D9E75]/30 px-2 py-0.5 rounded-full tabular-nums shadow-[0_2px_8px_rgba(29,158,117,0.12)]">
             {metric}
           </span>
         )}

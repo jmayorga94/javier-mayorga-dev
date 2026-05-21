@@ -30,7 +30,7 @@ export function BlogCard({ lang, title, slug, summary, date, className = "", com
       }}
     >
       <span
-        className={`text-[11px] uppercase tracking-[0.1em] block mb-3 ${
+        className={`font-mono text-[10px] uppercase tracking-[0.18em] block mb-3 ${
           comingSoon ? "text-[var(--text-muted)]" : "text-[#1D9E75]"
         }`}
       >

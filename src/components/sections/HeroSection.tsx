@@ -37,7 +37,7 @@ export function HeroSection() {
 
           {/* Eyebrow */}
           <p
-            className="hero-enter eyebrow-cursor text-[11px] uppercase tracking-[0.1em] text-[#1D9E75] mb-6"
+            className="hero-enter eyebrow-cursor font-mono text-[10px] uppercase tracking-[0.18em] text-[#1D9E75] mb-6"
             style={{ animationDelay: "0ms" }}
           >
             Cloud Architect &amp; Enterprise Solutions Leader
