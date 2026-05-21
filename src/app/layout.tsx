@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -8,6 +8,12 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-inter",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://javiermayorga.tech";
@@ -43,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} h-full`}>
       <body
         className="min-h-screen flex flex-col bg-[#fdfcfb] text-[#374151] font-[family-name:var(--font-inter)] antialiased"
         style={{ fontFamily: "var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif" }}
