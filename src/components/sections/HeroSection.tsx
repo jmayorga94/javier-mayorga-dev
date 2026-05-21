@@ -27,30 +27,30 @@ export function HeroSection() {
 
         {/* Subline */}
         <p className="text-[18px] text-[#9ca3af] leading-[1.6] max-w-[560px] mb-8">
-          10 years delivering mission-critical systems in regulated financial
-          environments. From the Inter-American Development Bank to enterprise
-          cloud transformations — I translate complexity into architecture
-          that performs.
+          10 years delivering mission-critical financial systems in regulated
+          environments — translating complex business requirements into reliable
+          Azure-based solutions, and leading the teams that ship them.
         </p>
 
         {/* CTA */}
         <a
-          href="#architecture"
+          href="#work"
           className="inline-block bg-[#1D9E75] text-white text-[14px] font-medium px-6 py-3 rounded-md hover:bg-[#178f68] transition-colors mb-16 sm:w-auto w-full text-center"
         >
           Explore my work ↓
         </a>
 
         {/* Stats */}
-        <div className="flex flex-col sm:flex-row">
+        <div className="grid grid-cols-2 gap-8 sm:flex sm:flex-row sm:gap-0">
           {[
-            { topLabel: "YEARS", value: "10+", label: "years · Enterprise systems" },
-            { topLabel: "REDUCTION", value: "95%", label: "Downtime reduction" },
-            { topLabel: "CERTIFICATIONS", value: "5×", label: "Azure certifications" },
-          ].map(({ topLabel, value, label }, i) => (
+            { topLabel: "YEARS", value: "10+", label: "years · Enterprise financial systems" },
+            { topLabel: "DOWNTIME", value: "95%", label: "Downtime reduction" },
+            { topLabel: "DELIVERY", value: "30%", label: "Faster deployment cycles" },
+            { topLabel: "CERTIFICATIONS", value: "5", label: "Cloud certifications" },
+          ].map(({ topLabel, value, label }, i, arr) => (
             <div
               key={label}
-              className={`pb-8 sm:pb-0 ${i === 0 ? "sm:pr-12" : i === 2 ? "sm:pl-12 sm:border-l sm:border-[#1e2330]" : "sm:px-12 sm:border-l sm:border-[#1e2330]"}`}
+              className={`${i === 0 ? "sm:pr-12" : i === arr.length - 1 ? "sm:pl-12 sm:border-l sm:border-[#1e2330]" : "sm:px-12 sm:border-l sm:border-[#1e2330]"}`}
             >
               <p className="text-[10px] uppercase tracking-[0.1em] text-[#1D9E75] mb-2">{topLabel}</p>
               <p className="text-[40px] font-medium text-[#f9fafb] leading-none mb-1">
