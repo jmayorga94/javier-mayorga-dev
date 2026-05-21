@@ -53,10 +53,10 @@ export function StatCounter({ topLabel, value, label }: StatCounterProps) {
   return (
     <div ref={ref}>
       <p className="text-[10px] uppercase tracking-[0.1em] text-[#1D9E75] mb-2">{topLabel}</p>
-      <p className="text-[40px] font-medium text-[#f9fafb] leading-none mb-1 tabular-nums">
+      <p className="text-[40px] font-medium text-[var(--text-primary)] leading-none mb-1 tabular-nums">
         {count}{suffix}
       </p>
-      <p className="text-[14px] text-[#9ca3af]">{label}</p>
+      <p className="text-[14px] text-[var(--text-secondary)]">{label}</p>
     </div>
   );
 }

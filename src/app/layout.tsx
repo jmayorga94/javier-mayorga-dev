@@ -49,11 +49,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Pre-paint theme script — prevents flash by setting data-theme before React hydrates.
+  const themeScript = `
+    (function(){
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved === 'light' || saved === 'dark' ? saved : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch(e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  `;
+
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} h-full`}>
+    <html
+      lang="en"
+      data-theme="dark"
+      className={`${inter.variable} ${jetbrainsMono.variable} h-full`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body
-        className="min-h-screen flex flex-col bg-[#fdfcfb] text-[#374151] font-[family-name:var(--font-inter)] antialiased"
-        style={{ fontFamily: "var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif" }}
+        className="min-h-screen flex flex-col antialiased transition-colors duration-300"
+        style={{
+          fontFamily: "var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif",
+          backgroundColor: "var(--bg-from)",
+          color: "var(--text-secondary)",
+        }}
       >
         <Navbar />
         <TopUtilityBar />
