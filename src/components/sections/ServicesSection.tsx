@@ -41,9 +41,9 @@ export function ServicesSection() {
         <SectionHeader eyebrow="Services" title="How I can help your team" sectionNumber="04" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { title: "Cloud architecture consulting", desc: "Translating business requirements into scalable Azure solutions with clear delivery roadmaps.", icon: <CloudArchIcon /> },
-            { title: "Cloud migration strategy", desc: "End-to-end planning for legacy and multi-cloud environments, zero downtime, full governance.", icon: <MigrationIcon /> },
-            { title: "Technical leadership advisory", desc: "Supporting CTOs and engineering teams with architecture decisions, delivery frameworks, and team alignment.", icon: <LeadershipIcon /> },
+            { title: "Cloud architecture consulting", desc: "Translating business requirements into scalable Azure solutions. From assessment to implementation roadmap, with decision clarity at every stage.", icon: <CloudArchIcon /> },
+            { title: "Cloud migration strategy", desc: "End-to-end planning for legacy and multi-cloud environments — governance, cost position, zero-downtime execution.", icon: <MigrationIcon /> },
+            { title: "Technical leadership advisory", desc: "Supporting engineering teams with architecture decisions, delivery frameworks, and alignment from strategy to ship.", icon: <LeadershipIcon /> },
           ].map((s, i) => (
             <RevealWrapper key={s.title} delay={i * 75}>
               <ServiceCard {...s} />

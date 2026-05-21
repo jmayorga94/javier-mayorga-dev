@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const links = [
-  { label: "Architecture", href: "/#architecture", sectionId: "architecture" },
   { label: "Work", href: "/#work", sectionId: "work" },
   { label: "Insights", href: "/#insights", sectionId: "insights" },
   { label: "Services", href: "/#services", sectionId: "services" },
@@ -22,6 +21,11 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
   useEffect(() => {
     if (pathname !== "/") return;
@@ -89,34 +93,57 @@ export function Navbar() {
           onClick={() => setMenuOpen((o) => !o)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-5 h-px bg-[#374151] transition-transform origin-center ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
-          <span className={`block w-5 h-px bg-[#374151] transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-px bg-[#374151] transition-transform origin-center ${menuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
+          <span className="block w-5 h-px bg-[#374151]" />
+          <span className="block w-5 h-px bg-[#374151]" />
+          <span className="block w-5 h-px bg-[#374151]" />
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden border-t border-[#f3f4f6] bg-white px-6 py-4 flex flex-col gap-4">
+      {/* Backdrop */}
+      <div
+        className={`fixed inset-0 bg-black/40 z-[150] md:hidden transition-opacity duration-300 ${
+          menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setMenuOpen(false)}
+      />
+
+      {/* Side drawer */}
+      <div
+        className={`fixed top-0 right-0 h-full w-[280px] bg-white z-[200] md:hidden flex flex-col shadow-2xl transition-transform duration-300 ease-in-out ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-end px-6 py-4 border-b border-[#f3f4f6]">
+          <button onClick={() => setMenuOpen(false)} aria-label="Close menu" className="p-2">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4 4l12 12M16 4L4 16" stroke="#374151" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="flex flex-col px-6 py-8 gap-6 flex-1">
           {links.map(({ label, href }) => (
             <Link
               key={label}
               href={href}
-              className="text-[14px] text-[#6b7280] hover:text-[#0f1117] transition-colors"
+              className="text-[16px] text-[#6b7280] hover:text-[#0f1117] transition-colors"
               onClick={() => setMenuOpen(false)}
             >
               {label}
             </Link>
           ))}
+        </div>
+
+        <div className="px-6 pb-8">
           <Link
             href="/#contact"
-            className="text-[14px] font-medium text-white bg-[#1D9E75] px-5 py-2.5 rounded-md hover:bg-[#178f68] transition-colors text-center"
+            className="block text-[14px] font-medium text-white bg-[#1D9E75] px-5 py-3 rounded-md hover:bg-[#178f68] transition-colors text-center"
             onClick={() => setMenuOpen(false)}
           >
             Get in touch
           </Link>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
