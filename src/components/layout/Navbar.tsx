@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ThemeToggle } from "./ThemeToggle";
+import { AvailabilityWidget } from "./AvailabilityWidget";
 
 const links = [
   { label: "Work", href: "/#work", sectionId: "work" },
@@ -66,8 +67,16 @@ export function Navbar() {
           <span className="text-[var(--text-primary)]">javier.mayorga</span>
         </Link>
 
-        {/* Right cluster: theme toggle + hamburger */}
-        <div className="flex items-center gap-3">
+        {/* Right cluster: runner + theme toggle + hamburger */}
+        <div className="flex items-center gap-2">
+          {/* Compact runner — phone view */}
+          <div className="sm:hidden">
+            <AvailabilityWidget compact />
+          </div>
+          {/* Full pill — tablet view */}
+          <div className="hidden sm:block">
+            <AvailabilityWidget />
+          </div>
           <ThemeToggle />
 
           {/* Hamburger */}
