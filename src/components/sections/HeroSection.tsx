@@ -1,4 +1,5 @@
 import { StatCounter } from "@/components/ui/StatCounter";
+import { Aurora } from "@/components/ui/Aurora";
 
 const stats = [
   { topLabel: "YEARS",        value: "10+", label: "years · Enterprise financial systems" },
@@ -16,14 +17,17 @@ const certs = [
 
 export function HeroSection() {
   return (
-    <section className="relative bg-[#0f1117] pt-[120px] pb-16 px-6 overflow-hidden">
+    <section className="relative pt-[120px] pb-16 px-6 overflow-hidden">
+
+      {/* Aurora — single signature teal glow, top-left */}
+      <Aurora />
 
       {/* Background grid — breathes */}
       <div
         className="absolute inset-0 z-0 grid-pulse"
         style={{
           backgroundImage:
-            "linear-gradient(#1e2330 1px, transparent 1px), linear-gradient(90deg, #1e2330 1px, transparent 1px)",
+            "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
       />

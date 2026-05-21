@@ -1,6 +1,6 @@
 export function ContactSection() {
   return (
-    <section id="contact" className="bg-[#0f1117] py-24 px-6">
+    <section id="contact" className="relative py-24 px-6">
       <div className="max-w-[1200px] mx-auto text-center">
         <p className="text-[11px] uppercase tracking-[0.1em] text-[#1D9E75] mb-4">
           Contact
