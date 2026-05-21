@@ -82,9 +82,40 @@
   animation: trustPulse 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.55s 1 both;
 }
 
+/* ─── Runner animation (status pill) ──────────────────── */
+@keyframes legSwingFront {
+  0%, 100% { transform: rotate(-22deg); }
+  50%       { transform: rotate(20deg); }
+}
+@keyframes legSwingBack {
+  0%, 100% { transform: rotate(22deg); }
+  50%       { transform: rotate(-20deg); }
+}
+@keyframes armSwingFront {
+  0%, 100% { transform: rotate(18deg); }
+  50%       { transform: rotate(-18deg); }
+}
+@keyframes armSwingBack {
+  0%, 100% { transform: rotate(-18deg); }
+  50%       { transform: rotate(18deg); }
+}
+@keyframes runnerBob {
+  0%, 100% { transform: translateY(0); }
+  25%      { transform: translateY(-0.4px); }
+  50%      { transform: translateY(0); }
+  75%      { transform: translateY(-0.4px); }
+}
+
+.runner       { animation: runnerBob 0.56s ease-in-out infinite; }
+.runner .leg-front { transform-origin: 7.5px 9px; animation: legSwingFront 0.56s ease-in-out infinite; }
+.runner .leg-back  { transform-origin: 7.5px 9px; animation: legSwingBack  0.56s ease-in-out infinite; }
+.runner .arm-front { transform-origin: 7.8px 6px; animation: armSwingFront 0.56s ease-in-out infinite; }
+.runner .arm-back  { transform-origin: 7.8px 6px; animation: armSwingBack  0.56s ease-in-out infinite; }
+
 /* ─── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .hero-enter { animation: none; opacity: 1; }
   .grid-pulse  { animation: none; opacity: 0.30; }
   .trust-glow  { animation: none; }
+  .runner, .runner * { animation: none; }
 }
