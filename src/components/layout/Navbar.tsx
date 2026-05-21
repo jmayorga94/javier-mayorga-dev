@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { ThemeToggle } from "./ThemeToggle";
+import { AvailabilityWidget } from "./AvailabilityWidget";
 
 const links = [
   { label: "Work", href: "/#work", sectionId: "work" },
@@ -50,58 +52,49 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[100] bg-white border-b border-[#f3f4f6] transition-shadow duration-200 ${
-        scrolled ? "shadow-[0_1px_12px_rgba(0,0,0,0.08)]" : ""
+      className={`lg:hidden fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+        scrolled
+          ? "border-b border-[var(--hairline)] backdrop-blur-md"
+          : "border-b border-transparent"
       }`}
+      style={{
+        backgroundColor: scrolled ? "var(--bg-utility)" : "transparent",
+      }}
     >
       <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-[18px] font-medium">
-          <span className="text-[#0f1117]">javier mayor</span><span className="text-[#1D9E75]">ga</span>
+        <Link href="/" className="font-mono text-[14px] tracking-tight">
+          <span className="text-[var(--text-muted)]">~/</span>
+          <span className="text-[var(--text-primary)]">javier.mayorga</span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          {links.map(({ label, href, sectionId }) => {
-            const isActive = activeSection === sectionId;
-            return (
-              <Link
-                key={label}
-                href={href}
-                className={`text-[14px] transition-colors ${
-                  isActive ? "text-[#0f1117] font-medium" : "text-[#6b7280] hover:text-[#0f1117]"
-                }`}
-              >
-                {label}
-              </Link>
-            );
-          })}
-        </div>
+        {/* Right cluster: runner + theme toggle + hamburger */}
+        <div className="flex items-center gap-2">
+          {/* Compact runner — phone view */}
+          <div className="sm:hidden">
+            <AvailabilityWidget compact />
+          </div>
+          {/* Full pill — tablet view */}
+          <div className="hidden sm:block">
+            <AvailabilityWidget />
+          </div>
+          <ThemeToggle />
 
-        {/* CTA */}
-        <div className="hidden md:block">
-          <Link
-            href="/#contact"
-            className="text-[14px] font-medium text-white bg-[#1D9E75] px-5 py-2.5 rounded-md hover:bg-[#178f68] transition-colors"
+          {/* Hamburger */}
+          <button
+            className="flex flex-col gap-1.5 p-2 rounded-md hover:bg-[var(--hairline-soft)] transition-colors"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Toggle menu"
           >
-            Get in touch
-          </Link>
+            <span className="block w-5 h-px bg-[var(--text-secondary)]" />
+            <span className="block w-5 h-px bg-[var(--text-secondary)]" />
+            <span className="block w-5 h-px bg-[var(--text-secondary)]" />
+          </button>
         </div>
-
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-1"
-          onClick={() => setMenuOpen((o) => !o)}
-          aria-label="Toggle menu"
-        >
-          <span className="block w-5 h-px bg-[#374151]" />
-          <span className="block w-5 h-px bg-[#374151]" />
-          <span className="block w-5 h-px bg-[#374151]" />
-        </button>
       </div>
 
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/40 z-[150] md:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[150] transition-opacity duration-300 ${
           menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMenuOpen(false)}
@@ -109,32 +102,65 @@ export function Navbar() {
 
       {/* Side drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[280px] bg-white z-[200] md:hidden flex flex-col shadow-2xl transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-[300px] z-[200] flex flex-col border-l border-[var(--hairline)] shadow-2xl transition-transform duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{
+          backgroundColor: "var(--bg-from)",
+          backgroundImage: "linear-gradient(180deg, var(--bg-from), var(--bg-to))",
+        }}
       >
-        <div className="flex items-center justify-end px-6 py-4 border-b border-[#f3f4f6]">
-          <button onClick={() => setMenuOpen(false)} aria-label="Close menu" className="p-2">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--hairline)]">
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+            menu
+          </span>
+          <button
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+            className="p-2 rounded-md hover:bg-[var(--hairline-soft)] transition-colors"
+          >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M4 4l12 12M16 4L4 16" stroke="#374151" strokeWidth="1.5" strokeLinecap="round" />
+              <path
+                d="M4 4l12 12M16 4L4 16"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                className="text-[var(--text-secondary)]"
+              />
             </svg>
           </button>
         </div>
 
-        <div className="flex flex-col px-6 py-8 gap-6 flex-1">
-          {links.map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              className="text-[16px] text-[#6b7280] hover:text-[#0f1117] transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
+        <div className="flex flex-col px-6 py-8 gap-1 flex-1">
+          {links.map(({ label, href, sectionId }) => {
+            const isActive = activeSection === sectionId;
+            return (
+              <Link
+                key={label}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                className={`group inline-flex items-center gap-2 px-3 py-3 rounded font-mono text-[15px] transition-colors ${
+                  isActive
+                    ? "text-[var(--text-primary)]"
+                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                }`}
+              >
+                <span
+                  className={`transition-colors ${
+                    isActive
+                      ? "text-[#1D9E75]"
+                      : "text-[var(--text-muted)] group-hover:text-[#1D9E75]"
+                  }`}
+                >
+                  ~/
+                </span>
+                {label.toLowerCase()}
+              </Link>
+            );
+          })}
         </div>
 
-        <div className="px-6 pb-8">
+        <div className="px-6 pb-8 border-t border-[var(--hairline)] pt-6">
           <Link
             href="/#contact"
             className="block text-[14px] font-medium text-white bg-[#1D9E75] px-5 py-3 rounded-md hover:bg-[#178f68] transition-colors text-center"

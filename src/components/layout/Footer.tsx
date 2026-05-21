@@ -23,8 +23,8 @@ export function Footer() {
       <div className="max-w-[1200px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-8">
           <div>
-            <span className="text-[18px] font-medium text-[#f9fafb] block mb-2">
-              Javier Mayorga
+            <span className="font-mono text-[16px] text-[#f9fafb] block mb-2 tracking-tight">
+              <span className="text-[#6b7280]">~/</span>javier.mayorga
             </span>
             <p className="text-[14px] text-[#9ca3af] leading-[1.6] max-w-[280px]">
               Building systems that last. Writing about what I learn.

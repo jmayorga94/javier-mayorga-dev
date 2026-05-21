@@ -36,9 +36,9 @@ const LeadershipIcon = () => (
 
 export function ServicesSection() {
   return (
-    <section id="services" className="bg-[#f0fdf9] py-24 px-6">
+    <section id="services" className="relative py-24 px-6">
       <div className="max-w-[1200px] mx-auto">
-        <SectionHeader eyebrow="Services" title="How I can help your team" sectionNumber="04" />
+        <SectionHeader eyebrow="Services" title="How I can help your team" sectionNumber="04" dark />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             { title: "Cloud architecture consulting", desc: "Translating business requirements into scalable Azure solutions. From assessment to implementation roadmap, with decision clarity at every stage.", icon: <CloudArchIcon /> },

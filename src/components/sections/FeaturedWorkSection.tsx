@@ -44,9 +44,9 @@ const cards = [
 
 export function FeaturedWorkSection() {
   return (
-    <section id="work" className="bg-[#fdfcfb] py-24 px-6">
+    <section id="work" className="relative py-24 px-6">
       <div className="max-w-[1200px] mx-auto">
-        <SectionHeader eyebrow="Selected Work" title="Problems solved. Outcomes delivered." />
+        <SectionHeader eyebrow="Selected Work" title="Problems solved. Outcomes delivered." dark />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cards.map((card, i) => (
             <RevealWrapper key={card.title} delay={i * 75}>
