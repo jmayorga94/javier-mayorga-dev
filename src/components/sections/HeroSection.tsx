@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { StatCounter } from "@/components/ui/StatCounter";
 
 const stats = [
@@ -29,7 +28,7 @@ export function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1200px] mx-auto lg:grid lg:grid-cols-[1fr_360px] lg:gap-16 lg:items-end">
+      <div className="relative z-10 max-w-[1200px] mx-auto">
         <div>
 
           {/* Eyebrow */}
@@ -113,24 +112,6 @@ export function HeroSection() {
             ))}
           </div>
 
-        </div>{/* end left column */}
-
-        {/* Photo — desktop only */}
-        <div
-          className="hero-enter hidden lg:block relative self-end h-[480px]"
-          style={{ animationDelay: "180ms" }}
-        >
-          <Image
-            src="/profile.jpg"
-            alt="Javier Mayorga"
-            fill
-            className="object-cover object-top rounded-t-lg grayscale brightness-90"
-            priority
-          />
-          {/* Left-fade gradient — blends photo into dark hero bg */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1117] via-[#0f1117]/20 to-transparent rounded-t-lg pointer-events-none" />
-          {/* Bottom-fade gradient */}
-          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#0f1117] to-transparent pointer-events-none" />
         </div>
 
       </div>
