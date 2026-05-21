@@ -9,10 +9,12 @@ import { GrainOverlay } from "@/components/ui/GrainOverlay";
 export default function Home() {
   return (
     <div
-      className="relative min-h-screen text-white"
+      className="relative min-h-screen transition-colors duration-300"
       style={{
-        backgroundColor: "#0f1117",
-        backgroundImage: "linear-gradient(to bottom, #0f1117 0%, #0d1015 50%, #0a0d13 100%)",
+        color: "var(--text-primary)",
+        backgroundColor: "var(--bg-from)",
+        backgroundImage:
+          "linear-gradient(to bottom, var(--bg-from) 0%, var(--bg-mid) 50%, var(--bg-to) 100%)",
       }}
     >
       <GrainOverlay />

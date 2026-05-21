@@ -14,7 +14,7 @@ export function SectionHeader({ eyebrow, title, className = "", dark = false }: 
       </p>
       <h2
         className={`text-[28px] md:text-[44px] font-medium leading-[1.2] ${
-          dark ? "text-[#f9fafb]" : "text-[#0f1117]"
+          dark ? "text-[var(--text-primary)]" : "text-[#0f1117]"
         }`}
       >
         {title}

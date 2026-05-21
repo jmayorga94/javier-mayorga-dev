@@ -10,7 +10,11 @@ interface WorkCardProps {
 export function WorkCard({ diagram, metric, title, desc, outcome, className = "" }: WorkCardProps) {
   return (
     <div
-      className={`group relative bg-[#141821]/55 backdrop-blur-xl border border-white/[0.06] rounded-lg overflow-hidden hover:-translate-y-[6px] hover:bg-[#141821]/78 hover:border-[#1D9E75]/40 hover:shadow-[0_24px_60px_rgba(29,158,117,0.12)] transition-all duration-300 ${className}`}
+      className={`group relative backdrop-blur-xl border rounded-lg overflow-hidden hover:-translate-y-[6px] hover:border-[#1D9E75]/40 hover:shadow-[0_24px_60px_rgba(29,158,117,0.12)] transition-all duration-300 ${className}`}
+      style={{
+        backgroundColor: "var(--card-bg)",
+        borderColor: "var(--hairline)",
+      }}
     >
       {/* Diagram area — keeps light bg as intentional contrast (reads as architectural artifact) */}
       <div className="relative bg-[#fafffe] px-6 pt-6 pb-4">
@@ -23,9 +27,9 @@ export function WorkCard({ diagram, metric, title, desc, outcome, className = ""
       </div>
 
       {/* Content area */}
-      <div className="px-6 py-5 flex flex-col gap-3 border-t border-white/[0.06]">
-        <h3 className="text-[16px] font-medium text-white">{title}</h3>
-        <p className="text-[14px] text-white/65 leading-[1.6]">{desc}</p>
+      <div className="px-6 py-5 flex flex-col gap-3 border-t" style={{ borderColor: "var(--hairline)" }}>
+        <h3 className="text-[16px] font-medium text-[var(--text-primary)]">{title}</h3>
+        <p className="text-[14px] text-[var(--text-secondary)] leading-[1.6]">{desc}</p>
         <p className="text-[13px] text-[#1D9E75] font-medium">{outcome}</p>
       </div>
     </div>

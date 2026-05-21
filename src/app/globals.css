@@ -1,5 +1,41 @@
 @import "tailwindcss";
 
+/* ─── Theme tokens (dark default, light when [data-theme="light"]) ── */
+:root,
+:root[data-theme="dark"] {
+  --bg-from:       #0f1117;
+  --bg-mid:        #0d1015;
+  --bg-to:         #0a0d13;
+  --bg-utility:    rgba(15, 17, 23, 0.85);
+  --card-rgb:      20 24 33;
+  --card-bg:       rgb(var(--card-rgb) / 0.55);
+  --card-bg-hover: rgb(var(--card-rgb) / 0.78);
+  --hairline:      rgb(255 255 255 / 0.08);
+  --hairline-soft: rgb(255 255 255 / 0.04);
+  --grid-line:     rgba(255, 255, 255, 0.04);
+  --text-primary:   #ffffff;
+  --text-secondary: rgb(255 255 255 / 0.65);
+  --text-muted:     rgb(255 255 255 / 0.40);
+  --accent:         #1D9E75;
+}
+
+:root[data-theme="light"] {
+  --bg-from:       #fdfcfb;
+  --bg-mid:        #f7f5f2;
+  --bg-to:         #f0eee9;
+  --bg-utility:    rgba(253, 252, 251, 0.85);
+  --card-rgb:      255 255 255;
+  --card-bg:       rgb(var(--card-rgb) / 0.70);
+  --card-bg-hover: rgb(var(--card-rgb) / 0.92);
+  --hairline:      rgb(15 17 23 / 0.10);
+  --hairline-soft: rgb(15 17 23 / 0.06);
+  --grid-line:     rgba(15, 17, 23, 0.05);
+  --text-primary:   #0f1117;
+  --text-secondary: rgb(15 17 23 / 0.70);
+  --text-muted:     rgb(15 17 23 / 0.45);
+  --accent:         #178f68;
+}
+
 /* ─── Cursor blink ─────────────────────────────────────── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
