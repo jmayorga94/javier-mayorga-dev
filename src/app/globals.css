@@ -1,5 +1,41 @@
 @import "tailwindcss";
 
+/* ─── Theme tokens (dark default, light when [data-theme="light"]) ── */
+:root,
+:root[data-theme="dark"] {
+  --bg-from:       #0f1117;
+  --bg-mid:        #0d1015;
+  --bg-to:         #0a0d13;
+  --bg-utility:    rgba(15, 17, 23, 0.85);
+  --card-rgb:      20 24 33;
+  --card-bg:       rgb(var(--card-rgb) / 0.55);
+  --card-bg-hover: rgb(var(--card-rgb) / 0.78);
+  --hairline:      rgb(255 255 255 / 0.08);
+  --hairline-soft: rgb(255 255 255 / 0.04);
+  --grid-line:     rgba(255, 255, 255, 0.04);
+  --text-primary:   #ffffff;
+  --text-secondary: rgb(255 255 255 / 0.65);
+  --text-muted:     rgb(255 255 255 / 0.40);
+  --accent:         #1D9E75;
+}
+
+:root[data-theme="light"] {
+  --bg-from:       #fdfcfb;
+  --bg-mid:        #f7f5f2;
+  --bg-to:         #f0eee9;
+  --bg-utility:    rgba(253, 252, 251, 0.85);
+  --card-rgb:      255 255 255;
+  --card-bg:       rgb(var(--card-rgb) / 0.70);
+  --card-bg-hover: rgb(var(--card-rgb) / 0.92);
+  --hairline:      rgb(15 17 23 / 0.10);
+  --hairline-soft: rgb(15 17 23 / 0.06);
+  --grid-line:     rgba(15, 17, 23, 0.05);
+  --text-primary:   #0f1117;
+  --text-secondary: rgb(15 17 23 / 0.70);
+  --text-muted:     rgb(15 17 23 / 0.45);
+  --accent:         #178f68;
+}
+
 /* ─── Cursor blink ─────────────────────────────────────── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
@@ -46,9 +82,99 @@
   animation: trustPulse 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.55s 1 both;
 }
 
+/* ─── Runner narrative: run 10s → walk 2.5s → incline bench 10s → walk 3s ── */
+
+/* Pose groups crossfade between phases */
+.runner .pose-stand,
+.runner .pose-bench,
+.runner .air {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Pivot points for swinging limbs (standing pose) */
+.runner .leg-run-front,
+.runner .leg-run-back  { transform-origin: 8px 9px; }
+.runner .arm-run-front,
+.runner .arm-run-back  { transform-origin: 8px 5.5px; }
+
+/* Pivot points for incline press arms */
+.runner .arm-press-back  { transform-origin: 11px   9.5px; }
+.runner .arm-press-front { transform-origin: 11.5px 9.2px; }
+
+/* Keyframes — running stride */
+@keyframes legSwingFront {
+  0%, 100% { transform: rotate(-26deg); }
+  50%       { transform: rotate(22deg); }
+}
+@keyframes legSwingBack {
+  0%, 100% { transform: rotate(26deg); }
+  50%       { transform: rotate(-22deg); }
+}
+@keyframes armSwingFront {
+  0%, 100% { transform: rotate(22deg); }
+  50%       { transform: rotate(-22deg); }
+}
+@keyframes armSwingBack {
+  0%, 100% { transform: rotate(-22deg); }
+  50%       { transform: rotate(22deg); }
+}
+@keyframes runnerBob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-0.5px); }
+}
+
+/* Air streak — wisp trails away behind a right-facing runner */
+@keyframes streakFlow {
+  0%   { transform: translateX(0); opacity: 0.65; }
+  70%  { transform: translateX(-5px); opacity: 0; }
+  100% { transform: translateX(-5px); opacity: 0; }
+}
+
+/* Incline bench press — arms bend (scaleY) as the bar descends to chest */
+@keyframes armPress {
+  0%, 100% { transform: scaleY(1); }     /* arms extended, bar up */
+  50%       { transform: scaleY(0.5); }   /* arms bent, bar near chest */
+}
+@keyframes barPress {
+  0%, 100% { transform: translateY(0); }     /* bar high */
+  50%       { transform: translateY(2.4px); } /* bar at chest */
+}
+
+/* ─── PHASE: run ─── natural pace (~0.5s cycle) + air trailing left ─── */
+.runner[data-phase="run"] .pose-stand    { opacity: 1; }
+.runner[data-phase="run"]                { animation: runnerBob 0.5s ease-in-out infinite; }
+.runner[data-phase="run"] .leg-run-front { animation: legSwingFront 0.5s ease-in-out infinite; }
+.runner[data-phase="run"] .leg-run-back  { animation: legSwingBack  0.5s ease-in-out infinite; }
+.runner[data-phase="run"] .arm-run-front { animation: armSwingFront 0.5s ease-in-out infinite; }
+.runner[data-phase="run"] .arm-run-back  { animation: armSwingBack  0.5s ease-in-out infinite; }
+.runner[data-phase="run"] .air           { opacity: 1; }
+.runner[data-phase="run"] .air path      { animation: streakFlow 0.85s ease-out infinite; }
+.runner[data-phase="run"] .air path:nth-child(2) { animation-delay: 0.28s; }
+.runner[data-phase="run"] .air path:nth-child(3) { animation-delay: 0.56s; }
+
+/* ─── PHASE: walk ─── relaxed walk (~1s cycle) ─── */
+.runner[data-phase="walk"] .pose-stand    { opacity: 1; }
+.runner[data-phase="walk"]                { animation: runnerBob 1s ease-in-out infinite; }
+.runner[data-phase="walk"] .leg-run-front { animation: legSwingFront 1s ease-in-out infinite; }
+.runner[data-phase="walk"] .leg-run-back  { animation: legSwingBack  1s ease-in-out infinite; }
+.runner[data-phase="walk"] .arm-run-front { animation: armSwingFront 1s ease-in-out infinite; }
+.runner[data-phase="walk"] .arm-run-back  { animation: armSwingBack  1s ease-in-out infinite; }
+
+/* ─── PHASE: lift ─── incline bench press: bar travels chest→top→chest ─── */
+.runner[data-phase="lift"] .pose-bench       { opacity: 1; }
+.runner[data-phase="lift"] .arm-press-back,
+.runner[data-phase="lift"] .arm-press-front  { animation: armPress 1.5s ease-in-out infinite; }
+.runner[data-phase="lift"] .press-group      { animation: barPress 1.5s ease-in-out infinite; }
+
 /* ─── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .hero-enter { animation: none; opacity: 1; }
   .grid-pulse  { animation: none; opacity: 0.30; }
   .trust-glow  { animation: none; }
+  .runner, .runner * { animation: none !important; }
+  /* show only the standing pose (no streaks, no bench) */
+  .runner .air,
+  .runner .pose-bench { opacity: 0; }
+  .runner .pose-stand { opacity: 1; }
 }

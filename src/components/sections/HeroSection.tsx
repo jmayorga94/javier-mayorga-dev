@@ -1,4 +1,5 @@
 import { StatCounter } from "@/components/ui/StatCounter";
+import { Aurora } from "@/components/ui/Aurora";
 
 const stats = [
   { topLabel: "YEARS",        value: "10+", label: "years · Enterprise financial systems" },
@@ -16,14 +17,17 @@ const certs = [
 
 export function HeroSection() {
   return (
-    <section className="relative bg-[#0f1117] pt-[120px] pb-16 px-6 overflow-hidden">
+    <section className="relative pt-[120px] pb-16 px-6 overflow-hidden">
+
+      {/* Aurora — single signature teal glow, top-left */}
+      <Aurora />
 
       {/* Background grid — breathes */}
       <div
         className="absolute inset-0 z-0 grid-pulse"
         style={{
           backgroundImage:
-            "linear-gradient(#1e2330 1px, transparent 1px), linear-gradient(90deg, #1e2330 1px, transparent 1px)",
+            "linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
       />
@@ -33,7 +37,7 @@ export function HeroSection() {
 
           {/* Eyebrow */}
           <p
-            className="hero-enter eyebrow-cursor text-[11px] uppercase tracking-[0.1em] text-[#1D9E75] mb-6"
+            className="hero-enter eyebrow-cursor font-mono text-[10px] uppercase tracking-[0.18em] text-[#1D9E75] mb-6"
             style={{ animationDelay: "0ms" }}
           >
             Cloud Architect &amp; Enterprise Solutions Leader
@@ -41,7 +45,7 @@ export function HeroSection() {
 
           {/* Headline */}
           <h1
-            className="hero-enter text-[36px] md:text-[44px] lg:text-[64px] font-medium text-[#f9fafb] leading-[1.1] max-w-[800px] mb-6"
+            className="hero-enter text-[36px] md:text-[44px] lg:text-[64px] font-medium text-[var(--text-primary)] leading-[1.1] max-w-[800px] mb-6"
             style={{ animationDelay: "140ms" }}
           >
             I design systems that organizations{" "}
@@ -51,7 +55,7 @@ export function HeroSection() {
 
           {/* Location */}
           <p
-            className="hero-enter text-[14px] text-[#6b7280] mb-4"
+            className="hero-enter text-[14px] text-[var(--text-muted)] mb-4"
             style={{ animationDelay: "280ms" }}
           >
             Based in Honduras · Working globally
@@ -59,7 +63,7 @@ export function HeroSection() {
 
           {/* Subline */}
           <p
-            className="hero-enter text-[18px] text-[#9ca3af] leading-[1.6] max-w-[560px] mb-8"
+            className="hero-enter text-[18px] text-[var(--text-secondary)] leading-[1.6] max-w-[560px] mb-8"
             style={{ animationDelay: "380ms" }}
           >
             10 years delivering mission-critical financial systems in regulated
@@ -88,8 +92,8 @@ export function HeroSection() {
                   i === 0
                     ? "sm:pr-12"
                     : i === arr.length - 1
-                    ? "sm:pl-12 sm:border-l sm:border-[#1e2330]"
-                    : "sm:px-12 sm:border-l sm:border-[#1e2330]"
+                    ? "sm:pl-12 sm:border-l sm:border-[var(--hairline)]"
+                    : "sm:px-12 sm:border-l sm:border-[var(--hairline)]"
                 }`}
               >
                 <StatCounter topLabel={topLabel} value={value} label={label} />

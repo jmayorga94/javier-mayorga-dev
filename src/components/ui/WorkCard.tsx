@@ -10,22 +10,50 @@ interface WorkCardProps {
 export function WorkCard({ diagram, metric, title, desc, outcome, className = "" }: WorkCardProps) {
   return (
     <div
-      className={`group bg-white border border-[#f3f4f6] rounded-lg overflow-hidden hover:-translate-y-[6px] hover:border-t-[#1D9E75] hover:border-t-2 hover:shadow-[0_16px_48px_rgba(29,158,117,0.13)] transition-all duration-300 ${className}`}
+      className={`group relative backdrop-blur-xl border rounded-lg overflow-hidden hover:-translate-y-[6px] hover:border-[#1D9E75]/40 hover:shadow-[0_24px_60px_rgba(29,158,117,0.12)] transition-all duration-300 ${className}`}
+      style={{
+        backgroundColor: "var(--card-bg)",
+        borderColor: "var(--hairline)",
+      }}
     >
-      {/* Diagram area */}
-      <div className="relative bg-[#fafffe] border-b border-[#f3f4f6] px-6 pt-6 pb-4">
+      {/* Diagram area — light "screen" inside the dark card, with a teal-tinted
+          gradient + inset shadows so it reads as an intentional artifact, not a glitch */}
+      <div
+        className="relative px-6 pt-6 pb-4"
+        style={{
+          backgroundImage:
+            "linear-gradient(180deg, #ffffff 0%, #f6fffb 55%, #ebfaf3 100%)",
+          boxShadow:
+            "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(29,158,117,0.18), inset 0 0 0 1px rgba(29,158,117,0.06)",
+        }}
+      >
+        {/* Tiny corner glyphs — like crop marks on an architectural drawing */}
+        <span
+          aria-hidden="true"
+          className="absolute top-2 left-2 font-mono text-[8px] text-[#1D9E75]/45 tracking-widest"
+        >
+          ◢
+        </span>
+        <span
+          aria-hidden="true"
+          className="absolute bottom-2 right-2 font-mono text-[8px] text-[#1D9E75]/45 tracking-widest"
+        >
+          ◤
+        </span>
+
         {diagram}
+
         {metric && (
-          <span className="absolute top-3 right-3 text-[11px] font-medium text-[#1D9E75] bg-white border border-[#d1fae5] px-2 py-0.5 rounded-full">
+          <span className="absolute top-3 right-3 font-mono text-[10px] font-medium text-[#1D9E75] bg-white/95 border border-[#1D9E75]/30 px-2 py-0.5 rounded-full tabular-nums shadow-[0_2px_8px_rgba(29,158,117,0.12)]">
             {metric}
           </span>
         )}
       </div>
 
       {/* Content area */}
-      <div className="px-6 py-5 flex flex-col gap-3">
-        <h3 className="text-[16px] font-medium text-[#0f1117]">{title}</h3>
-        <p className="text-[14px] text-[#6b7280] leading-[1.6]">{desc}</p>
+      <div className="px-6 py-5 flex flex-col gap-3 border-t" style={{ borderColor: "var(--hairline)" }}>
+        <h3 className="text-[16px] font-medium text-[var(--text-primary)]">{title}</h3>
+        <p className="text-[14px] text-[var(--text-secondary)] leading-[1.6]">{desc}</p>
         <p className="text-[13px] text-[#1D9E75] font-medium">{outcome}</p>
       </div>
     </div>
