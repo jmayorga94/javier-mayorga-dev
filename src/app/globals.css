@@ -82,7 +82,35 @@
   animation: trustPulse 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.55s 1 both;
 }
 
-/* ─── Runner choreography: sprint → slow → walk → lift → repeat ── */
+/* ─── Runner narrative: run 10s → walk 2.5s → bench-press 10s → tie shoes 3s ── */
+
+/* Pivot points for swinging limbs */
+.runner .leg-run-front,
+.runner .leg-run-back  { transform-origin: 8px 9px; }
+.runner .arm-run-front,
+.runner .arm-run-back  { transform-origin: 8px 5.5px; }
+.runner .arm-curl-front,
+.runner .arm-curl-back { transform-origin: 8px 5.5px; }
+
+/* Default — everything pose-specific starts hidden, fades in per phase */
+.runner .air,
+.runner .bench,
+.runner .torso-bent,
+.runner .leg-sit-front,
+.runner .leg-sit-back,
+.runner .leg-shoes-front,
+.runner .leg-shoes-back,
+.runner .arm-curl-front,
+.runner .arm-curl-back,
+.runner .arm-shoes,
+.runner .weight-front,
+.runner .weight-back,
+.runner .shoe {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Keyframes */
 @keyframes legSwingFront {
   0%, 100% { transform: rotate(-28deg); }
   50%       { transform: rotate(24deg); }
@@ -104,73 +132,114 @@
   50%       { transform: translateY(-0.6px); }
 }
 
-/* Air-streak motion — appears to whoosh away behind the runner */
+/* Air-streak motion — wisp trails away behind a right-facing runner (to the left) */
 @keyframes streakFlow {
-  0%   { transform: translateX(0); opacity: 0.7; }
-  60%  { transform: translateX(4px); opacity: 0; }
-  100% { transform: translateX(4px); opacity: 0; }
+  0%   { transform: translateX(0); opacity: 0.75; }
+  70%  { transform: translateX(-5px); opacity: 0; }
+  100% { transform: translateX(-5px); opacity: 0; }
 }
 
-/* Weight lifting: arms drive a bicep curl */
+/* Bicep curl — opposite arms alternate for a bench-press feel */
 @keyframes armCurlFront {
-  0%, 100% { transform: rotate(20deg); }
-  50%       { transform: rotate(-110deg); }
+  0%, 100% { transform: rotate(0deg); }
+  50%       { transform: rotate(-140deg); }
 }
 @keyframes armCurlBack {
-  0%, 100% { transform: rotate(-20deg); }
-  50%       { transform: rotate(110deg); }
+  0%, 100% { transform: rotate(0deg); }
+  50%       { transform: rotate(140deg); }
 }
-/* Weights track the hands (small bob synced with curl) */
-@keyframes weightCurl {
+@keyframes weightBob {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-1.2px); }
+  50%       { transform: translateY(-1.6px); }
 }
 
-/* Pivot points (apply to all phases) */
-.runner .leg-front { transform-origin: 7.5px 9px; }
-.runner .leg-back  { transform-origin: 7.5px 9px; }
-.runner .arm-front { transform-origin: 7.8px 6px; }
-.runner .arm-back  { transform-origin: 7.8px 6px; }
-.runner .air       { opacity: 0; transition: opacity 0.4s ease; }
-.runner .weights   { opacity: 0; transition: opacity 0.3s ease; transform-origin: 7.8px 6px; }
+/* Tying-shoe sway */
+@keyframes shoeSway {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(0.4px); }
+}
 
-/* ─── PHASE: sprint ─── short cycle (~0.28s), air streaks visible */
-.runner[data-phase="sprint"]            { animation: runnerBob 0.28s ease-in-out infinite; }
-.runner[data-phase="sprint"] .leg-front { animation: legSwingFront 0.28s ease-in-out infinite; }
-.runner[data-phase="sprint"] .leg-back  { animation: legSwingBack  0.28s ease-in-out infinite; }
-.runner[data-phase="sprint"] .arm-front { animation: armSwingFront 0.28s ease-in-out infinite; }
-.runner[data-phase="sprint"] .arm-back  { animation: armSwingBack  0.28s ease-in-out infinite; }
-.runner[data-phase="sprint"] .air       { opacity: 1; }
-.runner[data-phase="sprint"] .air path  { animation: streakFlow 0.55s ease-out infinite; }
-.runner[data-phase="sprint"] .air path:nth-child(2) { animation-delay: 0.18s; }
-.runner[data-phase="sprint"] .air path:nth-child(3) { animation-delay: 0.36s; }
+/* ─── PHASE: run ─── fast swing + air trailing left ─── */
+.runner[data-phase="run"]                { animation: runnerBob 0.28s ease-in-out infinite; }
+.runner[data-phase="run"] .leg-run-front { animation: legSwingFront 0.28s ease-in-out infinite; }
+.runner[data-phase="run"] .leg-run-back  { animation: legSwingBack  0.28s ease-in-out infinite; }
+.runner[data-phase="run"] .arm-run-front { animation: armSwingFront 0.28s ease-in-out infinite; }
+.runner[data-phase="run"] .arm-run-back  { animation: armSwingBack  0.28s ease-in-out infinite; }
+.runner[data-phase="run"] .air           { opacity: 1; }
+.runner[data-phase="run"] .air path      { animation: streakFlow 0.55s ease-out infinite; }
+.runner[data-phase="run"] .air path:nth-child(2) { animation-delay: 0.18s; }
+.runner[data-phase="run"] .air path:nth-child(3) { animation-delay: 0.36s; }
 
-/* ─── PHASE: slow ─── transitional cycle (~0.55s) */
-.runner[data-phase="slow"]            { animation: runnerBob 0.55s ease-in-out infinite; }
-.runner[data-phase="slow"] .leg-front { animation: legSwingFront 0.55s ease-in-out infinite; }
-.runner[data-phase="slow"] .leg-back  { animation: legSwingBack  0.55s ease-in-out infinite; }
-.runner[data-phase="slow"] .arm-front { animation: armSwingFront 0.55s ease-in-out infinite; }
-.runner[data-phase="slow"] .arm-back  { animation: armSwingBack  0.55s ease-in-out infinite; }
+/* ─── PHASE: walk ─── relaxed walk (to the bench) ─── */
+.runner[data-phase="walk"]                { animation: runnerBob 0.95s ease-in-out infinite; }
+.runner[data-phase="walk"] .leg-run-front { animation: legSwingFront 0.95s ease-in-out infinite; }
+.runner[data-phase="walk"] .leg-run-back  { animation: legSwingBack  0.95s ease-in-out infinite; }
+.runner[data-phase="walk"] .arm-run-front { animation: armSwingFront 0.95s ease-in-out infinite; }
+.runner[data-phase="walk"] .arm-run-back  { animation: armSwingBack  0.95s ease-in-out infinite; }
 
-/* ─── PHASE: walk ─── relaxed cycle (~0.95s) */
-.runner[data-phase="walk"]            { animation: runnerBob 0.95s ease-in-out infinite; }
-.runner[data-phase="walk"] .leg-front { animation: legSwingFront 0.95s ease-in-out infinite; }
-.runner[data-phase="walk"] .leg-back  { animation: legSwingBack  0.95s ease-in-out infinite; }
-.runner[data-phase="walk"] .arm-front { animation: armSwingFront 0.95s ease-in-out infinite; }
-.runner[data-phase="walk"] .arm-back  { animation: armSwingBack  0.95s ease-in-out infinite; }
+/* ─── PHASE: lift ─── seated on bench, alternating bicep curls ─── */
+.runner[data-phase="lift"] .leg-run-front,
+.runner[data-phase="lift"] .leg-run-back,
+.runner[data-phase="lift"] .arm-run-front,
+.runner[data-phase="lift"] .arm-run-back { opacity: 0; }
 
-/* ─── PHASE: lift ─── legs planted, arms curl with weights */
-.runner[data-phase="lift"]            { animation: runnerBob 1.2s ease-in-out infinite; }
-.runner[data-phase="lift"] .leg-front { animation: none; transform: rotate(-10deg); }
-.runner[data-phase="lift"] .leg-back  { animation: none; transform: rotate(10deg); }
-.runner[data-phase="lift"] .arm-front { animation: armCurlFront 1.2s ease-in-out infinite; }
-.runner[data-phase="lift"] .arm-back  { animation: armCurlBack  1.2s ease-in-out infinite; }
-.runner[data-phase="lift"] .weights   { opacity: 1; animation: weightCurl 1.2s ease-in-out infinite; }
+.runner[data-phase="lift"] .bench,
+.runner[data-phase="lift"] .leg-sit-front,
+.runner[data-phase="lift"] .leg-sit-back,
+.runner[data-phase="lift"] .arm-curl-front,
+.runner[data-phase="lift"] .arm-curl-back,
+.runner[data-phase="lift"] .weight-front,
+.runner[data-phase="lift"] .weight-back { opacity: 1; }
+
+.runner[data-phase="lift"] .arm-curl-front {
+  animation: armCurlFront 1.1s ease-in-out infinite;
+}
+.runner[data-phase="lift"] .arm-curl-back {
+  animation: armCurlBack 1.1s ease-in-out infinite;
+  animation-delay: 0.55s;
+}
+.runner[data-phase="lift"] .weight-front,
+.runner[data-phase="lift"] .weight-back {
+  transform-origin: 8px 7.5px;
+  animation: weightBob 1.1s ease-in-out infinite;
+}
+
+/* ─── PHASE: shoes ─── kneeling, tying laces ─── */
+.runner[data-phase="shoes"] .torso-up,
+.runner[data-phase="shoes"] .leg-run-front,
+.runner[data-phase="shoes"] .leg-run-back,
+.runner[data-phase="shoes"] .arm-run-front,
+.runner[data-phase="shoes"] .arm-run-back { opacity: 0; }
+
+.runner[data-phase="shoes"] .torso-bent,
+.runner[data-phase="shoes"] .leg-shoes-front,
+.runner[data-phase="shoes"] .leg-shoes-back,
+.runner[data-phase="shoes"] .arm-shoes,
+.runner[data-phase="shoes"] .shoe { opacity: 1; }
+
+.runner[data-phase="shoes"] .arm-shoes {
+  transform-origin: 5px 8.5px;
+  animation: shoeSway 0.7s ease-in-out infinite;
+}
 
 /* ─── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .hero-enter { animation: none; opacity: 1; }
   .grid-pulse  { animation: none; opacity: 0.30; }
   .trust-glow  { animation: none; }
-  .runner, .runner * { animation: none; }
+  .runner, .runner * { animation: none !important; }
+  /* show a single static pose */
+  .runner .air,
+  .runner .bench,
+  .runner .torso-bent,
+  .runner .leg-sit-front,
+  .runner .leg-sit-back,
+  .runner .leg-shoes-front,
+  .runner .leg-shoes-back,
+  .runner .arm-curl-front,
+  .runner .arm-curl-back,
+  .runner .arm-shoes,
+  .runner .weight-front,
+  .runner .weight-back,
+  .runner .shoe { opacity: 0; }
 }
