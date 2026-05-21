@@ -2,7 +2,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="relative py-24 px-6">
       <div className="max-w-[1200px] mx-auto text-center">
-        <p className="text-[11px] uppercase tracking-[0.1em] text-[#1D9E75] mb-4">
+        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#1D9E75] mb-4">
           Contact
         </p>
         <h2 className="text-[36px] md:text-[44px] font-medium text-[var(--text-primary)] leading-[1.2] mb-4">

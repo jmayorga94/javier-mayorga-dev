@@ -23,7 +23,7 @@ export function HowIWorkSection() {
     <section id="how-i-work" className="relative py-24 px-6">
       <div className="max-w-[1200px] mx-auto">
         <div className="mb-16">
-          <p className="text-[11px] uppercase tracking-[0.1em] text-[#1D9E75] mb-4">Approach</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#1D9E75] mb-4">Approach</p>
           <h2 className="text-[28px] md:text-[44px] font-medium text-[var(--text-primary)] leading-[1.2] max-w-[600px]">
             Architecture decisions that organizations can act on
           </h2>
