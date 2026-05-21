@@ -82,35 +82,90 @@
   animation: trustPulse 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.55s 1 both;
 }
 
-/* ─── Runner animation (status pill) ──────────────────── */
+/* ─── Runner choreography: sprint → slow → walk → lift → repeat ── */
 @keyframes legSwingFront {
-  0%, 100% { transform: rotate(-22deg); }
-  50%       { transform: rotate(20deg); }
+  0%, 100% { transform: rotate(-28deg); }
+  50%       { transform: rotate(24deg); }
 }
 @keyframes legSwingBack {
-  0%, 100% { transform: rotate(22deg); }
-  50%       { transform: rotate(-20deg); }
+  0%, 100% { transform: rotate(28deg); }
+  50%       { transform: rotate(-24deg); }
 }
 @keyframes armSwingFront {
-  0%, 100% { transform: rotate(18deg); }
-  50%       { transform: rotate(-18deg); }
+  0%, 100% { transform: rotate(22deg); }
+  50%       { transform: rotate(-22deg); }
 }
 @keyframes armSwingBack {
-  0%, 100% { transform: rotate(-18deg); }
-  50%       { transform: rotate(18deg); }
+  0%, 100% { transform: rotate(-22deg); }
+  50%       { transform: rotate(22deg); }
 }
 @keyframes runnerBob {
   0%, 100% { transform: translateY(0); }
-  25%      { transform: translateY(-0.4px); }
-  50%      { transform: translateY(0); }
-  75%      { transform: translateY(-0.4px); }
+  50%       { transform: translateY(-0.6px); }
 }
 
-.runner       { animation: runnerBob 0.56s ease-in-out infinite; }
-.runner .leg-front { transform-origin: 7.5px 9px; animation: legSwingFront 0.56s ease-in-out infinite; }
-.runner .leg-back  { transform-origin: 7.5px 9px; animation: legSwingBack  0.56s ease-in-out infinite; }
-.runner .arm-front { transform-origin: 7.8px 6px; animation: armSwingFront 0.56s ease-in-out infinite; }
-.runner .arm-back  { transform-origin: 7.8px 6px; animation: armSwingBack  0.56s ease-in-out infinite; }
+/* Air-streak motion — appears to whoosh away behind the runner */
+@keyframes streakFlow {
+  0%   { transform: translateX(0); opacity: 0.7; }
+  60%  { transform: translateX(4px); opacity: 0; }
+  100% { transform: translateX(4px); opacity: 0; }
+}
+
+/* Weight lifting: arms drive a bicep curl */
+@keyframes armCurlFront {
+  0%, 100% { transform: rotate(20deg); }
+  50%       { transform: rotate(-110deg); }
+}
+@keyframes armCurlBack {
+  0%, 100% { transform: rotate(-20deg); }
+  50%       { transform: rotate(110deg); }
+}
+/* Weights track the hands (small bob synced with curl) */
+@keyframes weightCurl {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-1.2px); }
+}
+
+/* Pivot points (apply to all phases) */
+.runner .leg-front { transform-origin: 7.5px 9px; }
+.runner .leg-back  { transform-origin: 7.5px 9px; }
+.runner .arm-front { transform-origin: 7.8px 6px; }
+.runner .arm-back  { transform-origin: 7.8px 6px; }
+.runner .air       { opacity: 0; transition: opacity 0.4s ease; }
+.runner .weights   { opacity: 0; transition: opacity 0.3s ease; transform-origin: 7.8px 6px; }
+
+/* ─── PHASE: sprint ─── short cycle (~0.28s), air streaks visible */
+.runner[data-phase="sprint"]            { animation: runnerBob 0.28s ease-in-out infinite; }
+.runner[data-phase="sprint"] .leg-front { animation: legSwingFront 0.28s ease-in-out infinite; }
+.runner[data-phase="sprint"] .leg-back  { animation: legSwingBack  0.28s ease-in-out infinite; }
+.runner[data-phase="sprint"] .arm-front { animation: armSwingFront 0.28s ease-in-out infinite; }
+.runner[data-phase="sprint"] .arm-back  { animation: armSwingBack  0.28s ease-in-out infinite; }
+.runner[data-phase="sprint"] .air       { opacity: 1; }
+.runner[data-phase="sprint"] .air path  { animation: streakFlow 0.55s ease-out infinite; }
+.runner[data-phase="sprint"] .air path:nth-child(2) { animation-delay: 0.18s; }
+.runner[data-phase="sprint"] .air path:nth-child(3) { animation-delay: 0.36s; }
+
+/* ─── PHASE: slow ─── transitional cycle (~0.55s) */
+.runner[data-phase="slow"]            { animation: runnerBob 0.55s ease-in-out infinite; }
+.runner[data-phase="slow"] .leg-front { animation: legSwingFront 0.55s ease-in-out infinite; }
+.runner[data-phase="slow"] .leg-back  { animation: legSwingBack  0.55s ease-in-out infinite; }
+.runner[data-phase="slow"] .arm-front { animation: armSwingFront 0.55s ease-in-out infinite; }
+.runner[data-phase="slow"] .arm-back  { animation: armSwingBack  0.55s ease-in-out infinite; }
+
+/* ─── PHASE: walk ─── relaxed cycle (~0.95s) */
+.runner[data-phase="walk"]            { animation: runnerBob 0.95s ease-in-out infinite; }
+.runner[data-phase="walk"] .leg-front { animation: legSwingFront 0.95s ease-in-out infinite; }
+.runner[data-phase="walk"] .leg-back  { animation: legSwingBack  0.95s ease-in-out infinite; }
+.runner[data-phase="walk"] .arm-front { animation: armSwingFront 0.95s ease-in-out infinite; }
+.runner[data-phase="walk"] .arm-back  { animation: armSwingBack  0.95s ease-in-out infinite; }
+
+/* ─── PHASE: lift ─── legs planted, arms curl with weights */
+.runner[data-phase="lift"]            { animation: runnerBob 1.2s ease-in-out infinite; }
+.runner[data-phase="lift"] .leg-front { animation: none; transform: rotate(-10deg); }
+.runner[data-phase="lift"] .leg-back  { animation: none; transform: rotate(10deg); }
+.runner[data-phase="lift"] .arm-front { animation: armCurlFront 1.2s ease-in-out infinite; }
+.runner[data-phase="lift"] .arm-back  { animation: armCurlBack  1.2s ease-in-out infinite; }
+.runner[data-phase="lift"] .weights   { opacity: 1; animation: weightCurl 1.2s ease-in-out infinite; }
 
 /* ─── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
