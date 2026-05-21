@@ -9,20 +9,21 @@ interface AvailabilityWidgetProps {
   compact?: boolean;
 }
 
-type Phase = "run" | "walk" | "lift" | "shoes";
+type Phase = "run" | "walk" | "lift";
 
-// Full narrative cycle: ~25.5s
+// Full narrative cycle: ~25.5s — run, walk to bench, press, walk back, loop.
 const cycle: { name: Phase; ms: number }[] = [
-  { name: "run",   ms: 10000 }, // natural running pace, air trails behind
-  { name: "walk",  ms: 2500 },  // walks to the bench
-  { name: "lift",  ms: 10000 }, // lies on incline bench, presses barbell
-  { name: "shoes", ms: 3000 },  // kneels down, ties shoes
+  { name: "run",  ms: 10000 }, // natural running pace, air trails behind
+  { name: "walk", ms: 2500 },  // walks to the bench
+  { name: "lift", ms: 10000 }, // lies on incline bench, presses barbell
+  { name: "walk", ms: 3000 },  // natural walk back to the starting line
 ];
 
 /**
- * The athlete's routine — natural run → cool-down walk → incline bench press → tie shoes → repeat.
- * Single SVG with three pose-groups stacked; CSS reveals only the group active for the current
- * data-phase via opacity crossfade. Per-phase animations handle stride, press, and lacing.
+ * The athlete's routine — run → walk → incline bench press → walk → repeat.
+ * Single SVG with two pose-groups stacked (.pose-stand for run/walk, .pose-bench
+ * for lift); CSS reveals only the group active for the current data-phase via
+ * opacity crossfade.
  */
 export function AvailabilityWidget({
   href = "#contact",
@@ -103,15 +104,6 @@ export function AvailabilityWidget({
         </g>
       </g>
 
-      {/* ── POSE: tying shoes ── */}
-      <g className="pose-shoes">
-        <circle cx="8" cy="3.5" r="1.2" fill="#1D9E75" stroke="none" />
-        <path d="M8 4.5 L7 7 L5 8.7" />
-        <path d="M5 8.7 L7 11 L9 13" />
-        <path d="M5 8.7 L4 11 L3 13" />
-        <path className="arm-shoes" d="M5 8.7 L3 12" />
-        <path d="M2.3 13 L4.2 13" strokeWidth="1.8" />
-      </g>
     </svg>
   );
 
