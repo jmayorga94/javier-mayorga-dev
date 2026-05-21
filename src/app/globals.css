@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* ─── Cursor blink ─────────────────────────────────────── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
@@ -10,4 +11,44 @@
   animation: blink 1s step-end infinite;
   margin-left: 0.25rem;
   color: #1D9E75;
+}
+
+/* ─── Hero entrance ────────────────────────────────────── */
+@keyframes heroEnter {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-enter {
+  opacity: 0;
+  animation: heroEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Hero background grid breathe ────────────────────── */
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.25; }
+  50%       { opacity: 0.42; }
+}
+
+.grid-pulse {
+  animation: gridPulse 9s ease-in-out infinite;
+}
+
+/* ─── "trust" word glow ────────────────────────────────── */
+@keyframes trustPulse {
+  0%         { color: #1D9E75; }
+  45%        { color: #6ee7b7; text-shadow: 0 0 32px rgba(110,231,183,0.55); }
+  100%       { color: #1D9E75; }
+}
+
+.trust-glow {
+  display: inline-block;
+  animation: trustPulse 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.55s 1 both;
+}
+
+/* ─── Reduced motion ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter { animation: none; opacity: 1; }
+  .grid-pulse  { animation: none; opacity: 0.30; }
+  .trust-glow  { animation: none; }
 }

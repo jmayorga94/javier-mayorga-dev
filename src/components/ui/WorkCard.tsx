@@ -10,7 +10,7 @@ interface WorkCardProps {
 export function WorkCard({ diagram, metric, title, desc, outcome, className = "" }: WorkCardProps) {
   return (
     <div
-      className={`group bg-white border border-[#f3f4f6] rounded-lg overflow-hidden hover:-translate-y-1 hover:border-t-[#1D9E75] hover:border-t-2 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-all duration-300 ${className}`}
+      className={`group bg-white border border-[#f3f4f6] rounded-lg overflow-hidden hover:-translate-y-[6px] hover:border-t-[#1D9E75] hover:border-t-2 hover:shadow-[0_16px_48px_rgba(29,158,117,0.13)] transition-all duration-300 ${className}`}
     >
       {/* Diagram area */}
       <div className="relative bg-[#fafffe] border-b border-[#f3f4f6] px-6 pt-6 pb-4">
