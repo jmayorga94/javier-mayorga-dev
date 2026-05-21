@@ -13,16 +13,16 @@ type Phase = "run" | "walk" | "lift" | "shoes";
 
 // Full narrative cycle: ~25.5s
 const cycle: { name: Phase; ms: number }[] = [
-  { name: "run",   ms: 10000 }, // sprints for 10s with air trailing behind
+  { name: "run",   ms: 10000 }, // natural running pace, air trails behind
   { name: "walk",  ms: 2500 },  // walks to the bench
-  { name: "lift",  ms: 10000 }, // sits on bench, lifts weights
-  { name: "shoes", ms: 3000 },  // gets up, puts shoes on, back to running
+  { name: "lift",  ms: 10000 }, // lies on incline bench, presses barbell
+  { name: "shoes", ms: 3000 },  // kneels down, ties shoes
 ];
 
 /**
- * The athlete's full routine — sprint, cool-down walk, bench press, lace up,
- * repeat. Single SVG with all pose elements stacked; CSS reveals only the
- * paths relevant to the active phase. Disabled under prefers-reduced-motion.
+ * The athlete's routine — natural run → cool-down walk → incline bench press → tie shoes → repeat.
+ * Single SVG with three pose-groups stacked; CSS reveals only the group active for the current
+ * data-phase via opacity crossfade. Per-phase animations handle stride, press, and lacing.
  */
 export function AvailabilityWidget({
   href = "#contact",
@@ -57,61 +57,61 @@ export function AvailabilityWidget({
       data-phase={phase}
       className="runner shrink-0 overflow-visible"
     >
-      {/* Air streaks — BEHIND a right-facing runner (left side), only during run */}
+      {/* ── Air streaks — trail BEHIND a right-facing runner (left side) ── */}
       <g className="air">
         <path d="M3 4.5 q -1.5 -0.4 -3 0" />
         <path d="M2.5 7.5 q -1.5 0.4 -3 0" />
         <path d="M3 10.5 q -1.5 -0.4 -3 0" />
       </g>
 
-      {/* Bench — only during lift (seat + two legs) */}
-      <g className="bench">
-        <rect x="3" y="10.4" width="10" height="0.5" rx="0.2" fill="#1D9E75" stroke="none" />
-        <line x1="4" y1="10.9" x2="4" y2="12.5" />
-        <line x1="12" y1="10.9" x2="12" y2="12.5" />
+      {/* ── POSE: standing (run / walk) ── */}
+      <g className="pose-stand">
+        <circle cx="8" cy="3" r="1.2" fill="#1D9E75" stroke="none" />
+        <path d="M8 4.2 L8 9" />
+        <path className="leg-run-back"  d="M8 9 L10.5 13" />
+        <path className="leg-run-front" d="M8 9 L5.5 13" />
+        <path className="arm-run-back"  d="M8 5.5 L5.5 5" />
+        <path className="arm-run-front" d="M8 5.5 L10.5 7" />
       </g>
 
-      {/* Head — always visible */}
-      <circle cx="8" cy="3" r="1.2" fill="#1D9E75" stroke="none" />
+      {/* ── POSE: incline bench press (lift) ── */}
+      <g className="pose-bench">
+        {/* Bench surface (inclined ~22°) and supports */}
+        <line x1="3" y1="13.4" x2="14" y2="7.6" strokeWidth="1.4" />
+        <line x1="3.6" y1="13.6" x2="3.6" y2="15.2" />
+        <line x1="13.4" y1="7.9" x2="13.4" y2="15.2" />
 
-      {/* Torso — upright variant (run/walk/lift) */}
-      <path className="torso-up" d="M8 4.2 L8 9" />
-      {/* Torso — bent forward (shoes) */}
-      <path className="torso-bent" d="M8 4.2 L7 7 L5 8.5" />
+        {/* Head at the top of the incline */}
+        <circle cx="14.2" cy="6.6" r="1.2" fill="#1D9E75" stroke="none" />
 
-      {/* — RUN/WALK legs — */}
-      <path className="leg-run-back"  d="M8 9 L10.5 13" />
-      <path className="leg-run-front" d="M8 9 L5.5 13" />
+        {/* Body lying along the incline */}
+        <line x1="13.6" y1="7.5" x2="6.2" y2="12.4" strokeWidth="1.4" />
 
-      {/* — LIFT (sitting) legs — knees bent, feet on ground in front of bench — */}
-      <path className="leg-sit-back"  d="M8 9 L11 10.4 L11 12.8" />
-      <path className="leg-sit-front" d="M8 9 L5  10.4 L5  12.8" />
+        {/* Legs hanging off the foot of the bench */}
+        <line x1="6.2" y1="12.4" x2="5" y2="14.6" />
+        <line x1="6.2" y1="12.4" x2="7.5" y2="14.6" />
 
-      {/* — SHOES (kneeling/bent) legs — */}
-      <path className="leg-shoes-back"  d="M5 8.5 L7 11 L9 13" />
-      <path className="leg-shoes-front" d="M5 8.5 L4 11 L3 13" />
+        {/* Arms reaching up from the chest, scale-Y bends them on the press */}
+        <line className="arm-press-back"  x1="11" y1="9.5"   x2="10" y2="4.6" />
+        <line className="arm-press-front" x1="11.5" y1="9.2" x2="12" y2="4.6" />
 
-      {/* — RUN/WALK arms — */}
-      <path className="arm-run-back"  d="M8 5.5 L5.5 5" />
-      <path className="arm-run-front" d="M8 5.5 L10.5 7" />
-
-      {/* — LIFT arms — bicep curl, paths sit "hanging" by default, animation rotates them up — */}
-      <path className="arm-curl-back"  d="M8 5.5 L7  7.5" />
-      <path className="arm-curl-front" d="M8 5.5 L9  7.5" />
-
-      {/* — Dumbbells — attached to curl hands — */}
-      <g className="weight-back">
-        <rect x="6.1" y="7.2" width="1.8" height="0.6" rx="0.15" fill="#1D9E75" stroke="none" />
-      </g>
-      <g className="weight-front">
-        <rect x="8.1" y="7.2" width="1.8" height="0.6" rx="0.15" fill="#1D9E75" stroke="none" />
+        {/* Barbell + weight plates — group translates up/down with the press */}
+        <g className="press-group">
+          <line x1="10" y1="4.6" x2="12" y2="4.6" strokeWidth="1.4" />
+          <rect x="8.4" y="3.6" width="1.6" height="2" rx="0.2" fill="#1D9E75" stroke="none" />
+          <rect x="12" y="3.6"  width="1.6" height="2" rx="0.2" fill="#1D9E75" stroke="none" />
+        </g>
       </g>
 
-      {/* — SHOES arms — reaching down to the laced foot — */}
-      <path className="arm-shoes" d="M5 8.5 L3 12" />
-
-      {/* Tiny shoe glyph during shoes phase */}
-      <path className="shoe" d="M2.5 13 L4 13" strokeWidth="1.8" />
+      {/* ── POSE: tying shoes ── */}
+      <g className="pose-shoes">
+        <circle cx="8" cy="3.5" r="1.2" fill="#1D9E75" stroke="none" />
+        <path d="M8 4.5 L7 7 L5 8.7" />
+        <path d="M5 8.7 L7 11 L9 13" />
+        <path d="M5 8.7 L4 11 L3 13" />
+        <path className="arm-shoes" d="M5 8.7 L3 12" />
+        <path d="M2.3 13 L4.2 13" strokeWidth="1.8" />
+      </g>
     </svg>
   );
 
