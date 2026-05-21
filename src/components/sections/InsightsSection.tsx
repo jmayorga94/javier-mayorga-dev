@@ -39,9 +39,9 @@ const posts = [
 
 export function InsightsSection() {
   return (
-    <section id="insights" className="py-24 px-6">
+    <section id="insights" className="bg-[#0f1117] py-24 px-6">
       <div className="max-w-[1200px] mx-auto">
-        <SectionHeader eyebrow="Technical Insights" title="How I think about systems" sectionNumber="03" />
+        <SectionHeader eyebrow="Technical Insights" title="How I think about systems" sectionNumber="03" dark />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {posts.map((p, i) => (
             <RevealWrapper key={p.slug} delay={i * 75}>
