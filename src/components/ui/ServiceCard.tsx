@@ -9,12 +9,14 @@ interface ServiceCardProps {
 
 export function ServiceCard({ title, desc, icon, className = "" }: ServiceCardProps) {
   return (
-    <div className={`bg-white border border-[#d1fae5] rounded-lg p-8 group ${className}`}>
+    <div
+      className={`bg-[#141821] border border-[#1e2330] rounded-lg p-8 group hover:border-[#1D9E75]/40 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(29,158,117,0.08)] transition-all duration-300 ${className}`}
+    >
       <div className="mb-5 text-[#1D9E75] transition-opacity group-hover:opacity-80">
         {icon}
       </div>
-      <h3 className="text-[18px] font-medium text-[#0f1117] mb-3">{title}</h3>
-      <p className="text-[14px] text-[#6b7280] leading-[1.6]">{desc}</p>
+      <h3 className="text-[18px] font-medium text-[#f9fafb] mb-3">{title}</h3>
+      <p className="text-[14px] text-[#9ca3af] leading-[1.6]">{desc}</p>
     </div>
   );
 }
