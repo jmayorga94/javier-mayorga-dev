@@ -239,3 +239,38 @@
 ### Verify
 - [ ] `npm run build` passes
 - [ ] `npm run lint` passes
+
+---
+
+## Phase 12 — Homepage i18n (Spanish / English)
+
+> Scope: homepage sections only (Hero, Featured Work, How I Work, Services). Blog posts already handle lang per-file.
+> Library: `next-intl` — standard Next.js App Router i18n solution.
+> URLs: `/` (EN default) and `/es` (Spanish) — no prefix on default locale.
+
+### Setup
+- [ ] Install `next-intl`
+- [ ] Create `messages/en.json` — all homepage copy in English
+- [ ] Create `messages/es.json` — Spanish translations of all homepage copy
+- [ ] Configure `next.config.ts` with `next-intl` plugin
+- [ ] Create `src/i18n.ts` — locale config (locales: ['en', 'es'], defaultLocale: 'en')
+
+### Layout
+- [ ] Wrap `src/app/layout.tsx` with `NextIntlClientProvider`
+- [ ] Create `src/app/[locale]/` route group and move `page.tsx` inside it
+
+### Components
+- [ ] Update `HeroSection.tsx` — use `useTranslations('hero')` for all copy
+- [ ] Update `FeaturedWorkSection.tsx` — use `useTranslations('work')` for card content
+- [ ] Update `HowIWorkSection.tsx` — use `useTranslations('approach')` for principles
+- [ ] Update `ServicesSection.tsx` — use `useTranslations('services')` for card copy
+
+### Navbar
+- [ ] Add language toggle (EN / ES) to Navbar — desktop and mobile drawer
+- [ ] Use `useRouter` + `usePathname` from `next-intl` to switch locale
+
+### Verify
+- [ ] `/` renders English copy
+- [ ] `/es` renders Spanish copy
+- [ ] Language toggle switches between locales
+- [ ] `npm run build` passes with zero errors
