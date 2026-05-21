@@ -34,20 +34,11 @@ export function CicdDiagram() {
               {sub}
             </text>
             {i < stages.length - 1 && (
-              <>
-                <line
-                  x1={x + nodeWidth} y1="60" x2={xPositions[i + 1]} y2="60"
-                  stroke="#1D9E75" strokeWidth="1"
-                  markerEnd="url(#cicd-arrow)"
-                />
-                <text
-                  x={x + nodeWidth + (xPositions[i + 1] - x - nodeWidth) / 2}
-                  y="55"
-                  textAnchor="middle" fill="#9ca3af" fontSize="7"
-                >
-                  {i === 0 ? "triggers" : i === 1 ? "validates" : "deploys"}
-                </text>
-              </>
+              <line
+                x1={x + nodeWidth} y1="60" x2={xPositions[i + 1]} y2="60"
+                stroke="#1D9E75" strokeWidth="1"
+                markerEnd="url(#cicd-arrow)"
+              />
             )}
           </g>
         );

@@ -14,7 +14,6 @@ export function AksDiagram() {
 
       {/* Arrow */}
       <line x1="82" y1="60" x2="114" y2="60" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#aks-arrow)" />
-      <text x="98" y="54" textAnchor="middle" fill="#9ca3af" fontSize="7">routes</text>
 
       {/* API Management */}
       <rect x="116" y="35" width="84" height="50" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />
@@ -23,7 +22,6 @@ export function AksDiagram() {
 
       {/* Arrow */}
       <line x1="200" y1="60" x2="232" y2="60" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#aks-arrow)" />
-      <text x="216" y="54" textAnchor="middle" fill="#9ca3af" fontSize="7">dispatches</text>
 
       {/* AKS Cluster */}
       <rect x="234" y="28" width="76" height="64" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />

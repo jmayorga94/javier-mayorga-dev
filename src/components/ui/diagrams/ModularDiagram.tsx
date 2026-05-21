@@ -15,7 +15,6 @@ export function ModularDiagram() {
 
       {/* Arrow */}
       <line x1="82" y1="60" x2="114" y2="60" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#mod-arrow)" />
-      <text x="98" y="54" textAnchor="middle" fill="#9ca3af" fontSize="7">splits into</text>
 
       {/* Modules */}
       <rect x="116" y="20" width="78" height="36" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />
@@ -29,7 +28,6 @@ export function ModularDiagram() {
       {/* Arrows → API */}
       <line x1="194" y1="38" x2="228" y2="52" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#mod-arrow)" />
       <line x1="194" y1="82" x2="228" y2="68" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#mod-arrow)" />
-      <text x="214" y="50" textAnchor="middle" fill="#9ca3af" fontSize="7">exposes</text>
 
       {/* API Layer */}
       <rect x="230" y="35" width="80" height="50" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />

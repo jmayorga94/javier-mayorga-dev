@@ -15,7 +15,6 @@ export function HaDiagram() {
       {/* Arrows legacy → split */}
       <line x1="76" y1="60" x2="108" y2="42" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
       <line x1="76" y1="60" x2="108" y2="78" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
-      <text x="90" y="52" textAnchor="middle" fill="#9ca3af" fontSize="7">replicates</text>
 
       {/* Primary */}
       <rect x="110" y="20" width="72" height="40" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />
@@ -30,7 +29,6 @@ export function HaDiagram() {
       {/* Arrows → LB */}
       <line x1="182" y1="40" x2="228" y2="55" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
       <line x1="182" y1="80" x2="228" y2="65" stroke="#1D9E75" strokeWidth="1" markerEnd="url(#ha-arrow)" />
-      <text x="208" y="52" textAnchor="middle" fill="#9ca3af" fontSize="7">routes</text>
 
       {/* Azure Load Balancer */}
       <rect x="230" y="38" width="76" height="44" rx="4" fill="#f0fdf9" stroke="#1D9E75" strokeWidth="1" />
