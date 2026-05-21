@@ -41,16 +41,15 @@ export function HeroSection() {
         </a>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 gap-8 sm:flex sm:flex-row sm:gap-0">
+        <div className="flex flex-col sm:flex-row">
           {[
             { topLabel: "YEARS", value: "10+", label: "years · Enterprise financial systems" },
             { topLabel: "DOWNTIME", value: "95%", label: "Downtime reduction" },
-            { topLabel: "DELIVERY", value: "30%", label: "Faster deployment cycles" },
             { topLabel: "CERTIFICATIONS", value: "5", label: "Cloud certifications" },
           ].map(({ topLabel, value, label }, i, arr) => (
             <div
               key={label}
-              className={`${i === 0 ? "sm:pr-12" : i === arr.length - 1 ? "sm:pl-12 sm:border-l sm:border-[#1e2330]" : "sm:px-12 sm:border-l sm:border-[#1e2330]"}`}
+              className={`pb-8 sm:pb-0 ${i === 0 ? "sm:pr-12" : i === arr.length - 1 ? "sm:pl-12 sm:border-l sm:border-[#1e2330]" : "sm:px-12 sm:border-l sm:border-[#1e2330]"}`}
             >
               <p className="text-[10px] uppercase tracking-[0.1em] text-[#1D9E75] mb-2">{topLabel}</p>
               <p className="text-[40px] font-medium text-[#f9fafb] leading-none mb-1">

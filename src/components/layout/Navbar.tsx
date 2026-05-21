@@ -113,11 +113,8 @@ export function Navbar() {
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#f3f4f6]">
-          <Link href="/" className="text-[18px] font-medium" onClick={() => setMenuOpen(false)}>
-            <span className="text-[#0f1117]">javier mayor</span><span className="text-[#1D9E75]">ga</span>
-          </Link>
-          <button onClick={() => setMenuOpen(false)} aria-label="Close menu" className="p-1">
+        <div className="flex items-center justify-end px-6 py-4 border-b border-[#f3f4f6]">
+          <button onClick={() => setMenuOpen(false)} aria-label="Close menu" className="p-2">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M4 4l12 12M16 4L4 16" stroke="#374151" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
