@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function HeroSection() {
   return (
     <section className="relative bg-[#0f1117] pt-[120px] pb-16 px-6 overflow-hidden">
@@ -82,10 +84,12 @@ export function HeroSection() {
 
         {/* Photo — desktop only */}
         <div className="hidden lg:block relative self-end h-[480px]">
-          <img
+          <Image
             src="/profile.jpg"
             alt="Javier Mayorga"
-            className="w-full h-full object-cover object-top rounded-t-lg grayscale brightness-90"
+            fill
+            className="object-cover object-top rounded-t-lg grayscale brightness-90"
+            priority
           />
           {/* Left-fade gradient — blends photo into dark hero bg */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f1117] via-[#0f1117]/20 to-transparent rounded-t-lg pointer-events-none" />
