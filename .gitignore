@@ -7,3 +7,6 @@ node_modules
 .claude/worktrees/
 __azurite_db_blob__.json
 __azurite_db_blob_extent__.json
+
+# Visual brainstorming session files
+.superpowers/
