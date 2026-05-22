@@ -9,7 +9,7 @@ lang: en
 
 ## The problem
 
-The client's financial data platform was built around Oracle Service Bus — a heavyweight ESB that had served well for years but had become a bottleneck. Consumer applications needed real-time financial data; the ESB delivered batch-style request/response with significant latency. Adding new data consumers required weeks of ESB configuration work and testing.
+The client's financial data platform was built around Oracle Service Bus, a heavyweight ESB that had served well for years but had become a bottleneck. Consumer applications needed real-time financial data; the ESB delivered batch-style request/response with significant latency. Adding new data consumers required weeks of ESB configuration work and testing.
 
 The platform served 12 downstream applications with different data requirements, many of which were over-fetching data because the ESB couldn't provide field-level granularity.
 
@@ -50,8 +50,8 @@ Strangler fig pattern for ESB replacement:
 
 ## Outcome
 
-- **Real-time data access** — financial positions available in under 200ms, down from 3-5 second ESB response times
+- **Real-time data access** financial positions available in under 200ms, down from 3-5 second ESB response times
 - **12 consumers migrated** with zero data integrity incidents
-- **Over-fetching eliminated** — consumers requesting only required fields, reducing data transfer by 60%
+- **Over-fetching eliminated** consumers requesting only required fields, reducing data transfer by 60%
 - **New consumer onboarding** reduced from weeks to days
 - **ESB licensing and operational costs** eliminated

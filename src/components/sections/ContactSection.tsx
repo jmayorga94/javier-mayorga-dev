@@ -19,7 +19,7 @@ export function ContactSection() {
           <a
             href="/cv.pdf"
             download="Javier-Mayorga-CV.pdf"
-            className="inline-block border border-[var(--hairline)] text-[var(--text-secondary)] text-[14px] font-medium px-8 py-3 rounded-md hover:border-[#1D9E75] hover:text-[var(--text-primary)] transition-colors"
+            className="w-full sm:w-auto text-center border border-[var(--hairline)] text-[var(--text-secondary)] text-[14px] font-medium px-8 py-3 rounded-md hover:border-[#1D9E75] hover:text-[var(--text-primary)] transition-colors"
           >
             Download CV
           </a>

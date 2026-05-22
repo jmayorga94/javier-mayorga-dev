@@ -43,15 +43,15 @@ The solution used Azure's managed services to replace every single point of fail
 
 The migration ran in phases over five months:
 
-1. **Infrastructure setup** — new Azure environment built and validated in parallel
-2. **Application containerization** — monolith wrapped in Docker, dependencies audited
-3. **Data synchronization** — Azure Database Migration Service used to establish live replication
-4. **Traffic split** — gradual 5% → 25% → 50% → 100% shift over three weeks
-5. **Old infrastructure decommission** — after 30-day stability window
+1. **Infrastructure setup** new Azure environment built and validated in parallel
+2. **Application containerization** monolith wrapped in Docker, dependencies audited
+3. **Data synchronization** Azure Database Migration Service used to establish live replication
+4. **Traffic split** gradual 5% → 25% → 50% → 100% shift over three weeks
+5. **Old infrastructure decommission** after 30-day stability window
 
 ## Outcome
 
-- **95% reduction in unplanned downtime** — from 40% monthly to under 2% in the six months post-migration
-- **Zero maintenance windows** — deployments now happen via rolling updates with no service interruption
-- **Recovery time objective: 2 minutes** — down from "manual escalation required"
+- **95% reduction in unplanned downtime** from 40% monthly to under 2% in the six months post-migration
+- **Zero maintenance windows** deployments now happen via rolling updates with no service interruption
+- **Recovery time objective: 2 minutes** down from "manual escalation required"
 - **Full regulatory compliance maintained** throughout migration and post-migration
