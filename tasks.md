@@ -306,3 +306,11 @@
 - [x] Replace `text-[#0f1117]` on h1 with `text-[var(--text-primary)]` in `blog/[slug]/page.tsx`
 - [x] Replace `text-[#6b7280]` on date row with `text-[var(--text-muted)]`
 - [x] Replace tag badge colors: `text-[var(--text-muted)]` and `border-[var(--hairline)]`
+
+---
+
+## Phase 16 — Contact Form via Web3Forms (REQ-13)
+
+- [x] Create `src/app/api/contact/route.ts` — POST handler, reads `access_key` env var, forwards to web3forms
+- [x] Create `src/components/sections/ContactForm.tsx` — `"use client"`, form state + POST to `/api/contact`
+- [x] Update `ContactSection.tsx` — replace mailto CTA with `<ContactForm />`
