@@ -4,17 +4,17 @@ const principles = [
   {
     number: "01",
     title: "Business first, architecture second",
-    desc: "The right solution starts with what the organization needs to achieve — regulatory requirements, cost constraints, growth timelines. The architecture follows from that, not the other way around.",
+    desc: "I've seen architectures that were technically correct and completely useless. The first question is always what the business actually needs — regulatory constraints, cost position, growth timeline. The architecture follows from that.",
   },
   {
     number: "02",
     title: "Clarity at every decision point",
-    desc: "Technical choices get framed in terms that people can act on — governance tradeoffs, long-term cost position, ecosystem alignment. Not just \"which is better\" but \"here's why this is the right call for your situation.\"",
+    desc: "Most architecture recommendations arrive as 'this is best practice.' That's not a decision — it's a deflection. I frame every choice in terms of what it costs, what it protects, and why it fits this situation specifically.",
   },
   {
     number: "03",
     title: "Delivery alongside design",
-    desc: "The work doesn't end with the recommendation. Staying through implementation means protecting program economics, reducing scope drift, and keeping architecture and delivery aligned from assessment to go-live.",
+    desc: "A recommendation handed off and never seen again isn't architecture — it's a document. I stay through implementation because that's where the real decisions happen and where the design either holds or doesn't.",
   },
 ];
 
