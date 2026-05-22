@@ -9,14 +9,16 @@ interface AvailabilityWidgetProps {
   compact?: boolean;
 }
 
-type Phase = "run" | "walk" | "lift";
+type Phase = "run" | "walk" | "lift" | "code";
 
-// Full narrative cycle: ~25.5s — run, walk to bench, press, walk back, loop.
+// Full narrative cycle: ~37s — run, walk to bench, press, walk back, sit and code, walk, loop.
 const cycle: { name: Phase; ms: number }[] = [
   { name: "run",  ms: 10000 }, // natural running pace, air trails behind
   { name: "walk", ms: 2500 },  // walks to the bench
   { name: "lift", ms: 10000 }, // lies on incline bench, presses barbell
-  { name: "walk", ms: 3000 },  // natural walk back to the starting line
+  { name: "walk", ms: 3000 },  // natural walk back
+  { name: "code", ms: 9000 },  // sits at desk, types
+  { name: "walk", ms: 2500 },  // walks back to starting line
 ];
 
 /**
@@ -73,6 +75,26 @@ export function AvailabilityWidget({
         <path className="leg-run-front" d="M8 9 L5.5 13" />
         <path className="arm-run-back"  d="M8 5.5 L5.5 5" />
         <path className="arm-run-front" d="M8 5.5 L10.5 7" />
+      </g>
+
+      {/* ── POSE: coding at desk ── */}
+      <g className="pose-code">
+        {/* Monitor */}
+        <rect x="6.5" y="3.5" width="5" height="3.5" rx="0.4" />
+        <line x1="9" y1="7" x2="9" y2="8.2" />
+        <line x1="7.5" y1="8.2" x2="10.5" y2="8.2" />
+        {/* Desk surface */}
+        <line x1="2" y1="11.5" x2="16" y2="11.5" />
+        {/* Head */}
+        <circle cx="9" cy="2.2" r="1.2" fill="#1D9E75" stroke="none" />
+        {/* Torso */}
+        <line x1="9" y1="3.4" x2="9" y2="9.5" />
+        {/* Legs bent (seated) */}
+        <line x1="9" y1="9.5" x2="7"  y2="11.5" />
+        <line x1="9" y1="9.5" x2="11" y2="11.5" />
+        {/* Arms reaching to keyboard */}
+        <line className="arm-type-left"  x1="9" y1="6" x2="6.5" y2="10.5" />
+        <line className="arm-type-right" x1="9" y1="6" x2="11.5" y2="10.5" />
       </g>
 
       {/* ── POSE: incline bench press (lift) ── */}
