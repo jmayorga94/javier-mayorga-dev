@@ -17,6 +17,8 @@
   --text-secondary: rgb(255 255 255 / 0.65);
   --text-muted:     rgb(255 255 255 / 0.40);
   --accent:         #1D9E75;
+  --article-bg:     #141821;
+  --prose-text:     #c9d1d9;
 }
 
 :root[data-theme="light"] {
@@ -34,6 +36,8 @@
   --text-secondary: rgb(15 17 23 / 0.70);
   --text-muted:     rgb(15 17 23 / 0.45);
   --accent:         #178f68;
+  --article-bg:     #ffffff;
+  --prose-text:     #374151;
 }
 
 /* ─── Cursor blink ─────────────────────────────────────── */

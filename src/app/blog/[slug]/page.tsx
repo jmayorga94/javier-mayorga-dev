@@ -32,26 +32,28 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <main className="pt-[120px] pb-24 px-6">
       <div className="max-w-[720px] mx-auto">
-        <div className="mb-10">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#1D9E75]">{meta.lang.toUpperCase()}</span>
-          <h1 className="text-[40px] font-medium text-[var(--text-primary)] leading-[1.2] mt-3 mb-4">{meta.title}</h1>
-          <div className="flex items-center gap-4 text-[13px] text-[var(--text-muted)]">
-            <span>{meta.date}</span>
-            <span>·</span>
-            <span>{meta.readingTime} min read</span>
-          </div>
-          {meta.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-4">
-              {meta.tags.map((tag) => (
-                <span key={tag} className="text-[12px] text-[var(--text-muted)] border border-[var(--hairline)] px-2.5 py-0.5 rounded-full">
-                  {tag}
-                </span>
-              ))}
+        <div className="bg-[var(--article-bg)] border border-[var(--hairline)] rounded-xl px-8 py-10 md:px-12 md:py-12 mb-6">
+          <div className="mb-10">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#1D9E75]">{meta.lang.toUpperCase()}</span>
+            <h1 className="text-[40px] font-medium text-[var(--text-primary)] leading-[1.2] mt-3 mb-4">{meta.title}</h1>
+            <div className="flex items-center gap-4 text-[13px] text-[var(--text-muted)]">
+              <span>{meta.date}</span>
+              <span>·</span>
+              <span>{meta.readingTime} min read</span>
             </div>
-          )}
-        </div>
-        <div className="prose-wrapper">
-          <MDXRemote source={content} components={getMDXComponents()} />
+            {meta.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-4">
+                {meta.tags.map((tag) => (
+                  <span key={tag} className="text-[12px] text-[#1D9E75] bg-[rgba(29,158,117,0.1)] border border-[rgba(29,158,117,0.25)] px-2.5 py-0.5 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="prose-wrapper">
+            <MDXRemote source={content} components={getMDXComponents()} />
+          </div>
         </div>
         <ReactionBar slug={slug} />
       </div>
