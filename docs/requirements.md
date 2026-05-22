@@ -171,6 +171,33 @@ Active: `text-[#0f1117] font-medium`. Inactive: `text-[#6b7280]`.
 
 ---
 
+## Phase 14 — Coding phase in AvailabilityWidget
+
+### REQ-11 — Coding animation
+Add a "code" phase to the athlete cycle showing a seated figure typing at a desk.
+
+**Acceptance criteria:**
+- New phase `"code"` in `Phase` type; cycle: run (10s) → walk (2.5s) → lift (10s) → walk (3s) → code (9s) → walk (2.5s) → loop
+- New `pose-code` SVG group: head, upright torso, bent legs, desk surface, monitor rect, two arm lines reaching forward to keyboard
+- Typing keyframe: subtle alternating Y bounce on each hand (~0.4s, staggered 0.2s)
+- `.runner[data-phase="code"]` reveals `pose-code` only, triggers typing animations
+- `prefers-reduced-motion`: seated pose visible statically, no finger animation
+
+---
+
+## Phase 15 — Dark mode blog post page
+
+### REQ-12 — Blog post title visible in dark mode
+Hardcoded colors on the blog post page are invisible when dark mode is active.
+
+**Acceptance criteria:**
+- `h1` title: `text-[#0f1117]` → `text-[var(--text-primary)]`
+- Date / reading time: `text-[#6b7280]` → `text-[var(--text-muted)]`
+- Tag badges: text `text-[var(--text-muted)]`, border `border-[var(--hairline)]`
+- All changes in `src/app/blog/[slug]/page.tsx` only
+
+---
+
 ## Out of Scope (deferred)
 
 | Feature | Reason deferred |
