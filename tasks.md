@@ -288,3 +288,11 @@
 - [x] Slim `CLAUDE.md` from 510 → 112 lines — behavior rules only, @imports wired for design.md and architecture.md
 - [x] Delete `logo-philosophy.md` — merged into docs/design.md
 - [x] Delete root `requirements.md` — replaced by docs/requirements.md
+
+---
+
+## Phase 16 — Contact Form via Web3Forms (REQ-13)
+
+- [x] Create `src/app/api/contact/route.ts` — POST handler, reads `access_key` env var, forwards to web3forms
+- [x] Create `src/components/sections/ContactForm.tsx` — `"use client"`, form state + POST to `/api/contact`
+- [x] Update `ContactSection.tsx` — replace mailto CTA with `<ContactForm />`

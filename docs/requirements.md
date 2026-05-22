@@ -171,11 +171,27 @@ Active: `text-[#0f1117] font-medium`. Inactive: `text-[#6b7280]`.
 
 ---
 
+## Phase 16 — Contact Form (Web3Forms)
+
+### REQ-13 — Inline contact form replacing mailto CTA
+Replace the mailto button with an inline form. Submission goes through `/api/contact`
+(server route) which reads `access_key` from env and forwards to web3forms.com.
+
+**Acceptance criteria:**
+- Fields: Name, Email, Message (all required)
+- Loading state: button disabled, shows "Sending…"
+- Success state: form replaced with teal confirmation message
+- Error state: inline error below button, form stays editable
+- Styles use CSS vars — works in light and dark themes
+- CV download and LinkedIn links remain below the form
+
+---
+
 ## Out of Scope (deferred)
 
 | Feature | Reason deferred |
 |---|---|
-| Contact form with backend | Requires email service infra decision |
+| ~~Contact form with backend~~ | Delivered in Phase 16 via Web3Forms |
 | Dark mode toggle | Design is intentionally mixed; toggle risks breaking hero/footer theming (ADR-009) |
 | Blog pagination | Content volume doesn't warrant it |
 | i18n routing (Phase 12 aside) | Being done in Phase 12 |
