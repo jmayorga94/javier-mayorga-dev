@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 const posts = [
   {
     slug: "the-workflow-that-made-claude-code-actually-useful",
-    title: "How to Ship with Claude Code: What Actually Works",
+    title: "The Workflow That Made Claude Code Actually Useful",
     lang: "EN",
     summary: "The exact system I used to build this site with Claude Code — CLAUDE.md, task tracking, skills workflow, and the practices that compound over time.",
     date: "2025-05-20",
