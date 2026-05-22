@@ -4,9 +4,9 @@ interface CalloutProps {
 }
 
 const styles = {
-  info: "border-[#1D9E75] bg-[#f0fdf9] text-[#374151]",
-  warning: "border-[#d97706] bg-[#fffbeb] text-[#374151]",
-  tip: "border-[#6366f1] bg-[#eef2ff] text-[#374151]",
+  info: "border-[#1D9E75] bg-[color-mix(in_srgb,#1D9E75_10%,transparent)] text-[var(--prose-text)]",
+  warning: "border-[#d97706] bg-[color-mix(in_srgb,#d97706_10%,transparent)] text-[var(--prose-text)]",
+  tip: "border-[#6366f1] bg-[color-mix(in_srgb,#6366f1_10%,transparent)] text-[var(--prose-text)]",
 };
 
 export function Callout({ children, type = "info" }: CalloutProps) {
