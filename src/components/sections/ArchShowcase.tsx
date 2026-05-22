@@ -39,7 +39,7 @@ export function ArchShowcase() {
       <div className="max-w-[1200px] mx-auto">
         <SectionHeader eyebrow="Architecture" title="Architecture that performs under pressure" sectionNumber="01" />
         <p className="text-[16px] text-[#6b7280] max-w-[560px] mb-12 -mt-8">
-          From legacy modernization to cloud-native transformation — every system designed for resilience, scalability, and business continuity.
+          Architecture decisions that organizations act on.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {items.map((item, i) => (
