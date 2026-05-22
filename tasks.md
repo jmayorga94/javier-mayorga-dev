@@ -98,10 +98,10 @@
 - [x] `content/posts/2024-04-20-zero-downtime-migrations.mdx` — EN
 
 ### Case studies
-- [x] `content/case-studies/idb-legacy-ha-cloud.mdx` — metric 95%
-- [x] `content/case-studies/idb-cicd-pipeline.mdx` — metric 30%
-- [x] `content/case-studies/cnovate-aws-azure.mdx` — metric 2×
-- [x] `content/case-studies/sapiens-graphql.mdx` — metric RT
+- [x] `content/case-studies/legacy-ha-cloud.mdx` — metric 95%
+- [x] `content/case-studies/cicd-pipeline.mdx` — metric 30%
+- [x] `content/case-studies/aws-azure-migration.mdx` — metric 2×
+- [x] `content/case-studies/esb-graphql.mdx` — metric RT
 
 ### Architecture pieces
 - [x] `content/architecture/legacy-ha-cloud.mdx` — diagramType: ha
@@ -119,7 +119,7 @@
 
 ## Polish pass (FIXES.MD)
 
-- [x] FIX 1 — Remove all company name references (IDB, Cnovate, Sapiens) from src, content, and blog posts
+- [x] FIX 1 — Remove all client name references from src, content, and blog posts
 - [x] FIX 2 — Elevate visual aesthetics: hero 64px headline, teal "trust" accent, eyebrow blink cursor, stats 40px with separators and teal labels, section background numbers
 - [x] FIX 3 — Architecture section: new heading, focus line, card hover translateY + border-top teal, taller diagram area, "View case →" on hover
 - [x] FIX 4 — Case studies: metric labels (less downtime / faster delivery / cost efficiency / real-time data), section subheading
@@ -206,7 +206,7 @@
 ### REQ-10 · Hero Stats Label Correction
 - [x] In `HeroSection.tsx` update stat labels to match spec exactly:
   - `"years · Enterprise systems"`
-  - `"Downtime reduction at IDB"`
+  - `"Downtime reduction"`
   - `"Azure certifications"`
 
 ---
@@ -274,3 +274,17 @@
 - [ ] `/es` renders Spanish copy
 - [ ] Language toggle switches between locales
 - [ ] `npm run build` passes with zero errors
+
+---
+
+## Phase 13 — Project Documentation & Organization
+
+> Reorganized project docs following Claude Code best practices (2026-05-22).
+> CLAUDE.md slimmed to 112 lines with @imports. All reference content moved to docs/.
+
+- [x] Create `docs/design.md` — brand philosophy + full design system (colors, typography, spacing, component patterns, breakpoints)
+- [x] Create `docs/architecture.md` — 11 ADR-style decision records (framework, language, styling, content, diagrams, deployment, database, fonts, dark mode, i18n, static generation)
+- [x] Create `docs/requirements.md` — product vision, all phases, content conventions, out-of-scope registry
+- [x] Slim `CLAUDE.md` from 510 → 112 lines — behavior rules only, @imports wired for design.md and architecture.md
+- [x] Delete `logo-philosophy.md` — merged into docs/design.md
+- [x] Delete root `requirements.md` — replaced by docs/requirements.md
