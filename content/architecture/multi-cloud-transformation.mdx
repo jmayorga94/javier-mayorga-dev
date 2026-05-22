@@ -13,9 +13,9 @@ A structured consolidation of fragmented AWS and Azure workloads into a unified 
 
 **Management groups** define the governance hierarchy:
 
-- Platform group — connectivity, identity, and management subscriptions
-- Production group — workload subscriptions with enforced tagging and cost allocation policies
-- Sandbox group — non-production environments with spending limits
+- Platform group, connectivity, identity, and management subscriptions
+- Production group, workload subscriptions with enforced tagging and cost allocation policies
+- Sandbox group, non-production environments with spending limits
 
 **Azure Policy** applied at management group level ensures all resources comply with organizational standards: naming conventions, required tags, allowed regions, and security baseline.
 
@@ -23,9 +23,9 @@ A structured consolidation of fragmented AWS and Azure workloads into a unified 
 
 Not every AWS workload migrated. Classification:
 
-- **Migrate to Azure** — no AWS-specific dependencies, active workloads, clients aligned with Azure
-- **Retain on AWS** — AWS-native services without Azure equivalents, or migration cost exceeds 2-year savings
-- **Decommission** — duplicate environments and unused resources
+- **Migrate to Azure** no AWS-specific dependencies, active workloads, clients aligned with Azure
+- **Retain on AWS** AWS-native services without Azure equivalents, or migration cost exceeds 2-year savings
+- **Decommission** duplicate environments and unused resources
 
 80% of workloads migrated. The remaining 20% are managed via Defender for Cloud's multicloud connector.
 

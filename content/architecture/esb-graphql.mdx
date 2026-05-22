@@ -1,7 +1,7 @@
 ---
 title: "ESB to GraphQL modernization"
 diagramType: "api"
-summary: "Oracle ESB replacement with a GraphQL API layer using strangler fig migration — real-time financial data access for 12 downstream consumers."
+summary: "Oracle ESB replacement with a GraphQL API layer using strangler fig migration, real-time financial data access for 12 downstream consumers."
 tags: ["graphql", "api", "event-driven", "redis", "azure-service-bus"]
 ---
 
@@ -11,15 +11,15 @@ A strangler fig replacement of Oracle Service Bus with a GraphQL API layer, enab
 
 ## Components
 
-**GraphQL server (Apollo Server)** — Schema-first API layer deployed to Azure App Service. Business-entity schema (Account, Transaction, Position, Portfolio) decoupled from underlying data structures.
+**GraphQL server (Apollo Server)** Schema-first API layer deployed to Azure App Service. Business-entity schema (Account, Transaction, Position, Portfolio) decoupled from underlying data structures.
 
 **Resolvers** connect to three data sources:
 
-- **Azure SQL Database** — Transactional financial data, migrated from Oracle DB
-- **Azure Service Bus** — Real-time event stream for position updates and transaction events
-- **Redis Cache** — Computed aggregations with configurable TTL for frequently-requested summaries
+- **Azure SQL Database** Transactional financial data, migrated from Oracle DB
+- **Azure Service Bus** Real-time event stream for position updates and transaction events
+- **Redis Cache** Computed aggregations with configurable TTL for frequently-requested summaries
 
-**GraphQL subscriptions** — WebSocket connections for consumers requiring push updates. Financial positions stream via Service Bus and are broadcast to active subscribers.
+**GraphQL subscriptions** WebSocket connections for consumers requiring push updates. Financial positions stream via Service Bus and are broadcast to active subscribers.
 
 ## Strangler fig migration
 
@@ -31,13 +31,13 @@ A strangler fig replacement of Oracle Service Bus with a GraphQL API layer, enab
 
 Migration phases:
 
-1. GraphQL API deployed alongside ESB — zero traffic initially
+1. GraphQL API deployed alongside ESB, zero traffic initially
 2. New consumers built against GraphQL from day one
 3. Existing consumers migrated service-by-service with dual-write validation
 4. ESB decommissioned after all 12 consumers confirmed migration
 
 ## Schema design principles
 
-The schema models financial concepts, not database tables. `Position.currentValue` is a computed field resolved from price × quantity at query time — consumers don't implement this logic themselves.
+The schema models financial concepts, not database tables. `Position.currentValue` is a computed field resolved from price × quantity at query time, consumers don't implement this logic themselves.
 
 Data loader pattern prevents N+1 queries when consumers request nested financial entities.
