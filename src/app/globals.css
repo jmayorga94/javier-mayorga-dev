@@ -87,6 +87,7 @@
 /* Pose groups crossfade between phases */
 .runner .pose-stand,
 .runner .pose-bench,
+.runner .pose-code,
 .runner .air {
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -167,14 +168,30 @@
 .runner[data-phase="lift"] .arm-press-front  { animation: armPress 1.5s ease-in-out infinite; }
 .runner[data-phase="lift"] .press-group      { animation: barPress 1.5s ease-in-out infinite; }
 
+/* ─── PHASE: code ─── seated at desk, fingers typing ─── */
+@keyframes typingLeft {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-1px); }
+}
+@keyframes typingRight {
+  0%, 100% { transform: translateY(-1px); }
+  50%       { transform: translateY(0);    }
+}
+.runner[data-phase="code"] .arm-type-left  { transform-origin: 9px 6px; }
+.runner[data-phase="code"] .arm-type-right { transform-origin: 9px 6px; }
+.runner[data-phase="code"] .pose-code      { opacity: 1; }
+.runner[data-phase="code"] .arm-type-left  { animation: typingLeft  0.4s ease-in-out infinite; }
+.runner[data-phase="code"] .arm-type-right { animation: typingRight 0.4s ease-in-out infinite; }
+
 /* ─── Reduced motion ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .hero-enter { animation: none; opacity: 1; }
   .grid-pulse  { animation: none; opacity: 0.30; }
   .trust-glow  { animation: none; }
   .runner, .runner * { animation: none !important; }
-  /* show only the standing pose (no streaks, no bench) */
+  /* show only the standing pose (no streaks, no bench, no desk) */
   .runner .air,
-  .runner .pose-bench { opacity: 0; }
+  .runner .pose-bench,
+  .runner .pose-code { opacity: 0; }
   .runner .pose-stand { opacity: 1; }
 }

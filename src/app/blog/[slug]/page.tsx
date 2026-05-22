@@ -34,8 +34,8 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="max-w-[720px] mx-auto">
         <div className="mb-10">
           <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#1D9E75]">{meta.lang.toUpperCase()}</span>
-          <h1 className="text-[40px] font-medium text-[#0f1117] leading-[1.2] mt-3 mb-4">{meta.title}</h1>
-          <div className="flex items-center gap-4 text-[13px] text-[#6b7280]">
+          <h1 className="text-[40px] font-medium text-[var(--text-primary)] leading-[1.2] mt-3 mb-4">{meta.title}</h1>
+          <div className="flex items-center gap-4 text-[13px] text-[var(--text-muted)]">
             <span>{meta.date}</span>
             <span>·</span>
             <span>{meta.readingTime} min read</span>
@@ -43,7 +43,7 @@ export default async function BlogPostPage({ params }: Props) {
           {meta.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-4">
               {meta.tags.map((tag) => (
-                <span key={tag} className="text-[12px] text-[#6b7280] border border-[#f3f4f6] px-2.5 py-0.5 rounded-full">
+                <span key={tag} className="text-[12px] text-[var(--text-muted)] border border-[var(--hairline)] px-2.5 py-0.5 rounded-full">
                   {tag}
                 </span>
               ))}
