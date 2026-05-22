@@ -3,7 +3,7 @@ title: "How I use LLMs to accelerate architecture design"
 date: "2024-03-05"
 lang: en
 tags: ["llm", "ai", "architecture", "workflow"]
-summary: "Concrete workflows for using large language models to speed up architecture documentation, RFC drafting, and technical decision-making — without introducing new risk."
+summary: "Concrete workflows for using large language models to speed up architecture documentation, RFC drafting, and technical decision-making, without introducing new risk."
 published: false
 ---
 
@@ -23,7 +23,7 @@ The most consistent time save. Writing a good RFC requires:
 - Recommendation with rationale
 - Open questions
 
-I write the first section myself — the problem statement requires architectural clarity that I can't delegate. Then I prompt with specific context and ask for option enumeration. The LLM generates a reasonable structure that I edit heavily, but I'm editing, not writing from scratch.
+I write the first section myself, the problem statement requires architectural clarity that I can't delegate. Then I prompt with specific context and ask for option enumeration. The LLM generates a reasonable structure that I edit heavily, but I'm editing, not writing from scratch.
 
 <Callout type="tip">
   The prompt that works: "I'm designing X for a system with constraints A, B, C. I need to
@@ -34,7 +34,7 @@ I write the first section myself — the problem statement requires architectura
 
 ### Scenario analysis
 
-When evaluating architecture decisions, I use LLMs to pressure-test assumptions. I describe the architecture and ask it to identify failure modes I haven't considered. It's not always right — but the questions it raises are often worth working through.
+When evaluating architecture decisions, I use LLMs to pressure-test assumptions. I describe the architecture and ask it to identify failure modes I haven't considered. It's not always right, but the questions it raises are often worth working through.
 
 ### Documentation structure
 
@@ -50,11 +50,11 @@ Technical documentation is a tax on engineering time. I describe what a componen
 
 LLMs produce plausible-sounding wrong answers. The workflow that minimizes this risk:
 
-1. Always provide the specific constraints — never ask generic questions
+1. Always provide the specific constraints, never ask generic questions
 2. Treat the output as a first draft, not a recommendation
 3. Validate every concrete claim (library versions, service limits, pricing) against official documentation
 4. Never paste LLM output directly into a customer-facing document
 
 ## The honest assessment
 
-LLMs save me roughly 4-6 hours per week on documentation and RFC work. They haven't changed how I make architecture decisions — that still requires deep thinking about the specific system, team, and constraints. What they've changed is how quickly I can get from "decision made" to "decision documented."
+LLMs save me roughly 4-6 hours per week on documentation and RFC work. They haven't changed how I make architecture decisions, that still requires deep thinking about the specific system, team, and constraints. What they've changed is how quickly I can get from "decision made" to "decision documented."

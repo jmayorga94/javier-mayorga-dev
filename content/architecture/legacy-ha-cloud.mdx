@@ -11,13 +11,13 @@ This architecture replaces a monolithic on-premises application with a distribut
 
 ## Key components
 
-**Azure Kubernetes Service (AKS)** — Application tier deployed across multiple availability zones. Horizontal pod autoscaling handles demand spikes. Rolling updates enable zero-downtime deployments.
+**Azure Kubernetes Service (AKS)** Application tier deployed across multiple availability zones. Horizontal pod autoscaling handles demand spikes. Rolling updates enable zero-downtime deployments.
 
-**Azure SQL Database Hyperscale** — Database tier with active geo-replication. Automatic failover group with 2-minute RTO. Read replicas offload reporting workloads from the primary.
+**Azure SQL Database Hyperscale** Database tier with active geo-replication. Automatic failover group with 2-minute RTO. Read replicas offload reporting workloads from the primary.
 
-**Azure Application Gateway** — Layer 7 load balancer with WAF policy. Health probes route traffic away from unhealthy pods automatically.
+**Azure Application Gateway** Layer 7 load balancer with WAF policy. Health probes route traffic away from unhealthy pods automatically.
 
-**Azure Front Door** — Global traffic distribution and DDoS protection at the edge. Enables regional failover if an availability zone becomes unavailable.
+**Azure Front Door** Global traffic distribution and DDoS protection at the edge. Enables regional failover if an availability zone becomes unavailable.
 
 ## Availability design
 

@@ -1,7 +1,7 @@
 ---
 title: "CI/CD pipeline re-engineering"
 diagramType: "cicd"
-summary: "Azure DevOps pipeline with GitOps, Terraform IaC, automated quality gates, and ArgoCD for Kubernetes — reducing deployment cycle time by 30%."
+summary: "Azure DevOps pipeline with GitOps, Terraform IaC, automated quality gates, and ArgoCD for Kubernetes, reducing deployment cycle time by 30%."
 tags: ["azure-devops", "terraform", "gitops", "argocd", "kubernetes"]
 ---
 
@@ -11,15 +11,15 @@ A fully automated CI/CD pipeline built on Azure DevOps with GitOps principles. I
 
 ## Pipeline stages
 
-**Build** — Source compilation, dependency resolution, unit tests with coverage gates. Runs on every push to any branch.
+**Build** Source compilation, dependency resolution, unit tests with coverage gates. Runs on every push to any branch.
 
-**Test** — Integration tests against ephemeral test environments. Static analysis via SonarQube. Container image build and vulnerability scan.
+**Test** Integration tests against ephemeral test environments. Static analysis via SonarQube. Container image build and vulnerability scan.
 
-**Staging deploy** — Terraform plan + apply for infrastructure changes. Application deployed via ArgoCD sync. Automated smoke tests validate the deployment.
+**Staging deploy** Terraform plan + apply for infrastructure changes. Application deployed via ArgoCD sync. Automated smoke tests validate the deployment.
 
-**Production gate** — Manual approval required from designated approvers. Security review attestation for regulated workloads.
+**Production gate** Manual approval required from designated approvers. Security review attestation for regulated workloads.
 
-**Production deploy** — Rolling update via ArgoCD. Automated canary health check. Immediate rollback if error rate threshold is exceeded.
+**Production deploy** Rolling update via ArgoCD. Automated canary health check. Immediate rollback if error rate threshold is exceeded.
 
 ## Infrastructure as code
 

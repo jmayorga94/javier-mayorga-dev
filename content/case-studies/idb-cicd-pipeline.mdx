@@ -26,7 +26,7 @@ Redesign the CI/CD pipeline to:
 
 **Pipeline infrastructure:** Azure DevOps with environment-specific deployment gates. YAML pipelines defined in version control, with pipeline templates shared across services.
 
-**Infrastructure as code:** Terraform with Azure backend state storage. All infrastructure changes go through the same pipeline as application code — reviewed, tested, and audited.
+**Infrastructure as code:** Terraform with Azure backend state storage. All infrastructure changes go through the same pipeline as application code, reviewed, tested, and audited.
 
 **Quality gates:**
 - Unit tests with coverage threshold enforcement
@@ -34,7 +34,7 @@ Redesign the CI/CD pipeline to:
 - Container image vulnerability scanning with Azure Defender for Containers
 - Automated smoke tests on deployment to staging
 
-**GitOps for Kubernetes:** ArgoCD monitoring the Kubernetes manifests repository. Infrastructure state is always reconciled to what's in git — no manual kubectl.
+**GitOps for Kubernetes:** ArgoCD monitoring the Kubernetes manifests repository. Infrastructure state is always reconciled to what's in git, no manual kubectl.
 
 <Callout type="tip">
   The three manual sign-offs that required human approval (security review, compliance check,
@@ -44,11 +44,11 @@ Redesign the CI/CD pipeline to:
 
 ## The configuration drift fix
 
-The core drift problem: staging used manually-configured environment variables, production used a different set managed by a different team. Terraform modules with environment-specific variable files solved this — the same module runs in staging and production, the only difference is the variable values.
+The core drift problem: staging used manually-configured environment variables, production used a different set managed by a different team. Terraform modules with environment-specific variable files solved this, the same module runs in staging and production, the only difference is the variable values.
 
 ## Outcome
 
-- **30% faster deployment cycle** — from 4-6 hours to under 3 hours average
+- **30% faster deployment cycle** from 4-6 hours to under 3 hours average
 - **Zero configuration drift incidents** in the 12 months post-implementation
 - **Pipeline failure rate dropped from 20% to under 4%**
 - **Full deployment audit trail** maintained for regulatory compliance

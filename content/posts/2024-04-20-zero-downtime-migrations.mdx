@@ -1,9 +1,9 @@
 ---
-title: "Zero-downtime migrations — what nobody tells you"
+title: "Zero-downtime migrations, what nobody tells you"
 date: "2024-04-20"
 lang: en
 tags: ["migrations", "azure", "devops", "architecture"]
-summary: "The actual techniques behind zero-downtime infrastructure and database migrations in high-availability systems — and the failure modes that documentation skips."
+summary: "The actual techniques behind zero-downtime infrastructure and database migrations in high-availability systems, and the failure modes that documentation skips."
 published: false
 ---
 
@@ -13,8 +13,8 @@ published: false
 
 Zero-downtime means two different things, and you need different strategies for each:
 
-1. **Infrastructure migration** — moving compute, storage, or network topology without service interruption
-2. **Database schema migration** — changing live schemas without taking the database offline
+1. **Infrastructure migration** moving compute, storage, or network topology without service interruption
+2. **Database schema migration** changing live schemas without taking the database offline
 
 Both are achievable. Neither is simple. Conflating them leads to migration plans that solve one and fail on the other.
 
@@ -34,20 +34,20 @@ The reliable approach for infrastructure migration is a controlled traffic split
   that gate each traffic increment.
 </Callout>
 
-The part documentation skips: **the rollback plan must be tested before you migrate forward.** If you haven't validated that 100% → 0% traffic shift works cleanly, you don't have zero-downtime migration — you have zero-downtime migration with untested recovery.
+The part documentation skips: **the rollback plan must be tested before you migrate forward.** If you haven't validated that 100% → 0% traffic shift works cleanly, you don't have zero-downtime migration, you have zero-downtime migration with untested recovery.
 
 ## Database schema: expand/contract
 
 The expand/contract pattern is the standard approach for zero-downtime schema changes:
 
-**Expand phase** — make backward-compatible changes only:
+**Expand phase** make backward-compatible changes only:
 - Add new columns as nullable
 - Add new tables
 - Add new indexes
 
-**Migrate phase** — backfill data without blocking reads/writes
+**Migrate phase** backfill data without blocking reads/writes
 
-**Contract phase** — remove the old structure after the application is fully on the new schema
+**Contract phase** remove the old structure after the application is fully on the new schema
 
 <Callout type="warning">
   The common failure: running the contract phase too quickly. If the old application version is
@@ -74,4 +74,4 @@ This legacy-to-HA migration at a large international financial institution invol
 
 The solution used traffic split at the application layer (Azure Application Gateway) and expand/contract for four schema changes that had accumulated over two years. The migration ran over six weeks in production, with zero service interruptions.
 
-The part that took the most time wasn't the technical implementation — it was the change documentation required by the regulatory review process.
+The part that took the most time wasn't the technical implementation, it was the change documentation required by the regulatory review process.
