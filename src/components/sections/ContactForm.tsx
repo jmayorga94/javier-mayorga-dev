@@ -24,13 +24,17 @@ export function ContactForm() {
     };
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_ACCESS_KEY,
+          subject: "New contact from javiermayorga.tech",
+          ...data,
+        }),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error || "Something went wrong.");
+      if (!res.ok || !json.success) throw new Error(json.message || "Something went wrong.");
       setStatus("success");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
