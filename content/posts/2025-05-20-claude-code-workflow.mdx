@@ -1,127 +1,123 @@
 ---
-title: "How to Ship with Claude Code: What Actually Works"
+title: "The Workflow That Made Claude Code Actually Useful"
 date: "2025-05-20"
 lang: en
 tags: ["claude-code", "ai", "workflow", "developer-tools"]
-summary: "The exact system I used to build this site with Claude Code — CLAUDE.md, task tracking, skills workflow, and the practices that compound over time."
+summary: "I started vibe coding and it didn't get me where I wanted. Here's what I changed."
 published: true
 ---
 
-I built this entire site — design system, architecture diagrams, case studies, MDX pipeline, Supabase reactions, OG image generation — using Claude Code. Not as an experiment. As my primary tool.
+I started this project the way most people start with AI coding tools: just typing prompts, seeing what came out, and adjusting.
 
-After several weeks of real use, here's what actually works.
+Honestly? It didn't work. And the problem wasn't Claude. It was me.
 
----
+I kept changing requirements mid-session. I wasn't giving it real context. I'd start each new session wondering why things felt inconsistent, why features didn't quite match what I had in my head. I was vibe coding 🤷‍♂️, and vibe coding doesn't get you to a finished, coherent product.
 
-## The biggest mistake: treating it like a chat window
+The moment things clicked was when I stopped chasing better outputs and started thinking about how I was setting up the work.
 
-Claude Code is not a smarter version of ChatGPT in a terminal. The moment you start treating it like a chat window — pasting code, asking questions, getting answers — you're leaving most of the value on the table.
-
-The real shift is realizing Claude Code is a **collaborator that lives in your repo**. It reads your files, understands your patterns, and builds up context over time. But only if you set it up to do that.
-
-That setup is the work. And it's worth doing before you write a single line of code.
+Here's what I changed. 👇
 
 ---
 
-## CLAUDE.md — the most important file in your repo
+## 🎨 1. Start with Design, Not Code
 
-`CLAUDE.md` is a context file that Claude Code reads at the start of every session. Think of it as the onboarding document you'd write for a new developer joining the project — except this one gets read every single time.
+This was the biggest one. 🔑
 
-What belongs in it:
+Instead of jumping straight to "build me X," I started every feature with a conversation: *help me get my ideas straight and guide me to my vision.* I wasn't asking Claude to build anything yet. I was using it to explore what I actually wanted.
 
-- **Who you are and what the project is** — not generic, specific. "Personal brand site for a cloud architect, targeting senior roles and consulting engagements."
-- **Tech stack decisions** — not just what, but why. "Next.js 15 App Router, not Pages Router. MDX with next-mdx-remote, not contentlayer."
-- **Design system** — exact values. Colors, spacing, typography scale. Copy-pasted from your design source, not paraphrased.
-- **Rules and constraints** — "never commit directly to main", "TypeScript always, no plain JS", "follow the mockup at reference/mockup.html"
-- **Component patterns** — the established patterns so Claude doesn't invent new ones
+That sounds obvious in retrospect, but it's easy to skip when the tool can just write the code. The problem is you end up building something close but wrong, or building the right thing in a way that requires a complete rewrite later.
 
-The key insight: **specificity compounds**. Vague CLAUDE.md → Claude makes reasonable guesses → drift builds up. Specific CLAUDE.md → Claude follows your conventions from session one.
+When I started the design exploration first, describing what I wanted, letting Claude ask clarifying questions, narrowing down to one clear direction, everything downstream got easier. Claude had a real vision to hold in memory across every task, the design stayed consistent, and I stopped second-guessing mid-build.
 
-I treat mine as a living document. When I establish a new pattern or make a decision I want to stick, I add it. When something changes, I update it. The file is version-controlled and reviewed like code.
+<Callout type="tip">⏱️ 20 minutes of design conversation saves hours of drift.</Callout>
 
 ---
 
-## tasks.md — keeping Claude oriented across sessions
+## 📋 2. Plan Before You Build
 
-Claude Code doesn't have memory between sessions. Every time you start a session, you're starting fresh. `tasks.md` solves this.
+For anything beyond a small fix, I use Claude's plan mode before it writes a single line of code.
 
-My workflow:
+Plan mode feels like overhead the first time you use it, but it's Claude actually thinking through the implementation before diving in: checking dependencies, flagging decisions, proposing an approach. For big features especially, this is the difference between a clean implementation and one you'll need to untangle in three days.
 
-1. Before a session: review and update tasks.md with what's next
-2. At session start: reference it directly — "look at tasks.md, let's work on Phase 4"
-3. During the session: mark tasks as done as they complete
-4. After the session: update remaining tasks and add anything discovered
-
-The format I use is simple — phase headers, checkboxes, clear one-line descriptions. No project management overhead. The file is there to orient the agent, not to impress anyone.
-
-What this prevents: the trap of starting a new session, forgetting where you left off, asking Claude to "continue where we left off," and getting a confident but wrong answer because Claude doesn't actually know.
+<Callout type="info">📌 I treat it as a hard rule: plan first, always. A few minutes of planning saves hours of rework.</Callout>
 
 ---
 
-## The skills workflow: brainstorm → plan → build → verify
+## 🧠 3. Persist Context Across Sessions
 
-Claude Code has a skills system. These are structured workflows that get invoked before doing work. The three I use every session:
+Since every Claude Code session starts fresh, without a way to persist context you end up re-explaining the project from scratch every time.
 
-**`superpowers:brainstorming`** — before any feature work. This forces a design conversation before any code is written. I describe what I want to build, and the skill drives a structured exploration: clarifying questions, 2-3 approaches with trade-offs, design proposal, approval. The hard gate here is real — no code until design is approved.
+`CLAUDE.md` is the file that fixes this. It's a context document Claude reads at the start of every session. Write it once, keep it updated, and Claude follows your conventions without being told twice. Mine covers:
 
-Why this matters: the biggest time sink in any project is building the wrong thing, or building the right thing in a way that requires rewrites. Five minutes of structured design saves hours.
+- 🎨 **Design system** — exact color values, typography scale, the one accent color (`#1D9E75`) and that nothing else is allowed
+- 📝 **Language rules** — "TypeScript always, no plain JS," "App Router only, never Pages Router patterns"
+- 🧩 **Component rules** — "server components by default, `use client` only when required"
+- 🌿 **Git workflow** — branch naming (`feature/<task>-<description>`), commit format (`feat(scope): imperative summary`), allowed scopes
+- ✅ **Verification commands** — `npm run build && npm run lint` must pass before any commit
+- 📂 **Reference to other docs** — `@docs/design.md`, `@docs/architecture.md` so Claude pulls those into context automatically
+- 🚫 **Hard constraints** — "never add dependencies without a clear reason," "never commit directly to main"
 
-**`superpowers:writing-plans`** — once the design is approved. This produces a detailed, task-by-task implementation plan with exact file paths, complete code for each step, and commit checkpoints. The plan is saved to `docs/superpowers/plans/` and committed.
+Here's how the files connect:
 
-**`superpowers:verification-before-completion`** — before claiming anything is done. This forces actual verification commands to run before a success claim. No "I believe this works" — show the passing output.
+```
+your-project/
+├── CLAUDE.md           ← read every session
+└── docs/
+    ├── architecture.md ← decision history
+    ├── design.md       ← design specs
+    └── requirements.md ← acceptance criteria
+```
 
-The workflow feels like overhead until you skip it once and spend three hours debugging something the design step would have caught.
-
----
-
-## Git workflow: treat every feature like it matters
-
-Even for a personal site, I use feature branches. The discipline pays off when you need to roll back or when the agent makes a decision you want to review.
-
-My pattern:
-- `main` is always deployable (Vercel auto-deploys on push to main)
-- All work happens on `feature/<short-description>`
-- Commits are small and describe intent, not just action — "feat: add comingSoon variant to BlogCard" not "update BlogCard"
-- PRs use `gh pr create` with a proper description — Claude Code writes these well
-
-This also gives Claude Code a better context model. When it can see a clean commit history, it understands what changed and why. A repo with one massive commit gives it nothing to work with.
-
----
-
-## Parallel agents: AGENTS.md for independent work
-
-For tasks that are genuinely independent — building two components simultaneously, running analysis while writing code — `AGENTS.md` documents parallel agent conventions.
-
-The key rule: parallel agents work when tasks have **no shared state**. Building `BlogCard.tsx` and writing a new MDX article can happen in parallel. Refactoring a shared utility and building something that uses it cannot.
-
-When I have 3+ independent tasks, I use `superpowers:dispatching-parallel-agents`. Each agent gets its own context, works in isolation, and the results are merged. For a solo developer, this compresses multi-hour work into minutes.
+<Callout type="tip">🧠 My threshold: any decision that took more than 30 seconds to make probably belongs in `CLAUDE.md`.</Callout>
 
 ---
 
-## The tech stack
+## 🏗️ 4. Document Architectural Decisions
 
-Everything on this site was built with:
+As you build, you make decisions. Why this component structure and not that one. Why a certain API is shaped the way it is. Why you chose one approach over something simpler.
 
-| Layer | Choice |
-|---|---|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS |
-| Content | MDX with next-mdx-remote |
-| Database | Supabase (article reactions) |
-| Deployment | Vercel (auto-deploy from main) |
-| AI tooling | Claude Code CLI |
+Those decisions live in your head during the session, and once you close the terminal they're gone. 💨
+
+`architecture.md` is where I capture that history. Not a formal document, just clear notes about what was decided and why. When a new requirement comes in weeks later, I reference it and Claude immediately has the context it needs. No re-explaining, no accidentally undoing something that was already thought through.
+
+> Coming back to the project after a break, that file is the fastest way back into the mental model.
 
 ---
 
-## What I'd do from day one
+## ✅ 5. Write Requirements Before Coding
 
-If I were starting over:
+This one surprised me the most. 😅
 
-1. **Write CLAUDE.md before the first prompt.** Spend 30 minutes on it. It pays back immediately.
-2. **Set up tasks.md as your first file.** Structure your phases before building anything.
-3. **Never skip the brainstorming step.** Even for small things. Especially for small things — those are where assumptions sneak in.
-4. **Commit frequently, with clear messages.** Your future self and Claude will thank you.
-5. **Add to CLAUDE.md as you go.** Every decision that took more than 30 seconds to make belongs there.
+When I was vibe coding, I'd describe a feature and Claude would build something. Sometimes exactly right. Often close but off in small ways that required rework. I kept thinking Claude was missing details, and it was, but the real problem was I hadn't written them down clearly myself.
 
-The pattern that surprised me most: the biggest productivity gains aren't from Claude writing faster code. They're from the structure the workflow imposes — the forced design step, the written plan, the small commits. Claude Code made me a more disciplined developer, not just a faster one.
+`requirements.md` forced me to be specific before building anything. Feature by feature, with acceptance criteria. Not because Claude needs a formal spec, but because writing it out forced me to think through edge cases I'd otherwise discover mid-build and have to explain on the fly.
+
+A simple example looks like this:
+
+```
+## Blog reaction bar
+
+**Goal:** Let readers react to a post with an emoji.
+
+Acceptance criteria:
+- [ ] Displays 3 reaction options (👍 🔥 💡)
+- [ ] Count updates optimistically on click
+- [ ] Persists to Supabase on interaction
+- [ ] Works without being logged in
+- [ ] Does not allow more than one reaction per user per post
+```
+
+Nothing fancy. 🎯 Just enough that both you and Claude know exactly when it's done.
+
+Once I had them written down, Claude had real targets to work from. I could verify against actual criteria instead of gut feel, and when something was off the conversation got useful fast — "this doesn't meet criterion 3" is much cleaner than "this doesn't feel right."
+
+<Callout type="info">💡 Writing requirements forces you to think clearly before you build, and that clarity matters more than any prompt.</Callout>
+
+---
+
+If you're starting to build something real with AI tools, the magic isn't in the prompts — it's in the structure you build around them. Give the tool a clear vision, a plan, and the right context and it will move fast. Skip that setup and you'll spend more time correcting than building.
+
+I'm genuinely impressed by what Claude can create. But what excites me more is realizing that the tool is only as good as the clarity we bring to it. The ideas, the vision, the decisions ✨ — those still come from us. Claude just helps us get there faster.
+
+What a time to be building. 🚀 Go make something. Happy coding. 👨‍💻
+
