@@ -15,52 +15,99 @@ export default function Image() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start',
+          alignItems: 'center',
           justifyContent: 'center',
-          padding: '80px',
-          fontFamily: 'system-ui, -apple-system, sans-serif',
+          position: 'relative',
         }}
       >
+        {/* Top-left corner bracket */}
         <div
           style={{
-            color: '#1D9E75',
-            fontSize: '72px',
-            fontWeight: 700,
-            letterSpacing: '-2px',
+            position: 'absolute',
+            top: 32,
+            left: 32,
+            width: 20,
+            height: 20,
+            borderTop: '2px solid #1D9E75',
+            borderLeft: '2px solid #1D9E75',
+            display: 'flex',
+          }}
+        />
+        {/* Top-right corner bracket */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 32,
+            right: 32,
+            width: 20,
+            height: 20,
+            borderTop: '2px solid #1D9E75',
+            borderRight: '2px solid #1D9E75',
+            display: 'flex',
+          }}
+        />
+        {/* Bottom-left corner bracket */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 32,
+            left: 32,
+            width: 20,
+            height: 20,
+            borderBottom: '2px solid #1D9E75',
+            borderLeft: '2px solid #1D9E75',
+            display: 'flex',
+          }}
+        />
+        {/* Bottom-right corner bracket */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 32,
+            right: 32,
+            width: 20,
+            height: 20,
+            borderBottom: '2px solid #1D9E75',
+            borderRight: '2px solid #1D9E75',
+            display: 'flex',
+          }}
+        />
+
+        {/* JM monogram */}
+        <div
+          style={{
+            color: '#f9fafb',
+            fontSize: 120,
+            fontWeight: 500,
+            letterSpacing: '-4px',
             lineHeight: 1,
-            marginBottom: '16px',
           }}
         >
           JM
         </div>
+
+        {/* Teal separator */}
         <div
           style={{
-            width: '48px',
-            height: '2px',
+            width: 48,
+            height: 2,
             background: '#1D9E75',
-            marginBottom: '40px',
+            marginTop: 20,
+            marginBottom: 20,
+            display: 'flex',
           }}
         />
+
+        {/* Role label — pre-uppercased; 0.14em × 12px ≈ 2px letter-spacing */}
         <div
           style={{
-            color: '#f9fafb',
-            fontSize: '64px',
+            color: '#1D9E75',
+            fontSize: 12,
             fontWeight: 500,
-            lineHeight: 1.1,
-            marginBottom: '16px',
+            letterSpacing: '2px',
           }}
         >
-          Javier Mayorga
-        </div>
-        <div
-          style={{
-            color: '#9ca3af',
-            fontSize: '28px',
-            fontWeight: 400,
-            lineHeight: 1.4,
-          }}
-        >
-          Cloud Architect &amp; Enterprise Solutions Leader
+          CLOUD ARCHITECT & ENTERPRISE SOLUTIONS LEADER
         </div>
       </div>
     ),
