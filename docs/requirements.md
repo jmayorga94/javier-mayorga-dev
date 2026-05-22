@@ -171,30 +171,19 @@ Active: `text-[#0f1117] font-medium`. Inactive: `text-[#6b7280]`.
 
 ---
 
-## Phase 14 — Coding phase in AvailabilityWidget
+## Phase 16 — Contact Form (Web3Forms)
 
-### REQ-11 — Coding animation
-Add a "code" phase to the athlete cycle showing a seated figure typing at a desk.
-
-**Acceptance criteria:**
-- New phase `"code"` in `Phase` type; cycle: run (10s) → walk (2.5s) → lift (10s) → walk (3s) → code (9s) → walk (2.5s) → loop
-- New `pose-code` SVG group: head, upright torso, bent legs, desk surface, monitor rect, two arm lines reaching forward to keyboard
-- Typing keyframe: subtle alternating Y bounce on each hand (~0.4s, staggered 0.2s)
-- `.runner[data-phase="code"]` reveals `pose-code` only, triggers typing animations
-- `prefers-reduced-motion`: seated pose visible statically, no finger animation
-
----
-
-## Phase 15 — Dark mode blog post page
-
-### REQ-12 — Blog post title visible in dark mode
-Hardcoded colors on the blog post page are invisible when dark mode is active.
+### REQ-13 — Inline contact form replacing mailto CTA
+Replace the mailto button with an inline form. Submission goes through `/api/contact`
+(server route) which reads `access_key` from env and forwards to web3forms.com.
 
 **Acceptance criteria:**
-- `h1` title: `text-[#0f1117]` → `text-[var(--text-primary)]`
-- Date / reading time: `text-[#6b7280]` → `text-[var(--text-muted)]`
-- Tag badges: text `text-[var(--text-muted)]`, border `border-[var(--hairline)]`
-- All changes in `src/app/blog/[slug]/page.tsx` only
+- Fields: Name, Email, Message (all required)
+- Loading state: button disabled, shows "Sending…"
+- Success state: form replaced with teal confirmation message
+- Error state: inline error below button, form stays editable
+- Styles use CSS vars — works in light and dark themes
+- CV download and LinkedIn links remain below the form
 
 ---
 
@@ -202,7 +191,7 @@ Hardcoded colors on the blog post page are invisible when dark mode is active.
 
 | Feature | Reason deferred |
 |---|---|
-| Contact form with backend | Requires email service infra decision |
+| ~~Contact form with backend~~ | Delivered in Phase 16 via Web3Forms |
 | Dark mode toggle | Design is intentionally mixed; toggle risks breaking hero/footer theming (ADR-009) |
 | Blog pagination | Content volume doesn't warrant it |
 | i18n routing (Phase 12 aside) | Being done in Phase 12 |

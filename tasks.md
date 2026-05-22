@@ -291,18 +291,8 @@
 
 ---
 
-## Phase 14 — Coding phase in AvailabilityWidget (REQ-11)
+## Phase 16 — Contact Form via Web3Forms (REQ-13)
 
-- [x] Add `"code"` to `Phase` type and update cycle array in `AvailabilityWidget.tsx`
-- [x] Add `pose-code` SVG group: seated figure, desk line, monitor rect, two arm lines
-- [x] Add `@keyframes typingLeft` and `typingRight` in `globals.css` (subtle Y bounce, staggered)
-- [x] Add `.runner[data-phase="code"]` CSS block revealing `pose-code` and triggering typing animations
-- [x] Add `pose-code` to the reduced-motion static fallback block in `globals.css`
-
----
-
-## Phase 15 — Dark mode blog post title fix (REQ-12)
-
-- [x] Replace `text-[#0f1117]` on h1 with `text-[var(--text-primary)]` in `blog/[slug]/page.tsx`
-- [x] Replace `text-[#6b7280]` on date row with `text-[var(--text-muted)]`
-- [x] Replace tag badge colors: `text-[var(--text-muted)]` and `border-[var(--hairline)]`
+- [x] Create `src/app/api/contact/route.ts` — POST handler, reads `access_key` env var, forwards to web3forms
+- [x] Create `src/components/sections/ContactForm.tsx` — `"use client"`, form state + POST to `/api/contact`
+- [x] Update `ContactSection.tsx` — replace mailto CTA with `<ContactForm />`
