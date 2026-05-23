@@ -7,7 +7,7 @@ const posts = [
     slug: "the-workflow-that-made-claude-code-actually-useful",
     title: "The Workflow That Made Claude Code Actually Useful",
     lang: "EN",
-    summary: "I built this site with Claude Code. Honestly? It didn't work. The problem wasn't the tool — it was how I was setting up the work.",
+    summary: "I started vibe coding and it didn't get me where I wanted. Here's what I changed.",
     date: "2025-05-20",
     comingSoon: false,
   },
